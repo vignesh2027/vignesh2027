@@ -1,0 +1,23 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="900" height="55" viewBox="0 0 900 55">
+  <style>
+    .t { font-family:'Courier New',Courier,monospace; font-size:20px; font-weight:bold; fill:#9333ea; text-anchor:middle; opacity:0; }
+    @keyframes l1 { 0%{opacity:0} 2%{opacity:1} 15%{opacity:1} 17%{opacity:0} 100%{opacity:0} }
+    @keyframes l2 { 0%,17%{opacity:0} 19%{opacity:1} 32%{opacity:1} 34%{opacity:0} 100%{opacity:0} }
+    @keyframes l3 { 0%,34%{opacity:0} 36%{opacity:1} 49%{opacity:1} 51%{opacity:0} 100%{opacity:0} }
+    @keyframes l4 { 0%,51%{opacity:0} 53%{opacity:1} 66%{opacity:1} 68%{opacity:0} 100%{opacity:0} }
+    @keyframes l5 { 0%,68%{opacity:0} 70%{opacity:1} 83%{opacity:1} 85%{opacity:0} 100%{opacity:0} }
+    @keyframes l6 { 0%,85%{opacity:0} 87%{opacity:1} 98%{opacity:1} 100%{opacity:0} }
+    .a1{animation:l1 24s infinite}
+    .a2{animation:l2 24s infinite}
+    .a3{animation:l3 24s infinite}
+    .a4{animation:l4 24s infinite}
+    .a5{animation:l5 24s infinite}
+    .a6{animation:l6 24s infinite}
+  </style>
+  <text class="t a1" x="450" y="38">Shipped 7 digital products - zero VC, pure skill</text>
+  <text class="t a2" x="450" y="38">600K GPU particles rendered inside a browser</text>
+  <text class="t a3" x="450" y="38">Novel Transformer architecture nobody built before</text>
+  <text class="t a4" x="450" y="38">Python | ML | WebGL | Cloud | All of it</text>
+  <text class="t a5" x="450" y="38">Built and sold an eLearning platform for 68K</text>
+  <text class="t a6" x="450" y="38">Engineer - Marketer - Researcher - All in one</text>
+</svg>

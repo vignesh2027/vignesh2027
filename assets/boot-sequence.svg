@@ -1,0 +1,24 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="700" height="34" viewBox="0 0 700 34">
+  <rect width="700" height="34" fill="#0D1117" rx="6"/>
+  <style>
+    .b { font-family:'Courier New',Courier,monospace; font-size:13px; fill:#00FF41; text-anchor:middle; opacity:0; }
+    @keyframes b1 { 0%{opacity:0} 2%{opacity:1} 15%{opacity:1} 17%{opacity:0} 100%{opacity:0} }
+    @keyframes b2 { 0%,17%{opacity:0} 19%{opacity:1} 32%{opacity:1} 34%{opacity:0} 100%{opacity:0} }
+    @keyframes b3 { 0%,34%{opacity:0} 36%{opacity:1} 49%{opacity:1} 51%{opacity:0} 100%{opacity:0} }
+    @keyframes b4 { 0%,51%{opacity:0} 53%{opacity:1} 66%{opacity:1} 68%{opacity:0} 100%{opacity:0} }
+    @keyframes b5 { 0%,68%{opacity:0} 70%{opacity:1} 83%{opacity:1} 85%{opacity:0} 100%{opacity:0} }
+    @keyframes b6 { 0%,85%{opacity:0} 87%{opacity:1} 98%{opacity:1} 100%{opacity:0} }
+    .c1{animation:b1 18s infinite}
+    .c2{animation:b2 18s infinite}
+    .c3{animation:b3 18s infinite}
+    .c4{animation:b4 18s infinite}
+    .c5{animation:b5 18s infinite}
+    .c6{animation:b6 18s infinite}
+  </style>
+  <text class="b c1" x="350" y="22">INITIALIZING VIGNESHWAR.exe...</text>
+  <text class="b c2" x="350" y="22">Loading Python + ML modules [##########] 100%</text>
+  <text class="b c3" x="350" y="22">WebGL engine loaded... OK</text>
+  <text class="b c4" x="350" y="22">Marketing stack loaded... OK</text>
+  <text class="b c5" x="350" y="22">Entrepreneur mode... ACTIVE</text>
+  <text class="b c6" x="350" y="22">All systems online. Welcome.</text>
+</svg>

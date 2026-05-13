@@ -19,8 +19,8 @@
 
 <br/>
 
-<!-- BOOT SEQUENCE — ASCII only, no Unicode block chars -->
-<img src="https://readme-typing-svg.demolab.com/api?font=Fira+Code&size=13&duration=1000&pause=250&color=00FF41&center=true&vCenter=true&width=700&height=32&lines=INITIALIZING+VIGNESHWAR.exe...;Loading+Python+%2B+ML+modules+[%23%23%23%23%23%23%23%23%23%23]+100%25;WebGL+engine+loaded...+OK;Digital+marketing+stack+loaded...+OK;Entrepreneur+mode...+ACTIVE;All+systems+online.+Welcome." alt="boot sequence"/>
+<!-- BOOT SEQUENCE — self-hosted SVG, always loads -->
+<img src="https://raw.githubusercontent.com/vignesh2027/vignesh2027/main/assets/boot-sequence.svg" alt="boot sequence" width="700"/>
 
 <br/>
 
@@ -29,8 +29,8 @@
 
 <br/>
 
-<!-- TYPING SVG — ASCII only lines, no emoji or Unicode -->
-<img src="https://readme-typing-svg.demolab.com/api?font=Fira+Code&weight=700&size=22&duration=2400&pause=800&color=9333EA&center=true&vCenter=true&width=860&height=55&lines=Shipped+7+digital+products+-+zero+VC%2C+pure+skill;600K+GPU+particles+rendered+inside+a+browser;Novel+Transformer+architecture+nobody+has+built+before;Vibe+coder+-+idea+to+shipped+product+in+48+hours;Python+%7C+ML+%7C+WebGL+%7C+Cloud+%7C+All+of+it;Built+and+sold+an+eLearning+platform+for+68K" alt="Typing SVG"/>
+<!-- TYPING SVG — self-hosted SVG, always loads -->
+<img src="https://raw.githubusercontent.com/vignesh2027/vignesh2027/main/assets/typing-main.svg" alt="Typing SVG" width="900"/>
 
 <br/>
 
@@ -73,7 +73,7 @@ The combination is the edge: I can write the code, design the architecture, trai
 
 **Primary:** Python · FastAPI · PyTorch · React/Vue · Three.js · AWS/GCP  
 **Systems:** C++17 · Raylib · CMake · WebAssembly · GLSL  
-**Currently:** RAG system architecture · Two Python libraries · NEURALSTACK (stealth) · Vibe coding daily
+**Currently:** RAG system architecture · Two Python libraries · NEURALSTACK (stealth) · Shipping daily
 
 <br clear="right"/>
 
@@ -141,40 +141,25 @@ The combination is the edge: I can write the code, design the architecture, trai
 
 <br/>
 
-<!-- ═══════════════════════════════════════════════════════════════════ -->
-<img width="100%" src="https://capsule-render.vercel.app/api?type=soft&color=gradient&customColorList=6,11,20&height=55&text=VIBE+CODER+-+HOW+I+BUILD&fontSize=24&fontColor=ffffff&animation=fadeIn"/>
+<br/>
+
+<!-- WAVE DIVIDER -->
+<img width="100%" src="https://capsule-render.vercel.app/api?type=waving&color=gradient&customColorList=6,11,20&height=80&section=footer"/>
+<img width="100%" src="https://capsule-render.vercel.app/api?type=waving&color=gradient&customColorList=6,11,20&height=80&section=header"/>
 
 <div align="center">
 
-> *"Vibe coding is a force multiplier for people who already know what they're doing."*
+> *"The best engineers I know don't just write code — they ship things people pay for."*
+
+![Python](https://img.shields.io/badge/Python%20First-Always-3776AB?style=flat-square&logo=python&logoColor=white)
+&nbsp;
+![Systems](https://img.shields.io/badge/C%2B%2B%20%2F%20C-When%20It%20Matters-00599C?style=flat-square&logo=cplusplus&logoColor=white)
+&nbsp;
+![ML](https://img.shields.io/badge/ML-Novel%20Architectures-EE4C2C?style=flat-square&logo=pytorch&logoColor=white)
+&nbsp;
+![Entrepreneur](https://img.shields.io/badge/7%20Products-Sold-00d26a?style=flat-square)
 
 </div>
-
-I build entire production-grade applications using AI-assisted development. Not prototypes — full systems with auth, databases, APIs, frontends, CI/CD, and docs. The kind of thing that used to take a team of 4 engineers a month. I ship it in 48 hours.
-
-My workflow is a system. Architecture is always mine — I design every system in my head before touching a keyboard. Then AI accelerates implementation while I maintain full ownership of every technical decision. Result: senior-team output, impossible velocity.
-
-```
-+-----------------------------------------------------------------+
-|  PHASE 1 - ARCHITECT   |  System design. Pure brain. No AI.   |
-|  PHASE 2 - BUILD       |  AI-assisted implementation. Fast.   |
-|  PHASE 3 - REVIEW      |  Every line read. Every edge case.   |
-|  PHASE 4 - SHIP        |  GitHub Actions + Docker + Cloud.    |
-|  PHASE 5 - MARKET      |  Reddit + Discord + Community.       |
-+-----------------------------------------------------------------+
-```
-
-**What I've shipped with this workflow:**
-- Full eLearning platforms (payment, auth, content delivery, analytics) — sold for 68K
-- Real-time 3D data visualization (WebGL, 600K GPU particles in-browser)
-- Novel ML architectures (TemporalMesh Transformer — graph topology + temporal decay)
-- Cyber intelligence platforms (live threat feeds, 3D globe, WebSocket streaming)
-- Developer tooling libraries (2 Python libraries releasing on PyPI soon)
-- Gamified engineering platforms (10-planet universe with AI mentoring)
-
-The secret: architecture in your head + AI execution velocity = products that look impossible.
-
-<br/>
 
 <!-- ═══════════════════════════════════════════════════════════════════ -->
 <img width="100%" src="https://capsule-render.vercel.app/api?type=soft&color=gradient&customColorList=6,11,20&height=55&text=SHIPPED+AND+SOLD&fontSize=26&fontColor=ffffff&animation=fadeIn"/>
