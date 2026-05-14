@@ -11,7 +11,7 @@
 <!-- LIVE STATUS BADGES -->
 ![STATUS](https://img.shields.io/badge/STATUS-ONLINE-00d26a?style=for-the-badge&labelColor=0d1117)
 &nbsp;
-![MODE](https://img.shields.io/badge/MODE-VIBE+CODING-9333ea?style=for-the-badge&labelColor=0d1117)
+![MODE](https://img.shields.io/badge/MODE-VS+CODE-9333ea?style=for-the-badge&labelColor=0d1117)
 &nbsp;
 ![NOW](https://img.shields.io/badge/NOW-BUILDING+IN+PUBLIC-c084fc?style=for-the-badge&labelColor=0d1117)
 &nbsp;
