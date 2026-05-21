@@ -35,22 +35,30 @@
 <br/>
 
 <!-- SOCIAL BADGES -->
-![Profile Views](https://komarev.com/ghpvc/?username=vignesh2027&color=9333ea&style=flat-square&label=PROFILE+VIEWS)
+![Profile Views](https://komarev.com/ghpvc/?username=vignesh2027&color=9333ea&style=for-the-badge&label=PROFILE+VIEWS&base=2023)
 &nbsp;
-[![GitHub](https://img.shields.io/github/followers/vignesh2027?label=Follow&style=flat-square&color=9333ea&labelColor=0d1117&logo=github&logoColor=white)](https://github.com/vignesh2027)
+![GitHub Analytics](https://img.shields.io/badge/GITHUB+ANALYTICS-2213%2B+VIEWS-c084fc?style=for-the-badge&labelColor=0d1117&logo=github&logoColor=white)
 &nbsp;
-[![LinkedIn](https://img.shields.io/badge/LinkedIn-Connect-0A66C2?style=flat-square&logo=linkedin&logoColor=white)](https://www.linkedin.com/in/vigneshwar-l-td729994)
+![Stars](https://img.shields.io/github/stars/vignesh2027?style=for-the-badge&logo=starship&label=TOTAL+STARS&color=FFD700&labelColor=0d1117&logoColor=FFD700)
+
+<br/>
+
+[![GitHub](https://img.shields.io/badge/GitHub-vignesh2027-181717?style=for-the-badge&logo=github&logoColor=white)](https://github.com/vignesh2027)
 &nbsp;
-[![Portfolio](https://img.shields.io/badge/Portfolio-Live-9333ea?style=flat-square&logo=vercel&logoColor=white)](https://vignesh2027.github.io/F.W.D)
+[![LinkedIn](https://img.shields.io/badge/LinkedIn-Connect-0A66C2?style=for-the-badge&logo=linkedin&logoColor=white)](https://www.linkedin.com/in/vigneshwar-l-td729994)
 &nbsp;
-[![Discord](https://img.shields.io/badge/Discord-Chat-5865F2?style=flat-square&logo=discord&logoColor=white)](https://discord.com)
+[![Portfolio](https://img.shields.io/badge/Portfolio-Live-9333ea?style=for-the-badge&logo=vercel&logoColor=white)](https://vignesh2027.github.io/F.W.D)
 &nbsp;
-[![Reddit](https://img.shields.io/badge/Reddit-Launches-FF4500?style=flat-square&logo=reddit&logoColor=white)](https://reddit.com)
+[![Discord](https://img.shields.io/badge/Discord-Chat-5865F2?style=for-the-badge&logo=discord&logoColor=white)](https://discord.com)
+&nbsp;
+[![Reddit](https://img.shields.io/badge/Reddit-Launches-FF4500?style=for-the-badge&logo=reddit&logoColor=white)](https://reddit.com)
+&nbsp;
+![Repos](https://img.shields.io/badge/PUBLIC+REPOS-30%2B-00d26a?style=for-the-badge&labelColor=0d1117&logo=github&logoColor=white)
 
 <br/>
 
 <!-- SKILL ICONS — confirmed working -->
-<img src="https://skillicons.dev/icons?i=python,cpp,ts,js,react,vue,threejs,pytorch,aws,firebase,docker,grafana,figma,git&theme=dark&perline=14" alt="Tech Stack Icons"/>
+<img src="https://skillicons.dev/icons?i=python,cpp,ts,js,dart,react,vue,threejs,pytorch,tensorflow,aws,gcp,firebase,docker,grafana,figma,git,fastapi,flutter,redis,postgres,mongodb,linux,bash&theme=dark&perline=12" alt="Tech Stack Icons"/>
 
 </div>
 
@@ -73,7 +81,8 @@ The combination is the edge: I can write the code, design the architecture, trai
 
 **Primary:** Python · FastAPI · PyTorch · React/Vue · Three.js · AWS/GCP  
 **Systems:** C++17 · Raylib · CMake · WebAssembly · GLSL  
-**Currently:** RAG system architecture · Two Python libraries · NEURALSTACK (stealth) · Shipping daily
+**Open-Source:** SYNTHRON (multi-agent AI) · VORTEXRAG (7-layer RAG) · puredata.py · datamend.py  
+**Currently:** NEURALSTACK (stealth) · LLM Eval Framework · Shipping daily — 30+ public repos
 
 <br clear="right"/>
 
@@ -83,6 +92,11 @@ The combination is the edge: I can write the code, design the architecture, trai
 <img width="100%" src="https://capsule-render.vercel.app/api?type=soft&color=gradient&customColorList=6,11,20&height=55&text=WHAT+I+DO&fontSize=26&fontColor=ffffff&animation=fadeIn"/>
 
 <div align="center">
+
+<!-- WHAT I DO GIF — cinematic dev setup -->
+<img src="https://user-images.githubusercontent.com/74038190/229223263-cf2e4b07-2615-4f87-9c38-e37600f8381a.gif" width="700" alt="Engineering at scale — build, ship, sell"/>
+
+<br/><br/>
 
 <table>
 <tr>
@@ -132,6 +146,48 @@ The combination is the edge: I can write the code, design the architecture, trai
 <br/><br/>
 <b>Cloud Optimizer</b><br/>
 <sub>AWS + GCP cost optimization. Avg 30-50% infra reduction. Grafana monitoring. Startups love this.</sub>
+<br/>
+</td>
+</tr>
+<tr>
+<td align="center" width="16%">
+<br/>
+<img src="https://img.shields.io/badge/MULTI--AGENT-AI-6B46C1?style=for-the-badge&logo=openai&logoColor=white"/>
+<br/><br/>
+<b>AI Framework Builder</b><br/>
+<sub>SYNTHRON multi-agent framework · VORTEXRAG 7-layer RAG · LLM eval · agentic orchestration at scale.</sub>
+<br/>
+</td>
+<td align="center" width="16%">
+<br/>
+<img src="https://img.shields.io/badge/FLUTTER-MOBILE-02569B?style=for-the-badge&logo=flutter&logoColor=white"/>
+<br/><br/>
+<b>Mobile Engineer</b><br/>
+<sub>Flutter · Firebase · Riverpod. Built SparshCare — 50-file ICU patient communication app, 4 languages.</sub>
+<br/>
+</td>
+<td align="center" width="16%">
+<br/>
+<img src="https://img.shields.io/badge/OPEN-SOURCE-00d26a?style=for-the-badge&logo=github&logoColor=white"/>
+<br/><br/>
+<b>Open Source Creator</b><br/>
+<sub>30+ public repos. puredata.py · datamend.py · SYNTHRON · VORTEXRAG. Real libraries solving real pain.</sub>
+<br/>
+</td>
+<td align="center" width="16%">
+<br/>
+<img src="https://img.shields.io/badge/3D-VISUALIZATION-000000?style=for-the-badge&logo=threedotjs&logoColor=white"/>
+<br/><br/>
+<b>Data Viz Expert</b><br/>
+<sub>CesiumJS · Three.js · D3.js · Grafana. FLY-VIEW globe · Graphite metrics · Tradeorbit trade flows.</sub>
+<br/>
+</td>
+<td align="center" width="16%">
+<br/>
+<img src="https://img.shields.io/badge/LLM-EVALUATION-EE4C2C?style=for-the-badge&logo=weightsandbiases&logoColor=white"/>
+<br/><br/>
+<b>LLM Benchmarker</b><br/>
+<sub>Production LLM eval framework. GPT-4 · Claude · Gemini · Mistral. Accuracy, latency, cost, hallucination.</sub>
 <br/>
 </td>
 </tr>
@@ -475,6 +531,162 @@ For technical founders who can't market, and marketers who can't speak to engine
 
 </td>
 </tr>
+<tr>
+<td width="50%" valign="top">
+
+### [SYNTHRON — Multi-Agent AI Framework](https://github.com/vignesh2027/synthron)
+
+> **The multi-agent AI framework that actually works.**
+> Orchestrate fleets of AI agents with real task decomposition, inter-agent communication, and fault tolerance. Not a wrapper — a framework. Built for production AI systems that need more than a single model call.
+
+![Python](https://img.shields.io/badge/Python-3776AB?style=flat-square&logo=python&logoColor=white)
+![Multi-Agent](https://img.shields.io/badge/Multi--Agent-6B46C1?style=flat-square)
+![AI](https://img.shields.io/badge/AI%20Framework-9333EA?style=flat-square)
+![Open Source](https://img.shields.io/badge/Open%20Source-00d26a?style=flat-square&logo=github&logoColor=white)
+
+**[View Framework](https://github.com/vignesh2027/synthron)** | **[Docs](https://vignesh2027.github.io/synthron)**
+
+</td>
+<td width="50%" valign="top">
+
+### [VORTEXRAG — 7-Layer RAG Framework](https://github.com/vignesh2027/VORTEXRAG)
+
+> **The only RAG that kills semantic drift and context poisoning simultaneously.**
+> VORTEX: Vector Orthogonal Resonance-Tuned EXtraction. 7-layer architecture solving what standard RAG pipelines can't. Novel approach to retrieval that understands semantic relationships, not just vector proximity.
+
+![Python](https://img.shields.io/badge/Python-3776AB?style=flat-square&logo=python&logoColor=white)
+![RAG](https://img.shields.io/badge/RAG%20Systems-9333EA?style=flat-square)
+![Novel Arch](https://img.shields.io/badge/Novel%20Architecture-EE4C2C?style=flat-square)
+![PyTorch](https://img.shields.io/badge/PyTorch-EE4C2C?style=flat-square&logo=pytorch&logoColor=white)
+
+**[View Framework](https://github.com/vignesh2027/VORTEXRAG)**
+
+</td>
+</tr>
+<tr>
+<td width="50%" valign="top">
+
+### [LLM Evaluation Framework](https://github.com/vignesh2027/LLM-Evaluation-Framework)
+
+> **Production-grade benchmarking across the big four LLMs.**
+> GPT-4 · Claude · Gemini · Mistral — all in one framework. Accuracy, latency, cost, hallucination rate, reasoning depth. The tool you use before trusting an LLM in production.
+
+![Python](https://img.shields.io/badge/Python-3776AB?style=flat-square&logo=python&logoColor=white)
+![Claude API](https://img.shields.io/badge/Claude%20API-6B46C1?style=flat-square)
+![OpenAI](https://img.shields.io/badge/OpenAI-74aa9c?style=flat-square&logo=openai&logoColor=white)
+![Benchmarking](https://img.shields.io/badge/LLM%20Eval-FF6B6B?style=flat-square)
+
+**[View Framework](https://github.com/vignesh2027/LLM-Evaluation-Framework)**
+
+</td>
+<td width="50%" valign="top">
+
+### [Graphite Web — Metrics Visualization](https://github.com/vignesh2027/graphite-web-)
+
+> **The most advanced open-source metrics visualization platform.**
+> Real-time streaming · 3D topology · AI anomaly detection · Zero backend — runs entirely in the browser. Makes Grafana look like a spreadsheet.
+
+![JavaScript](https://img.shields.io/badge/JavaScript-F7DF1E?style=flat-square&logo=javascript&logoColor=black)
+![Three.js](https://img.shields.io/badge/Three.js-000?style=flat-square&logo=threedotjs&logoColor=white)
+![Real-time](https://img.shields.io/badge/Real--time%20AI-9333EA?style=flat-square)
+![Zero Backend](https://img.shields.io/badge/Zero%20Backend-00d26a?style=flat-square)
+
+**[View Project](https://github.com/vignesh2027/graphite-web-)**
+
+</td>
+</tr>
+<tr>
+<td width="50%" valign="top">
+
+### [FLY-VIEW — 3D Intelligence Globe](https://github.com/vignesh2027/-FLY-VIEW)
+
+> **A photorealistic Earth overlaid with three real-time data layers.**
+> Built on CesiumJS — the same engine NASA uses. Standalone client-side. No backend, no API key, no dashboard panels. Just Earth, alive with data that means something.
+
+![CesiumJS](https://img.shields.io/badge/CesiumJS-1F87B8?style=flat-square)
+![JavaScript](https://img.shields.io/badge/JavaScript-F7DF1E?style=flat-square&logo=javascript&logoColor=black)
+![3D Globe](https://img.shields.io/badge/3D%20Globe-00d26a?style=flat-square)
+![Zero Backend](https://img.shields.io/badge/Client--Side-9333EA?style=flat-square)
+
+**[View Project](https://github.com/vignesh2027/-FLY-VIEW)**
+
+</td>
+<td width="50%" valign="top">
+
+### [Manus Gestures — Hand Particle Control](https://github.com/vignesh2027/Manus-Gestures)
+
+> **Control thousands of particles with your bare hands.**
+> Pure black. Pure white. No UI. Just physics and motion. Tracks your hand in real time and lets you sculpt a particle universe. The most minimal thing I've built — and somehow the most impressive.
+
+![JavaScript](https://img.shields.io/badge/JavaScript-F7DF1E?style=flat-square&logo=javascript&logoColor=black)
+![WebGL](https://img.shields.io/badge/WebGL-990000?style=flat-square&logo=webgl&logoColor=white)
+![Computer Vision](https://img.shields.io/badge/Hand%20Tracking-FF6B6B?style=flat-square)
+
+**[View Project](https://github.com/vignesh2027/Manus-Gestures)**
+
+</td>
+</tr>
+<tr>
+<td width="50%" valign="top">
+
+### [Tradeorbit — Global Trade Visualization](https://github.com/vignesh2027/Tradeorbit)
+
+> **See the invisible $32 trillion force that moves the world — in real time.**
+> Global trade flows rendered visually, beautifully, in your browser. The kind of data that was locked behind Bloomberg terminals, now free and cinematic.
+
+![JavaScript](https://img.shields.io/badge/JavaScript-F7DF1E?style=flat-square&logo=javascript&logoColor=black)
+![D3.js](https://img.shields.io/badge/D3.js-F9A03C?style=flat-square&logo=d3dotjs&logoColor=white)
+![Three.js](https://img.shields.io/badge/Three.js-000?style=flat-square&logo=threedotjs&logoColor=white)
+![Data Viz](https://img.shields.io/badge/Data%20Viz-9333EA?style=flat-square)
+
+**[View Project](https://github.com/vignesh2027/Tradeorbit)**
+
+</td>
+<td width="50%" valign="top">
+
+### [puredata.py + datamend.py — Python Libraries](https://github.com/vignesh2027/puredata.py)
+
+> **Two production Python libraries shipped from real pain.**
+> **puredata** — automatic data cleaning and silent drift detection. **datamend** — the single library that catches, fixes, validates, monitors, and traces every data quality issue. Your ML pipeline never breaks from bad data again.
+
+![Python](https://img.shields.io/badge/Python-3776AB?style=flat-square&logo=python&logoColor=white)
+![PyPI](https://img.shields.io/badge/PyPI-Released-FF6B6B?style=flat-square&logo=pypi&logoColor=white)
+![Data](https://img.shields.io/badge/Data%20Quality-00d26a?style=flat-square)
+
+**[puredata.py](https://github.com/vignesh2027/puredata.py)** | **[datamend.py](https://github.com/vignesh2027/datamend.py)**
+
+</td>
+</tr>
+<tr>
+<td width="50%" valign="top">
+
+### [Claude Agentic Skills 2.0](https://github.com/vignesh2027/Claude-Agentic-Skills2.0-version)
+
+> **6 months of agentic engineering, finally shareable.**
+> Advanced Claude agent skills, workflows, and patterns built from shipping real production systems. The things no documentation tells you — from someone who's been using Claude Code in anger for 6 months.
+
+![Shell](https://img.shields.io/badge/Shell-4EAA25?style=flat-square&logo=gnu-bash&logoColor=white)
+![Claude](https://img.shields.io/badge/Claude%20API-6B46C1?style=flat-square)
+![Agentic](https://img.shields.io/badge/Agentic%20AI-9333EA?style=flat-square)
+
+**[View Project](https://github.com/vignesh2027/Claude-Agentic-Skills2.0-version)**
+
+</td>
+<td width="50%" valign="top">
+
+### [JARVIS Voice — AI Voice Intelligence](https://github.com/vignesh2027/Jarvis-voice)
+
+> **J.A.R.V.I.S — Just A Rather Very Intelligent System.**
+> Voice-driven AI assistant built from scratch. Wake word detection, intent parsing, multi-modal response. The Iron Man interface, made real.
+
+![Python](https://img.shields.io/badge/Python-3776AB?style=flat-square&logo=python&logoColor=white)
+![Voice AI](https://img.shields.io/badge/Voice%20AI-9333EA?style=flat-square)
+![Real-time](https://img.shields.io/badge/Real--time-FF6B6B?style=flat-square)
+
+**[View Project](https://github.com/vignesh2027/Jarvis-voice)**
+
+</td>
+</tr>
 </table>
 
 </div>
@@ -482,69 +694,71 @@ For technical founders who can't market, and marketers who can't speak to engine
 <br/>
 
 <!-- ═══════════════════════════════════════════════════════════════════ -->
-<img width="100%" src="https://capsule-render.vercel.app/api?type=soft&color=gradient&customColorList=6,11,20&height=55&text=UPCOMING+RAG+SYSTEM&fontSize=24&fontColor=ffffff&animation=fadeIn"/>
+<img width="100%" src="https://capsule-render.vercel.app/api?type=soft&color=gradient&customColorList=6,11,20&height=55&text=VORTEXRAG+%E2%80%94+LIVE+ON+GITHUB&fontSize=24&fontColor=ffffff&animation=fadeIn"/>
 
 <div align="center">
 
-> *Architecture in progress. Open-source release coming soon.*
+> *Open-source. Live. The RAG architecture the field is missing.*
 
 </div>
 
-Building a production-grade RAG system from scratch — not a wrapper, an architectural contribution. Built on the TemporalMesh Transformer backbone with custom retrieval that understands temporal semantic relationships, not just cosine similarity to static embeddings.
+**VORTEXRAG** is now public. A 7-layer production RAG framework that solves what standard pipelines can't: semantic drift and context poisoning — simultaneously. Built on the TemporalMesh Transformer backbone with custom retrieval that understands temporal semantic relationships, not just cosine similarity.
 
 ```
 STANDARD RAG:   Query -> Embed -> Top-K -> Stuff context -> Generate
-                Problem: No temporal awareness. Static retrieval.
+                Problem: No temporal awareness. Context poisoning. Drift.
 
-VIGNESHWAR RAG: Query -> Temporal Embed -> Mesh Graph Retrieval
-                -> Confidence-gated Context -> Adaptive Generation
-                Result: Retrieval that understands WHEN info matters
+VORTEXRAG:      Query -> Temporal Embed -> Orthogonal Resonance Tuning
+                -> 7-Layer Extraction -> Confidence-Gated Context -> Generate
+                Result: The only RAG that kills semantic drift + context poisoning
 ```
 
-| Module | Status |
-|---|---|
-| Temporal Embedder — time-decay metadata baked into embeddings | `IN PROGRESS` |
-| Mesh Retriever — graph-based retrieval via TMT attention | `IN PROGRESS` |
-| Confidence Router — skips context if retrieval confidence low | `RESEARCH` |
-| Aerospike Vector Store — custom integration | `PLANNED` |
-| FastAPI streaming interface | `PLANNED` |
+| Layer | Function | Status |
+|---|---|---|
+| Vector Orthogonal Tuning — noise cancellation on embedding space | Core innovation | `LIVE` |
+| Resonance Retrieval — semantic resonance, not cosine similarity | Core innovation | `LIVE` |
+| Temporal Decay — time-aware context weighting | Core innovation | `LIVE` |
+| Context Poison Detector — filters adversarial/stale context | Safety layer | `LIVE` |
+| Confidence Router — skips generation if retrieval confidence low | Reliability layer | `LIVE` |
+| Aerospike Vector Store integration | Storage layer | `IN PROGRESS` |
+| FastAPI streaming interface | API layer | `IN PROGRESS` |
+
+**[View VORTEXRAG on GitHub](https://github.com/vignesh2027/VORTEXRAG)**
 
 <br/>
 
 <!-- ═══════════════════════════════════════════════════════════════════ -->
-<img width="100%" src="https://capsule-render.vercel.app/api?type=soft&color=gradient&customColorList=6,11,20&height=55&text=PYTHON+LIBRARIES+RELEASING+SOON&fontSize=22&fontColor=ffffff&animation=fadeIn"/>
+<img width="100%" src="https://capsule-render.vercel.app/api?type=soft&color=gradient&customColorList=6,11,20&height=55&text=PYTHON+LIBRARIES+%E2%80%94+SHIPPED&fontSize=22&fontColor=ffffff&animation=fadeIn"/>
 
 <div align="center">
 
-> *Two libraries. Both built from real pain points across 5+ projects. Both hitting PyPI soon.*
+> *Two libraries. Both built from real pain points across 5+ projects. On GitHub now.*
 
 </div>
 
-**Library 1 — ML Experiment Tooling**
+**puredata.py — Automatic Data Cleaning & Drift Detection**
 
-Solves friction in ML experiment management that W&B and MLflow don't handle well. Lightweight, zero config, plugs into any training loop.
-
-```python
-# Before: 30 lines of boilerplate per experiment
-# After:
-@track.experiment(name="tmt-ablation-v3")
-def train(config):
-    ...  # your existing loop, unchanged
-```
-
-**Library 2 — Data Pipeline Utilities**
-
-Streaming ingestion, schema validation, temporal windowing, pipeline composition. The abstractions every ML project reinvents from scratch.
+Nulls sneak in. Distributions shift. Models fail silently on corrupted inputs. `puredata` is the library that catches it before it breaks your pipeline. Zero config, drop-in.
 
 ```python
-pipe = Pipeline([
-    Stream.from_api(url, interval=60),
-    Window.temporal(size="1h", decay=0.95),
-    validate(schema),
-])
+import puredata as pd
+
+df = pd.clean(your_dataframe)          # auto-cleans nulls, outliers, type mismatches
+pd.monitor(df, interval=60)            # silent drift detection in production
 ```
 
-Release: **GitHub + PyPI · Announced on Reddit and Discord**
+**datamend.py — Production Data Quality**
+
+The single library that catches, fixes, validates, monitors, and traces every data quality issue — automatically. So your ML pipeline never breaks from bad data again.
+
+```python
+from datamend import Pipeline
+
+pipeline = Pipeline(df)
+pipeline.fix().validate().monitor()    # one chain, complete data quality
+```
+
+**[puredata.py on GitHub](https://github.com/vignesh2027/puredata.py)** · **[datamend.py on GitHub](https://github.com/vignesh2027/datamend.py)** · **Announced on Reddit and Discord**
 
 <br/>
 
@@ -587,29 +801,40 @@ Release: **GitHub + PyPI · Announced on Reddit and Discord**
 <img width="100%" src="https://capsule-render.vercel.app/api?type=soft&color=gradient&customColorList=6,11,20&height=55&text=MISSION+BOARD&fontSize=26&fontColor=ffffff&animation=fadeIn"/>
 
 ```
-+====================================================================================+
-|                     VIGNESHWAR // ACTIVE MISSIONS 2025                             |
-+====================================================================================+
-|  [DONE] Claude Code Best Practices  > Top production guide to AI-assisted dev     |
-|  [DONE] TemporalMesh Transformer    > Novel arch - graph + time + compute         |
-|  [DONE] Game of DSA                 > C++ 8-world game · WASM · runs in browser  |
-|  [DONE] NEXUS Cosmic                > 600K GPU particles + live news universe     |
-|  [DONE] CrypticBastion              > Real-time global cyber threat intel         |
-|  [DONE] GITGALAXY                   > 10-planet gamified engineering universe     |
-|  [DONE] AttendanceAI                > AI attendance intelligence platform         |
-|  [SOLD] Digital Products x7         > eLearning · tools · SaaS · automation      |
-+------------------------------------------------------------------------------------+
-|  [WIP]  NEURALSTACK                 > AI DevOps intelligence platform [STEALTH]   |
-|  [WIP]  RAG System Architecture     > TMT-backed temporal semantic retrieval      |
-|  [WIP]  Python Library x2           > ML tooling + data pipeline utils            |
-|  [WIP]  Digital Brand Building      > Reddit · Discord · Slack community          |
-+------------------------------------------------------------------------------------+
-|  PRIMARY: Python · PyTorch · FastAPI · React · Vue · Three.js · AWS               |
-|  SYSTEMS: C++17 · Raylib · CMake · WebAssembly · GLSL                             |
-|  OPS:     Aerospike · Docker · Grafana · CloudWatch · AWS cost optimization       |
-|  MKT:     Google Ads · Meta · SEO · Reddit launches · Discord growth              |
-|  EDGE:    Only person who can BUILD it + SELL it + SCALE it + MARKET it           |
-+====================================================================================+
++=====================================================================================+
+|                      VIGNESHWAR // ACTIVE MISSIONS 2025 — 30+ REPOS                |
++=====================================================================================+
+|  [DONE] Claude Code Best Practices   > Top production guide to AI-assisted dev     |
+|  [DONE] Claude Agentic Skills 2.0    > 6 months of agentic engineering shipped     |
+|  [DONE] TemporalMesh Transformer     > Novel arch - graph + time + compute         |
+|  [DONE] SYNTHRON                     > Multi-agent AI framework · open-source      |
+|  [DONE] VORTEXRAG                    > 7-layer RAG · kills drift + poisoning       |
+|  [DONE] LLM Evaluation Framework     > GPT-4 · Claude · Gemini · Mistral benchmk  |
+|  [DONE] puredata.py + datamend.py    > 2 Python libraries · data quality + clean  |
+|  [DONE] Game of DSA                  > C++ 8-world game · WASM · runs in browser  |
+|  [DONE] NEXUS Cosmic                 > 600K GPU particles + live news universe     |
+|  [DONE] CrypticBastion               > Real-time global cyber threat intel         |
+|  [DONE] GITGALAXY                    > 10-planet gamified engineering universe     |
+|  [DONE] AttendanceAI                 > AI attendance intelligence platform         |
+|  [DONE] FLY-VIEW                     > CesiumJS 3D intelligence globe              |
+|  [DONE] Manus Gestures               > Hand gesture particle physics control       |
+|  [DONE] Tradeorbit                   > $32T global trade visualization             |
+|  [DONE] Graphite Web                 > Advanced open-source metrics platform       |
+|  [DONE] JARVIS Voice                 > AI voice intelligence system                |
+|  [DONE] SparshCare                   > Flutter ICU patient communication app       |
+|  [SOLD] Digital Products x7          > eLearning · tools · SaaS · automation      |
++-------------------------------------------------------------------------------------+
+|  [WIP]  NEURALSTACK                  > AI DevOps intelligence platform [STEALTH]   |
+|  [WIP]  Digital Brand Building       > Reddit · Discord · Slack community          |
++-------------------------------------------------------------------------------------+
+|  PRIMARY: Python · PyTorch · FastAPI · React · Vue · Three.js · Flutter · AWS      |
+|  SYSTEMS: C++17 · Raylib · CMake · WebAssembly · GLSL · CesiumJS                  |
+|  AI/ML:   SYNTHRON · VORTEXRAG · LLM-Eval · TMT · Claude API · OpenAI · Ollama    |
+|  OPS:     Aerospike · Docker · Grafana · CloudWatch · AWS + GCP optimization       |
+|  MKT:     Google Ads · Meta · SEO · Reddit launches · Discord growth               |
+|  EDGE:    Only person who can BUILD it + SELL it + SCALE it + MARKET it            |
+|  STATS:   30+ repos · 2213+ profile views · 7 products sold · 0 ad spend          |
++=====================================================================================+
 ```
 
 <br/>
@@ -646,15 +871,21 @@ Built on a fine-tuned TemporalMesh Transformer backbone.
 
 | Metric | Value |
 |---|---|
+| Public GitHub repositories | **30+ repos across ML · Web · Systems · Mobile** |
+| GitHub profile views | **2213+ (GitHub Analytics)** |
 | Digital products built and sold | **7 products across 3 categories** |
 | Largest single product sale | **68K — eLearning platform, zero ad spend** |
-| GPU particles rendered in-browser | **600,000+ via custom GLSL** |
-| DSA game worlds in C++ | **8 fully animated worlds** |
+| GPU particles rendered in-browser | **600,000+ via custom GLSL shaders** |
+| DSA game worlds in C++ | **8 fully animated worlds, runs in browser via WASM** |
 | Novel transformer innovations | **3 — Mesh Attention, Temporal Decay, Adaptive Depth** |
+| RAG framework layers | **7 — VORTEXRAG, kills semantic drift + context poisoning** |
+| Multi-agent AI framework | **SYNTHRON — open-source, production-grade** |
+| LLMs benchmarked in eval framework | **GPT-4 · Claude · Gemini · Mistral** |
+| Python libraries shipped | **2 — puredata.py + datamend.py on GitHub** |
 | Procedural planets in NEXUS universe | **15 planets + 1 black hole** |
-| Python libraries in development | **2 — hitting PyPI soon** |
+| Flutter app screens built | **50+ files — SparshCare ICU app, 4 languages** |
 | Cloud cost reduction (avg) | **30–50% on AWS + GCP** |
-| Roles mastered simultaneously | **Engineer · ML Researcher · Marketer · Entrepreneur** |
+| Roles mastered simultaneously | **Engineer · ML Researcher · Marketer · Entrepreneur · Mobile Dev** |
 | Everything started | **April 2025 — yes, really** |
 
 </div>
