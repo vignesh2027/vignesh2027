@@ -32,7 +32,7 @@
 <br/>
 
 <!-- ANIMATED TYPING SVG -->
-<img src="https://readme-typing-svg.demolab.com?font=Fira+Code&weight=700&size=22&duration=2800&pause=900&color=9333EA&center=true&vCenter=true&width=860&lines=Python+%7C+ML+%7C+WebGL+%7C+Cloud+%7C+All+of+it;Building+things+that+shouldn%27t+exist+yet+%E2%80%94+then+selling+them.;Engineer+%E2%80%A2+Entrepreneur+%E2%80%A2+ML+Architect+%E2%80%A2+CS+%40+Chennai;30%2B+repos+%E2%80%A2+7+products+sold+%E2%80%A2+0+ad+spend;SYNTHRON+%E2%80%A2+VORTEXRAG+%E2%80%A2+TemporalMesh+%E2%80%A2+Game+of+DSA" alt="Typing SVG" width="860"/>
+<img src="https://readme-typing-svg.demolab.com?font=Fira+Code&weight=700&size=22&duration=2800&pause=900&color=9333EA&center=true&vCenter=true&width=860&lines=Python+%7C+Rust+%7C+ML+%7C+WebGL+%7C+Cloud+%7C+All+of+it;Building+things+that+shouldn%27t+exist+yet+%E2%80%94+then+selling+them.;Engineer+%E2%80%A2+Entrepreneur+%E2%80%A2+ML+Architect+%E2%80%A2+CS+%40+Chennai;40%2B+repos+%E2%80%A2+7+products+sold+%E2%80%A2+1+live+SaaS;SYNTHRON+%E2%80%A2+VORTEXRAG+%E2%80%A2+rustkvd+%E2%80%A2+FluxDB+%E2%80%A2+Craftez" alt="Typing SVG" width="860"/>
 
 <br/>
 
@@ -55,7 +55,7 @@
 &nbsp;
 [![Reddit](https://img.shields.io/badge/Reddit-Launches-FF4500?style=for-the-badge&logo=reddit&logoColor=white)](https://reddit.com)
 &nbsp;
-![Repos](https://img.shields.io/badge/PUBLIC+REPOS-30%2B-00d26a?style=for-the-badge&labelColor=0d1117&logo=github&logoColor=white)
+![Repos](https://img.shields.io/badge/PUBLIC+REPOS-40%2B-00d26a?style=for-the-badge&labelColor=0d1117&logo=github&logoColor=white)
 
 <br/>
 
@@ -84,7 +84,7 @@ The combination is the edge: I can write the code, design the architecture, trai
 **Primary:** Python · FastAPI · PyTorch · React/Vue · Three.js · AWS/GCP  
 **Systems:** C++17 · Raylib · CMake · WebAssembly · GLSL  
 **Open-Source:** SYNTHRON (multi-agent AI) · VORTEXRAG (7-layer RAG) · puredata.py · datamend.py  
-**Currently:** NEURALSTACK (stealth) · LLM Eval Framework · Shipping daily — 30+ public repos
+**Currently:** NEURALSTACK (stealth) · LLM Eval Framework · Shipping daily — 40+ public repos
 
 <br clear="right"/>
 
@@ -173,7 +173,7 @@ The combination is the edge: I can write the code, design the architecture, trai
 <img src="https://img.shields.io/badge/OPEN-SOURCE-00d26a?style=for-the-badge&logo=github&logoColor=white"/>
 <br/><br/>
 <b>Open Source Creator</b><br/>
-<sub>30+ public repos. puredata.py · datamend.py · SYNTHRON · VORTEXRAG. Real libraries solving real pain.</sub>
+<sub>40+ public repos. puredata.py · datamend.py · SYNTHRON · VORTEXRAG. Real libraries solving real pain.</sub>
 <br/>
 </td>
 <td align="center" width="16%">
@@ -383,6 +383,7 @@ For technical founders who can't market, and marketers who can't speak to engine
 ### Systems
 
 ![C++17](https://img.shields.io/badge/C%2B%2B17-00599C?style=for-the-badge&logo=cplusplus&logoColor=white)
+![Rust](https://img.shields.io/badge/Rust-000000?style=for-the-badge&logo=rust&logoColor=white)
 ![CMake](https://img.shields.io/badge/CMake-008FBA?style=for-the-badge&logo=cmake&logoColor=white)
 ![Emscripten](https://img.shields.io/badge/Emscripten-654FF0?style=for-the-badge&logo=webassembly&logoColor=white)
 ![Raylib](https://img.shields.io/badge/Raylib-000000?style=for-the-badge)
@@ -689,6 +690,102 @@ For technical founders who can't market, and marketers who can't speak to engine
 
 </td>
 </tr>
+<tr>
+<td width="50%" valign="top">
+
+### [rustkvd — Distributed Key-Value Store](https://github.com/vignesh2027/rustkvd)
+
+> **A production-grade distributed KV store written entirely in Rust.**
+> Raft consensus for fault-tolerant replication · LSM tree storage engine · gRPC transport. The kind of systems project that proves you understand distributed systems from first principles — not just theory.
+
+![Rust](https://img.shields.io/badge/Rust-000000?style=flat-square&logo=rust&logoColor=white)
+![Raft](https://img.shields.io/badge/Raft%20Consensus-FF6B6B?style=flat-square)
+![gRPC](https://img.shields.io/badge/gRPC-4285F4?style=flat-square&logo=google&logoColor=white)
+![Distributed Systems](https://img.shields.io/badge/Distributed%20Systems-9333EA?style=flat-square)
+
+**[View Project](https://github.com/vignesh2027/rustkvd)** | **[Docs](https://vignesh2027.github.io/rustkvd)**
+
+</td>
+<td width="50%" valign="top">
+
+### [FluxDB — Time-Series Database in Rust](https://github.com/vignesh2027/fluxdb)
+
+> **A complete time-series database built from scratch in Rust. 100+ tests passing.**
+> Custom storage engine · time-indexed retrieval · compression · streaming ingestion. Built to understand how databases actually work at the lowest level — then shipped as a real, tested system.
+
+![Rust](https://img.shields.io/badge/Rust-000000?style=flat-square&logo=rust&logoColor=white)
+![Time Series](https://img.shields.io/badge/Time--Series%20DB-F46800?style=flat-square)
+![100+ Tests](https://img.shields.io/badge/100%2B%20Tests-00d26a?style=flat-square)
+![Systems](https://img.shields.io/badge/Systems%20Engineering-9333EA?style=flat-square)
+
+**[View Project](https://github.com/vignesh2027/fluxdb)** | **[Docs](https://vignesh2027.github.io/-FLUXDB)**
+
+</td>
+</tr>
+<tr>
+<td width="50%" valign="top">
+
+### [detect-backend-threat — SOC Platform](https://github.com/vignesh2027/detect-backend-threat)
+
+> **A full-stack cybersecurity threat detection platform — 3 phases, all complete.**
+> Go detection engine · Node.js ingest pipeline · Next.js SOC dashboard · CI/CD · MkDocs documentation. Real-time threat ingestion, analysis, and visualization. Built like a production security ops product.
+
+![Go](https://img.shields.io/badge/Go-00ADD8?style=flat-square&logo=go&logoColor=white)
+![Node.js](https://img.shields.io/badge/Node.js-6DA55F?style=flat-square&logo=node.js&logoColor=white)
+![Next.js](https://img.shields.io/badge/Next.js-000000?style=flat-square&logo=next.js&logoColor=white)
+![Security](https://img.shields.io/badge/Cybersecurity-FF6B6B?style=flat-square)
+
+**[View Project](https://github.com/vignesh2027/detect-backend-threat)**
+
+</td>
+<td width="50%" valign="top">
+
+### [Keystrand — VS Code Analytics Extension](https://github.com/vignesh2027/keystrand)
+
+> **Privacy-first coding analytics that lives entirely on your machine.**
+> Live Pulse activity feed · Strand PNG shareable cards · AI ratio detection · local JSON storage — zero data ever leaves your device. The developer analytics tool that respects you.
+
+![TypeScript](https://img.shields.io/badge/TypeScript-007ACC?style=flat-square&logo=typescript&logoColor=white)
+![VS Code](https://img.shields.io/badge/VS%20Code%20Extension-0078D4?style=flat-square&logo=visualstudiocode&logoColor=white)
+![Privacy](https://img.shields.io/badge/Privacy%20First-00d26a?style=flat-square)
+![AI Detection](https://img.shields.io/badge/AI%20Ratio%20Detection-9333EA?style=flat-square)
+
+**[View Project](https://github.com/vignesh2027/keystrand)**
+
+</td>
+</tr>
+<tr>
+<td width="50%" valign="top">
+
+### [Craftez My Resume — Live Resume Builder](https://github.com/vignesh2027/Craftez_my_resume)
+
+> **A free, live resume builder at craftezmyresume.com — built and maintained solo.**
+> Groq AI-powered content suggestions · 224 templates · ATS checker · GitHub Pages + GoDaddy DNS + HTTPS. Real users, real traffic, production infrastructure run by one person.
+
+![JavaScript](https://img.shields.io/badge/JavaScript-F7DF1E?style=flat-square&logo=javascript&logoColor=black)
+![Groq AI](https://img.shields.io/badge/Groq%20AI-FF6B6B?style=flat-square)
+![224 Templates](https://img.shields.io/badge/224%20Templates-9333ea?style=flat-square)
+![Live Product](https://img.shields.io/badge/Live%20Product-00d26a?style=flat-square)
+
+**[Live Site](https://craftezmyresume.com)** | **[Repo](https://github.com/vignesh2027/Craftez_my_resume)**
+
+</td>
+<td width="50%" valign="top">
+
+### [SparshCare — ICU Patient Communication App](https://github.com/vignesh2027/sparshcare)
+
+> **A Flutter app that gives ICU patients a voice when they can't speak.**
+> 50+ files · 4 languages · 6 communication card sets · admin panel · eye tracking interface · Firebase + Riverpod. Built for real clinical environments. One of the most human things I've shipped.
+
+![Flutter](https://img.shields.io/badge/Flutter-02569B?style=flat-square&logo=flutter&logoColor=white)
+![Firebase](https://img.shields.io/badge/Firebase-FFCA28?style=flat-square&logo=firebase&logoColor=black)
+![Riverpod](https://img.shields.io/badge/Riverpod-9333EA?style=flat-square)
+![4 Languages](https://img.shields.io/badge/4%20Languages-00d26a?style=flat-square)
+
+**[View Project](https://github.com/vignesh2027/sparshcare)**
+
+</td>
+</tr>
 </table>
 
 </div>
@@ -826,7 +923,7 @@ pipeline.fix().validate().monitor()    # one chain, complete data quality
 
 ```
 +=====================================================================================+
-|                      VIGNESHWAR // ACTIVE MISSIONS 2025 — 30+ REPOS                |
+|                      VIGNESHWAR // ACTIVE MISSIONS 2025 — 40+ REPOS                |
 +=====================================================================================+
 |  [DONE] Claude Code Best Practices   > Top production guide to AI-assisted dev     |
 |  [DONE] Claude Agentic Skills 2.0    > 6 months of agentic engineering shipped     |
@@ -846,18 +943,23 @@ pipeline.fix().validate().monitor()    # one chain, complete data quality
 |  [DONE] Graphite Web                 > Advanced open-source metrics platform       |
 |  [DONE] JARVIS Voice                 > AI voice intelligence system                |
 |  [DONE] SparshCare                   > Flutter ICU patient communication app       |
+|  [DONE] rustkvd                      > Rust distributed KV · Raft+LSM+gRPC        |
+|  [DONE] FluxDB                       > Time-series DB from scratch in Rust         |
+|  [DONE] detect-backend-threat        > Go+Node+Next.js SOC cybersecurity platform  |
+|  [DONE] Keystrand                    > Privacy-first VS Code analytics extension   |
+|  [DONE] Craftez My Resume            > LIVE resume builder · craftezmyresume.com  |
 |  [SOLD] Digital Products x7          > eLearning · tools · SaaS · automation      |
 +-------------------------------------------------------------------------------------+
 |  [WIP]  NEURALSTACK                  > AI DevOps intelligence platform [STEALTH]   |
 |  [WIP]  Digital Brand Building       > Reddit · Discord · Slack community          |
 +-------------------------------------------------------------------------------------+
 |  PRIMARY: Python · PyTorch · FastAPI · React · Vue · Three.js · Flutter · AWS      |
-|  SYSTEMS: C++17 · Raylib · CMake · WebAssembly · GLSL · CesiumJS                  |
+|  SYSTEMS: C++17 · Rust · Raylib · CMake · WebAssembly · GLSL · CesiumJS           |
 |  AI/ML:   SYNTHRON · VORTEXRAG · LLM-Eval · TMT · Claude API · OpenAI · Ollama    |
 |  OPS:     Aerospike · Docker · Grafana · CloudWatch · AWS + GCP optimization       |
 |  MKT:     Google Ads · Meta · SEO · Reddit launches · Discord growth               |
 |  EDGE:    Only person who can BUILD it + SELL it + SCALE it + MARKET it            |
-|  STATS:   30+ repos · 2213+ profile views · 7 products sold · 0 ad spend          |
+|  STATS:   40+ repos · 2213+ profile views · 7 products sold · 1 live product      |
 +=====================================================================================+
 ```
 
@@ -895,7 +997,7 @@ Built on a fine-tuned TemporalMesh Transformer backbone.
 
 | Metric | Value |
 |---|---|
-| Public GitHub repositories | **30+ repos across ML · Web · Systems · Mobile** |
+| Public GitHub repositories | **40+ repos across ML · Web · Systems · Mobile · Rust** |
 | GitHub profile views | **2213+ (GitHub Analytics)** |
 | Digital products built and sold | **7 products across 3 categories** |
 | Largest single product sale | **68K — eLearning platform, zero ad spend** |
