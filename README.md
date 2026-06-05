@@ -31,8 +31,8 @@
 
 <br/>
 
-<!-- TYPING SVG — self-hosted SVG, always loads -->
-<img src="https://raw.githubusercontent.com/vignesh2027/vignesh2027/main/assets/typing-main.svg" alt="Typing SVG" width="900"/>
+<!-- ANIMATED TYPING SVG -->
+<img src="https://readme-typing-svg.demolab.com?font=Fira+Code&weight=700&size=22&duration=2800&pause=900&color=9333EA&center=true&vCenter=true&width=860&lines=Python+%7C+ML+%7C+WebGL+%7C+Cloud+%7C+All+of+it;Building+things+that+shouldn%27t+exist+yet+%E2%80%94+then+selling+them.;Engineer+%E2%80%A2+Entrepreneur+%E2%80%A2+ML+Architect+%E2%80%A2+CS+%40+Chennai;30%2B+repos+%E2%80%A2+7+products+sold+%E2%80%A2+0+ad+spend;SYNTHRON+%E2%80%A2+VORTEXRAG+%E2%80%A2+TemporalMesh+%E2%80%A2+Game+of+DSA" alt="Typing SVG" width="860"/>
 
 <br/>
 
@@ -783,6 +783,28 @@ pipeline.fix().validate().monitor()    # one chain, complete data quality
 <div align="center">
 
 [![Activity Graph](https://github-readme-activity-graph.vercel.app/graph?username=vignesh2027&theme=tokyo-night&hide_border=true&area=true&bg_color=0D1117&color=9333ea&line=9333ea&point=c084fc&area_color=9333ea)](https://github.com/vignesh2027)
+
+</div>
+
+<br/>
+
+<!-- ═══════════════════════════════════════════════════════════════════ -->
+<img width="100%" src="https://capsule-render.vercel.app/api?type=soft&color=gradient&customColorList=6,11,20&height=55&text=3D+CONTRIBUTION+GRAPH&fontSize=24&fontColor=ffffff&animation=fadeIn"/>
+
+<div align="center">
+
+<img src="https://raw.githubusercontent.com/vignesh2027/vignesh2027/output/profile-3d-contrib/profile-night-rainbow.svg" alt="3D Contribution Graph" width="100%"/>
+
+</div>
+
+<br/>
+
+<!-- ═══════════════════════════════════════════════════════════════════ -->
+<img width="100%" src="https://capsule-render.vercel.app/api?type=soft&color=gradient&customColorList=6,11,20&height=55&text=WAKATIME+CODING+STATS&fontSize=24&fontColor=ffffff&animation=fadeIn"/>
+
+<div align="center">
+
+<img src="https://github-readme-stats.vercel.app/api/wakatime?username=vignesh2027&theme=tokyonight&hide_border=true&bg_color=0D1117&title_color=9333ea&text_color=c9d1d9&layout=compact&langs_count=10" alt="WakaTime Stats" width="600"/>
 
 </div>
 
