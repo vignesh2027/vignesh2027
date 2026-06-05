@@ -5,8 +5,10 @@
 
 <br/>
 
-<!-- SHARK BANNER -->
-<img width="100%" src="https://capsule-render.vercel.app/api?type=shark&color=gradient&customColorList=6,11,20&height=110&section=header&reversal=false&animation=fadeIn"/>
+<!-- PROFESSIONAL GRADIENT DIVIDER -->
+<img width="100%" src="https://capsule-render.vercel.app/api?type=rect&color=gradient&customColorList=6,11,20&height=4&section=header"/>
+
+<br/>
 
 <!-- LIVE STATUS BADGES -->
 ![STATUS](https://img.shields.io/badge/STATUS-ONLINE-00d26a?style=for-the-badge&labelColor=0d1117)
@@ -934,15 +936,15 @@ I don't launch behind paywalls or in isolation. I build in public, share progres
 <br/>
 
 <!-- ═══════════════════════════════════════════════════════════════════ -->
-<img width="100%" src="https://capsule-render.vercel.app/api?type=soft&color=gradient&customColorList=6,11,20&height=55&text=CONTRIBUTION+SNAKE&fontSize=24&fontColor=ffffff&animation=fadeIn"/>
+<img width="100%" src="https://capsule-render.vercel.app/api?type=soft&color=gradient&customColorList=6,11,20&height=55&text=CONTRIBUTION+CALENDAR&fontSize=24&fontColor=ffffff&animation=fadeIn"/>
 
 <div align="center">
 
-<picture>
-  <source media="(prefers-color-scheme: dark)" srcset="https://raw.githubusercontent.com/vignesh2027/vignesh2027/output/github-contribution-grid-snake-dark.svg"/>
-  <source media="(prefers-color-scheme: light)" srcset="https://raw.githubusercontent.com/vignesh2027/vignesh2027/output/github-contribution-grid-snake.svg"/>
-  <img alt="GitHub contribution snake" src="https://raw.githubusercontent.com/vignesh2027/vignesh2027/output/github-contribution-grid-snake-dark.svg"/>
-</picture>
+<img src="https://ghchart.rshah.org/9333ea/vignesh2027" alt="GitHub Contribution Calendar" width="100%"/>
+
+<br/><br/>
+
+[![Activity Graph](https://github-readme-activity-graph.vercel.app/graph?username=vignesh2027&theme=tokyo-night&hide_border=true&area=true&bg_color=0D1117&color=9333ea&line=9333ea&point=c084fc&area_color=9333ea&radius=8)](https://github.com/vignesh2027)
 
 </div>
 
@@ -955,19 +957,53 @@ I don't launch behind paywalls or in isolation. I build in public, share progres
 
 <br/>
 
-[![GitHub](https://img.shields.io/badge/GitHub-vignesh2027-181717?style=for-the-badge&logo=github&logoColor=white)](https://github.com/vignesh2027)
-&nbsp;
-[![LinkedIn](https://img.shields.io/badge/LinkedIn-Vigneshwar%20L-0A66C2?style=for-the-badge&logo=linkedin&logoColor=white)](https://www.linkedin.com/in/vigneshwar-l-td729994)
-&nbsp;
-[![Portfolio](https://img.shields.io/badge/Portfolio-Live-9333ea?style=for-the-badge&logo=vercel&logoColor=white)](https://vignesh2027.github.io/F.W.D)
+<table>
+<tr>
+<td align="center">
+<a href="https://github.com/vignesh2027">
+<img src="https://img.shields.io/badge/GitHub-vignesh2027-181717?style=for-the-badge&logo=github&logoColor=white"/>
+</a>
+</td>
+<td align="center">
+<a href="https://www.linkedin.com/in/vigneshwar-l-td729994">
+<img src="https://img.shields.io/badge/LinkedIn-Vigneshwar%20L-0A66C2?style=for-the-badge&logo=linkedin&logoColor=white"/>
+</a>
+</td>
+<td align="center">
+<a href="https://vignesh2027.github.io/F.W.D">
+<img src="https://img.shields.io/badge/Portfolio-Live-9333ea?style=for-the-badge&logo=vercel&logoColor=white"/>
+</a>
+</td>
+</tr>
+<tr>
+<td align="center">
+<a href="https://discord.com">
+<img src="https://img.shields.io/badge/Discord-DM+Me-5865F2?style=for-the-badge&logo=discord&logoColor=white"/>
+</a>
+</td>
+<td align="center">
+<a href="https://reddit.com">
+<img src="https://img.shields.io/badge/Reddit-Follow+Launches-FF4500?style=for-the-badge&logo=reddit&logoColor=white"/>
+</a>
+</td>
+<td align="center">
+<a href="https://slack.com">
+<img src="https://img.shields.io/badge/Slack-Connect-4A154B?style=for-the-badge&logo=slack&logoColor=white"/>
+</a>
+</td>
+</tr>
+</table>
 
 <br/>
 
-[![Discord](https://img.shields.io/badge/Discord-DM+me-5865F2?style=for-the-badge&logo=discord&logoColor=white)](https://discord.com)
-&nbsp;
-[![Reddit](https://img.shields.io/badge/Reddit-Follow+launches-FF4500?style=for-the-badge&logo=reddit&logoColor=white)](https://reddit.com)
-&nbsp;
-[![Slack](https://img.shields.io/badge/Slack-Connect-4A154B?style=for-the-badge&logo=slack&logoColor=white)](https://slack.com)
+![Wave Divider](https://capsule-render.vercel.app/api?type=rect&color=gradient&customColorList=6,11,20&height=3&section=header)
+
+<br/>
+
+<sub>
+  <b>VIGNESHWAR</b> · Engineer · Entrepreneur · ML Architect · CS @ Chennai<br/>
+  Open to <b>collabs · contracts · co-founders</b> · Respond within 24h
+</sub>
 
 <br/><br/>
 
