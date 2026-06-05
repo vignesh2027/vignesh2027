@@ -769,8 +769,8 @@ pipeline.fix().validate().monitor()    # one chain, complete data quality
 
 <div align="center">
 
-<img height="180em" src="https://github-readme-stats.vercel.app/api?username=vignesh2027&theme=tokyonight&show_icons=true&hide_border=true&bg_color=0D1117&title_color=9333ea&icon_color=9333ea&text_color=c9d1d9&border_radius=10&count_private=true"/>
-<img height="180em" src="https://github-readme-streak-stats.herokuapp.com/?user=vignesh2027&theme=tokyonight&hide_border=true&background=0D1117&ring=9333ea&fire=ff6b6b&currStreakLabel=9333ea&sideLabels=c9d1d9&currStreakNum=ffffff&sideNums=c9d1d9&dates=6b7280"/>
+<img height="180em" src="https://github-readme-stats.vercel.app/api?username=vignesh2027&theme=tokyonight&show_icons=true&hide_border=true&bg_color=0D1117&title_color=9333ea&icon_color=9333ea&text_color=c9d1d9&border_radius=10&count_private=true&include_all_commits=true"/>
+<img height="180em" src="https://streak-stats.demolab.com/?user=vignesh2027&theme=tokyonight&hide_border=true&background=0D1117&ring=9333ea&fire=ff6b6b&currStreakLabel=9333ea&sideLabels=c9d1d9&currStreakNum=ffffff&sideNums=c9d1d9&dates=6b7280"/>
 <img height="180em" src="https://github-readme-stats.vercel.app/api/top-langs/?username=vignesh2027&theme=tokyonight&hide_border=true&bg_color=0D1117&title_color=9333ea&text_color=c9d1d9&layout=compact&border_radius=10&langs_count=8"/>
 
 </div>
@@ -793,7 +793,7 @@ pipeline.fix().validate().monitor()    # one chain, complete data quality
 
 <div align="center">
 
-[![Trophy](https://github-profile-trophy.vercel.app/?username=vignesh2027&theme=tokyonight&no-frame=true&no-bg=true&column=7&margin-w=8&margin-h=8)](https://github.com/vignesh2027)
+[![Trophy](https://github-profile-trophy.vercel.app/?username=vignesh2027&theme=tokyonight&no-frame=true&no-bg=true&column=6&margin-w=10&margin-h=10&rank=SECRET,SSS,SS,S,AAA,AA,A,B,C)](https://github.com/vignesh2027)
 
 </div>
 
@@ -920,31 +920,15 @@ I don't launch behind paywalls or in isolation. I build in public, share progres
 <br/>
 
 <!-- ═══════════════════════════════════════════════════════════════════ -->
-<img width="100%" src="https://capsule-render.vercel.app/api?type=soft&color=gradient&customColorList=6,11,20&height=55&text=NOW+PLAYING&fontSize=26&fontColor=ffffff&animation=fadeIn"/>
+<img width="100%" src="https://capsule-render.vercel.app/api?type=soft&color=gradient&customColorList=6,11,20&height=55&text=CONTRIBUTION+SNAKE&fontSize=24&fontColor=ffffff&animation=fadeIn"/>
 
 <div align="center">
 
-<!-- SPOTIFY SETUP:
-  1. Fork https://github.com/novatorem/novatorem
-  2. Deploy to Vercel with: SPOTIFY_REFRESH_TOKEN, SPOTIFY_CLIENT_ID, SPOTIFY_CLIENT_SECRET
-  3. Replace URL below with your Vercel deployment URL
--->
-[![Spotify](https://novatorem.vercel.app/api/spotify)](https://open.spotify.com)
-
-</div>
-
-<br/>
-
-<!-- ═══════════════════════════════════════════════════════════════════ -->
-<img width="100%" src="https://capsule-render.vercel.app/api?type=soft&color=gradient&customColorList=6,11,20&height=55&text=CONTRIBUTION+CALENDAR&fontSize=24&fontColor=ffffff&animation=fadeIn"/>
-
-<div align="center">
-
-<img src="https://ghchart.rshah.org/9333ea/vignesh2027" alt="GitHub Contribution Calendar" width="100%"/>
-
-<br/><br/>
-
-[![Activity Graph](https://github-readme-activity-graph.vercel.app/graph?username=vignesh2027&theme=tokyo-night&hide_border=true&area=true&bg_color=0D1117&color=9333ea&line=9333ea&point=c084fc&area_color=9333ea&radius=8)](https://github.com/vignesh2027)
+<picture>
+  <source media="(prefers-color-scheme: dark)" srcset="https://raw.githubusercontent.com/vignesh2027/vignesh2027/output/github-contribution-grid-snake-dark.svg"/>
+  <source media="(prefers-color-scheme: light)" srcset="https://raw.githubusercontent.com/vignesh2027/vignesh2027/output/github-contribution-grid-snake.svg"/>
+  <img alt="GitHub contribution snake" src="https://raw.githubusercontent.com/vignesh2027/vignesh2027/output/github-contribution-grid-snake-dark.svg" width="100%"/>
+</picture>
 
 </div>
 
@@ -1004,6 +988,10 @@ I don't launch behind paywalls or in isolation. I build in public, share progres
   <b>VIGNESHWAR</b> · Engineer · Entrepreneur · ML Architect · CS @ Chennai<br/>
   Open to <b>collabs · contracts · co-founders</b> · Respond within 24h
 </sub>
+
+<br/>
+
+<img src="https://user-images.githubusercontent.com/74038190/212284158-e840e285-664b-44d7-b79b-e264b5e54825.gif" width="400" alt="coding gif"/>
 
 <br/><br/>
 
