@@ -409,6 +409,24 @@ For technical founders who can't market, and marketers who can't speak to engine
 
 <table>
 <tr>
+<td colspan="2" align="center" valign="top">
+
+### [Vilvona AI — Self-Hosted AI Assistant](https://github.com/vignesh2027/Vilvona-AI)
+
+> **My flagship product. A self-hosted AI assistant powered by Claude Fable 5.**
+> Connects WhatsApp, Telegram, Slack, Gmail + 100 more apps. Tamil & Hindi UI built in. Mobile PWA. Free local mode with Ollama. One command: `npx vilvona`
+
+![npm](https://img.shields.io/npm/v/vilvona?color=22c55e&label=npm&style=flat-square)
+![Claude Fable 5](https://img.shields.io/badge/Claude%20Fable%205-15803d?style=flat-square)
+![Tamil & Hindi](https://img.shields.io/badge/Tamil%20%26%20Hindi-f59e0b?style=flat-square)
+![Self-hosted](https://img.shields.io/badge/Self--hosted-9333EA?style=flat-square)
+![MIT](https://img.shields.io/badge/MIT-22c55e?style=flat-square)
+
+**[Star the Repo](https://github.com/vignesh2027/Vilvona-AI)** · **[Docs](https://vignesh2027.github.io/Vilvona-AI)** · **[npm](https://www.npmjs.com/package/vilvona)** · **[Get Pro](https://vignesh2027.mojo.page/vilvona-ai-pro)**
+
+</td>
+</tr>
+<tr>
 <td width="50%" valign="top">
 
 ### [Claude Code Best Practices](https://github.com/vignesh2027/claude-best-practice)
