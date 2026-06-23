@@ -13,10 +13,11 @@ jobs:
     runs-on: ubuntu-latest
     name: generate-3d-contribution-graph
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
       - uses: yoshi389111/github-profile-3d-contrib@0.7.1
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          USERNAME: ${{ github.repository_owner }}
       - name: Push to output branch
         uses: crazy-max/ghaction-github-pages@v3.1.0
         with:
