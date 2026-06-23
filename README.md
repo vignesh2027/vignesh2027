@@ -1,7 +1,7 @@
 <div align="center">
 
-<!-- SNAKE AT TOP — unique, eye-catching first element -->
-<img width="100%" src="https://raw.githubusercontent.com/vignesh2027/vignesh2027/output/github-contribution-grid-snake-dark.svg" alt="contribution snake"/>
+<!-- SNAKE AT TOP — real-time green contribution snake -->
+<img width="100%" src="https://raw.githubusercontent.com/vignesh2027/vignesh2027/output/github-snake-green.svg" alt="contribution snake"/>
 
 <br/>
 
@@ -884,9 +884,9 @@ pipeline.fix().validate().monitor()    # one chain, complete data quality
 
 <div align="center">
 
-<img height="180em" src="https://github-readme-stats.vercel.app/api?username=vignesh2027&theme=tokyonight&show_icons=true&hide_border=true&bg_color=0D1117&title_color=9333ea&icon_color=9333ea&text_color=c9d1d9&border_radius=10&count_private=true&include_all_commits=true"/>
-<img height="180em" src="https://streak-stats.demolab.com/?user=vignesh2027&theme=tokyonight&hide_border=true&background=0D1117&ring=9333ea&fire=ff6b6b&currStreakLabel=9333ea&sideLabels=c9d1d9&currStreakNum=ffffff&sideNums=c9d1d9&dates=6b7280"/>
-<img height="180em" src="https://github-readme-stats.vercel.app/api/top-langs/?username=vignesh2027&theme=tokyonight&hide_border=true&bg_color=0D1117&title_color=9333ea&text_color=c9d1d9&layout=compact&border_radius=10&langs_count=8"/>
+<img height="180em" src="https://github-readme-stats.vercel.app/api?username=vignesh2027&show_icons=true&hide_border=true&bg_color=0D1117&title_color=00d26a&icon_color=00d26a&text_color=c9d1d9&border_radius=10&count_private=true&include_all_commits=true&ring_color=00d26a"/>
+<img height="180em" src="https://streak-stats.demolab.com/?user=vignesh2027&hide_border=true&background=0D1117&ring=00d26a&fire=00d26a&currStreakLabel=00d26a&sideLabels=c9d1d9&currStreakNum=ffffff&sideNums=c9d1d9&dates=6b7280&stroke=00d26a"/>
+<img height="180em" src="https://github-readme-stats.vercel.app/api/top-langs/?username=vignesh2027&hide_border=true&bg_color=0D1117&title_color=00d26a&text_color=c9d1d9&layout=compact&border_radius=10&langs_count=8"/>
 
 </div>
 
@@ -897,7 +897,7 @@ pipeline.fix().validate().monitor()    # one chain, complete data quality
 
 <div align="center">
 
-[![Activity Graph](https://github-readme-activity-graph.vercel.app/graph?username=vignesh2027&theme=tokyo-night&hide_border=true&area=true&bg_color=0D1117&color=9333ea&line=9333ea&point=c084fc&area_color=9333ea)](https://github.com/vignesh2027)
+[![Activity Graph](https://github-readme-activity-graph.vercel.app/graph?username=vignesh2027&hide_border=true&area=true&bg_color=0D1117&color=00d26a&line=00d26a&point=7ee787&area_color=00d26a&title_color=00d26a)](https://github.com/vignesh2027)
 
 </div>
 
@@ -908,18 +908,7 @@ pipeline.fix().validate().monitor()    # one chain, complete data quality
 
 <div align="center">
 
-<img src="https://raw.githubusercontent.com/vignesh2027/vignesh2027/output/profile-3d-contrib/profile-night-rainbow.svg" alt="3D Contribution Graph" width="100%"/>
-
-</div>
-
-<br/>
-
-<!-- ═══════════════════════════════════════════════════════════════════ -->
-<img width="100%" src="https://capsule-render.vercel.app/api?type=soft&color=gradient&customColorList=6,11,20&height=55&text=WAKATIME+CODING+STATS&fontSize=24&fontColor=ffffff&animation=fadeIn"/>
-
-<div align="center">
-
-<img src="https://github-readme-stats.vercel.app/api/wakatime?username=vignesh2027&theme=tokyonight&hide_border=true&bg_color=0D1117&title_color=9333ea&text_color=c9d1d9&layout=compact&langs_count=10" alt="WakaTime Stats" width="600"/>
+<img src="https://raw.githubusercontent.com/vignesh2027/vignesh2027/output/profile-3d-contrib/profile-green-animate.svg" alt="3D Contribution Graph" width="100%"/>
 
 </div>
 
@@ -930,107 +919,7 @@ pipeline.fix().validate().monitor()    # one chain, complete data quality
 
 <div align="center">
 
-[![Trophy](https://github-profile-trophy.vercel.app/?username=vignesh2027&theme=tokyonight&no-frame=true&no-bg=true&column=6&margin-w=10&margin-h=10&rank=SECRET,SSS,SS,S,AAA,AA,A,B,C)](https://github.com/vignesh2027)
-
-</div>
-
-<br/>
-
-<!-- ═══════════════════════════════════════════════════════════════════ -->
-<img width="100%" src="https://capsule-render.vercel.app/api?type=soft&color=gradient&customColorList=6,11,20&height=55&text=MISSION+BOARD&fontSize=26&fontColor=ffffff&animation=fadeIn"/>
-
-```
-+=====================================================================================+
-|                      VIGNESHWAR // ACTIVE MISSIONS 2025 — 40+ REPOS                |
-+=====================================================================================+
-|  [DONE] Claude Code Best Practices   > Top production guide to AI-assisted dev     |
-|  [DONE] Claude Agentic Skills 2.0    > 6 months of agentic engineering shipped     |
-|  [DONE] TemporalMesh Transformer     > Novel arch - graph + time + compute         |
-|  [DONE] SYNTHRON                     > Multi-agent AI framework · open-source      |
-|  [DONE] VORTEXRAG                    > 7-layer RAG · kills drift + poisoning       |
-|  [DONE] LLM Evaluation Framework     > GPT-4 · Claude · Gemini · Mistral benchmk  |
-|  [DONE] puredata.py + datamend.py    > 2 Python libraries · data quality + clean  |
-|  [DONE] Game of DSA                  > C++ 8-world game · WASM · runs in browser  |
-|  [DONE] NEXUS Cosmic                 > 600K GPU particles + live news universe     |
-|  [DONE] CrypticBastion               > Real-time global cyber threat intel         |
-|  [DONE] GITGALAXY                    > 10-planet gamified engineering universe     |
-|  [DONE] AttendanceAI                 > AI attendance intelligence platform         |
-|  [DONE] FLY-VIEW                     > CesiumJS 3D intelligence globe              |
-|  [DONE] Manus Gestures               > Hand gesture particle physics control       |
-|  [DONE] Tradeorbit                   > $32T global trade visualization             |
-|  [DONE] Graphite Web                 > Advanced open-source metrics platform       |
-|  [DONE] JARVIS Voice                 > AI voice intelligence system                |
-|  [DONE] SparshCare                   > Flutter ICU patient communication app       |
-|  [DONE] rustkvd                      > Rust distributed KV · Raft+LSM+gRPC        |
-|  [DONE] FluxDB                       > Time-series DB from scratch in Rust         |
-|  [DONE] detect-backend-threat        > Go+Node+Next.js SOC cybersecurity platform  |
-|  [DONE] Keystrand                    > Privacy-first VS Code analytics extension   |
-|  [DONE] Craftez My Resume            > LIVE resume builder · craftezmyresume.com  |
-|  [SOLD] Digital Products x7          > eLearning · tools · SaaS · automation      |
-+-------------------------------------------------------------------------------------+
-|  [WIP]  NEURALSTACK                  > AI DevOps intelligence platform [STEALTH]   |
-|  [WIP]  Digital Brand Building       > Reddit · Discord · Slack community          |
-+-------------------------------------------------------------------------------------+
-|  PRIMARY: Python · PyTorch · FastAPI · React · Vue · Three.js · Flutter · AWS      |
-|  SYSTEMS: C++17 · Rust · Raylib · CMake · WebAssembly · GLSL · CesiumJS           |
-|  AI/ML:   SYNTHRON · VORTEXRAG · LLM-Eval · TMT · Claude API · OpenAI · Ollama    |
-|  OPS:     Aerospike · Docker · Grafana · CloudWatch · AWS + GCP optimization       |
-|  MKT:     Google Ads · Meta · SEO · Reddit launches · Discord growth               |
-|  EDGE:    Only person who can BUILD it + SELL it + SCALE it + MARKET it            |
-|  STATS:   40+ repos · 2213+ profile views · 7 products sold · 1 live product      |
-+=====================================================================================+
-```
-
-<br/>
-
-<!-- ═══════════════════════════════════════════════════════════════════ -->
-<img width="100%" src="https://capsule-render.vercel.app/api?type=soft&color=gradient&customColorList=6,11,20&height=55&text=DREAM+BUILD+-+NEURALSTACK&fontSize=24&fontColor=ffffff&animation=fadeIn"/>
-
-<div align="center">
-
-> *In stealth. Launching 2025.*
-
-**NEURALSTACK** — AI-powered codebase intelligence. Watches your repo in real time, detects architectural drift, generates refactor suggestions grounded in actual codebase semantics. Not diffs. Semantics.
-
-Built on a fine-tuned TemporalMesh Transformer backbone.
-
-| Module | Status |
-|---|---|
-| Semantic Indexer — AST-aware deep code understanding | `IN PROGRESS` |
-| Drift Detector — real-time architectural divergence alerts | `IN PROGRESS` |
-| Refactor Engine — AI suggestions from codebase context | `RESEARCH` |
-| Web Dashboard — live repo intelligence UI | `PLANNED` |
-| GTM — community launch via Reddit + Discord | `PLANNED` |
-
-**Stack:** Python · FastAPI · PyTorch · React · AWS · Aerospike · Grafana · Docker
-
-</div>
-
-<br/>
-
-<!-- ═══════════════════════════════════════════════════════════════════ -->
-<img width="100%" src="https://capsule-render.vercel.app/api?type=soft&color=gradient&customColorList=6,11,20&height=55&text=BY+THE+NUMBERS&fontSize=26&fontColor=ffffff&animation=fadeIn"/>
-
-<div align="center">
-
-| Metric | Value |
-|---|---|
-| Public GitHub repositories | **40+ repos across ML · Web · Systems · Mobile · Rust** |
-| GitHub profile views | **2213+ (GitHub Analytics)** |
-| Digital products built and sold | **7 products across 3 categories** |
-| Largest single product sale | **68K — eLearning platform, zero ad spend** |
-| GPU particles rendered in-browser | **600,000+ via custom GLSL shaders** |
-| DSA game worlds in C++ | **8 fully animated worlds, runs in browser via WASM** |
-| Novel transformer innovations | **3 — Mesh Attention, Temporal Decay, Adaptive Depth** |
-| RAG framework layers | **7 — VORTEXRAG, kills semantic drift + context poisoning** |
-| Multi-agent AI framework | **SYNTHRON — open-source, production-grade** |
-| LLMs benchmarked in eval framework | **GPT-4 · Claude · Gemini · Mistral** |
-| Python libraries shipped | **2 — puredata.py + datamend.py on GitHub** |
-| Procedural planets in NEXUS universe | **15 planets + 1 black hole** |
-| Flutter app screens built | **50+ files — SparshCare ICU app, 4 languages** |
-| Cloud cost reduction (avg) | **30–50% on AWS + GCP** |
-| Roles mastered simultaneously | **Engineer · ML Researcher · Marketer · Entrepreneur · Mobile Dev** |
-| Everything started | **April 2025 — yes, really** |
+[![Trophy](https://github-profile-trophy.vercel.app/?username=vignesh2027&theme=gruvbox&no-frame=true&no-bg=true&column=6&margin-w=10&margin-h=10&rank=SECRET,SSS,SS,S,AAA,AA,A,B,C)](https://github.com/vignesh2027)
 
 </div>
 
@@ -1066,11 +955,7 @@ I don't launch behind paywalls or in isolation. I build in public, share progres
 
 <div align="center">
 
-<picture>
-  <source media="(prefers-color-scheme: dark)" srcset="https://raw.githubusercontent.com/vignesh2027/vignesh2027/output/github-contribution-grid-snake-dark.svg"/>
-  <source media="(prefers-color-scheme: light)" srcset="https://raw.githubusercontent.com/vignesh2027/vignesh2027/output/github-contribution-grid-snake.svg"/>
-  <img alt="GitHub contribution snake" src="https://raw.githubusercontent.com/vignesh2027/vignesh2027/output/github-contribution-grid-snake-dark.svg" width="100%"/>
-</picture>
+<img alt="GitHub contribution snake" src="https://raw.githubusercontent.com/vignesh2027/vignesh2027/output/github-snake-green.svg" width="100%"/>
 
 </div>
 
