@@ -59,9 +59,6 @@
 
 <br/>
 
-<!-- SKILL ICONS — confirmed working -->
-<img src="https://skillicons.dev/icons?i=python,cpp,ts,js,dart,react,vue,threejs,pytorch,tensorflow,aws,gcp,firebase,docker,grafana,figma,git,fastapi,flutter,redis,postgres,mongodb,linux,bash&theme=dark&perline=12" alt="Tech Stack Icons"/>
-
 </div>
 
 <br/>
@@ -94,11 +91,6 @@ The combination is the edge: I can write the code, design the architecture, trai
 <img width="100%" src="https://capsule-render.vercel.app/api?type=soft&color=gradient&customColorList=6,11,20&height=55&text=WHAT+I+DO&fontSize=26&fontColor=ffffff&animation=fadeIn"/>
 
 <div align="center">
-
-<!-- WHAT I DO GIF — cinematic dev setup -->
-<img src="https://user-images.githubusercontent.com/74038190/229223263-cf2e4b07-2615-4f87-9c38-e37600f8381a.gif" width="700" alt="Engineering at scale — build, ship, sell"/>
-
-<br/><br/>
 
 <table>
 <tr>
