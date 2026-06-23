@@ -1,7 +1,7 @@
 <div align="center">
 
 <!-- SNAKE AT TOP — real-time green contribution snake -->
-<img width="100%" src="https://raw.githubusercontent.com/vignesh2027/vignesh2027/output/github-snake-green.svg" alt="contribution snake"/>
+<img width="100%" src="https://raw.githubusercontent.com/vignesh2027/vignesh2027/snake-output/github-snake-green.svg" alt="contribution snake"/>
 
 <br/>
 
@@ -900,7 +900,7 @@ pipeline.fix().validate().monitor()    # one chain, complete data quality
 
 <div align="center">
 
-<img src="https://raw.githubusercontent.com/vignesh2027/vignesh2027/output/profile-3d-contrib/profile-green-animate.svg" alt="3D Contribution Graph" width="100%"/>
+<img src="https://raw.githubusercontent.com/vignesh2027/vignesh2027/output/profile-green-animate.svg" alt="3D Contribution Graph" width="100%"/>
 
 </div>
 
@@ -947,7 +947,7 @@ I don't launch behind paywalls or in isolation. I build in public, share progres
 
 <div align="center">
 
-<img alt="GitHub contribution snake" src="https://raw.githubusercontent.com/vignesh2027/vignesh2027/output/github-snake-green.svg" width="100%"/>
+<img alt="GitHub contribution snake" src="https://raw.githubusercontent.com/vignesh2027/vignesh2027/snake-output/github-snake-green.svg" width="100%"/>
 
 </div>
 
