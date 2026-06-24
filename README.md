@@ -884,17 +884,6 @@ pipeline.fix().validate().monitor()    # one chain, complete data quality
 <br/>
 
 <!-- ═══════════════════════════════════════════════════════════════════ -->
-<img width="100%" src="https://capsule-render.vercel.app/api?type=soft&color=0:0e4429,100:39d353&height=55&text=TROPHY+CABINET&fontSize=26&fontColor=ffffff&animation=fadeIn"/>
-
-<div align="center">
-
-[![Trophy](https://github-profile-trophy.vercel.app/?username=vignesh2027&theme=gruvbox&no-frame=true&no-bg=true&column=6&margin-w=10&margin-h=10&rank=SECRET,SSS,SS,S,AAA,AA,A,B,C)](https://github.com/vignesh2027)
-
-</div>
-
-<br/>
-
-<!-- ═══════════════════════════════════════════════════════════════════ -->
 <img width="100%" src="https://capsule-render.vercel.app/api?type=soft&color=0:0e4429,100:39d353&height=55&text=COMMUNITY+AND+HOW+I+LAUNCH&fontSize=22&fontColor=ffffff&animation=fadeIn"/>
 
 <div align="center">
