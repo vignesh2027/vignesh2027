@@ -1,94 +1,76 @@
 <div align="center">
 
-<!-- SNAKE AT TOP — real-time green contribution snake -->
-<img width="100%" src="https://raw.githubusercontent.com/vignesh2027/vignesh2027/snake-output/github-snake-green.svg" alt="contribution snake"/>
+<!-- MAIN HEADER — clean green wave banner -->
+<img width="100%" src="https://capsule-render.vercel.app/api?type=waving&color=0:0e4429,50:006d32,100:39d353&height=230&section=header&text=VIGNESHWAR&fontSize=92&fontColor=ffffff&animation=fadeIn&fontAlignY=38&desc=Engineer%20%E2%80%A2%20ML%20Architect%20%E2%80%A2%20Cloud%20%E2%80%A2%20Entrepreneur%20%E2%80%A2%20CS%20%40%20Chennai&descAlignY=58&descAlign=50&descColor=d2f5dd"/>
+
+<!-- ANIMATED GREEN TYPING TAGLINE -->
+<img src="https://readme-typing-svg.demolab.com?font=Fira+Code&weight=700&size=22&duration=2800&pause=900&color=39D353&center=true&vCenter=true&width=860&lines=Python+%7C+Rust+%7C+ML+%7C+WebGL+%7C+Cloud;I+build+things+that+ship+%E2%80%94+then+I+sell+them.;40%2B+repos+%E2%80%A2+7+products+sold+%E2%80%A2+1+live+SaaS;SYNTHRON+%E2%80%A2+VORTEXRAG+%E2%80%A2+rustkvd+%E2%80%A2+FluxDB" alt="Typing SVG" width="860"/>
 
 <br/>
 
-<!-- PROFESSIONAL GRADIENT DIVIDER -->
-<img width="100%" src="https://capsule-render.vercel.app/api?type=rect&color=gradient&customColorList=6,11,20&height=4&section=header"/>
-
-<br/>
-
-<!-- LIVE STATUS BADGES -->
-![STATUS](https://img.shields.io/badge/STATUS-ONLINE-00d26a?style=for-the-badge&labelColor=0d1117)
+<!-- LIVE STATUS BADGES — green theme -->
+![STATUS](https://img.shields.io/badge/STATUS-ONLINE-39d353?style=for-the-badge&labelColor=0d1117)
 &nbsp;
-![MODE](https://img.shields.io/badge/MODE-VS+CODE-9333ea?style=for-the-badge&labelColor=0d1117)
+![NOW](https://img.shields.io/badge/NOW-BUILDING+IN+PUBLIC-26a641?style=for-the-badge&labelColor=0d1117)
 &nbsp;
-![NOW](https://img.shields.io/badge/NOW-BUILDING+IN+PUBLIC-c084fc?style=for-the-badge&labelColor=0d1117)
-&nbsp;
-![OPEN](https://img.shields.io/badge/OPEN-TO+COLLAB-ff6b6b?style=for-the-badge&labelColor=0d1117)
+![OPEN](https://img.shields.io/badge/OPEN-TO+COLLAB-006d32?style=for-the-badge&labelColor=0d1117)
 
-<br/>
+<br/><br/>
 
-<!-- BOOT SEQUENCE — self-hosted SVG, always loads -->
-<img src="https://raw.githubusercontent.com/vignesh2027/vignesh2027/main/assets/boot-sequence.svg" alt="boot sequence" width="700"/>
-
-<br/>
-
-<!-- MAIN HEADER -->
-<img width="100%" src="https://capsule-render.vercel.app/api?type=waving&color=gradient&customColorList=6,11,20&height=230&section=header&text=VIGNESHWAR&fontSize=92&fontColor=ffffff&animation=fadeIn&fontAlignY=37&desc=Engineer%20%E2%80%A2%20Entrepreneur%20%E2%80%A2%20ML%20Architect%20%E2%80%A2%20Digital%20Marketer%20%E2%80%A2%20CS%20%40%20Chennai&descAlignY=56&descAlign=50&descColor=c084fc"/>
-
-<br/>
-
-<!-- ANIMATED TYPING SVG -->
-<img src="https://readme-typing-svg.demolab.com?font=Fira+Code&weight=700&size=22&duration=2800&pause=900&color=9333EA&center=true&vCenter=true&width=860&lines=Python+%7C+Rust+%7C+ML+%7C+WebGL+%7C+Cloud+%7C+All+of+it;Building+things+that+shouldn%27t+exist+yet+%E2%80%94+then+selling+them.;Engineer+%E2%80%A2+Entrepreneur+%E2%80%A2+ML+Architect+%E2%80%A2+CS+%40+Chennai;40%2B+repos+%E2%80%A2+7+products+sold+%E2%80%A2+1+live+SaaS;SYNTHRON+%E2%80%A2+VORTEXRAG+%E2%80%A2+rustkvd+%E2%80%A2+FluxDB+%E2%80%A2+Craftez" alt="Typing SVG" width="860"/>
-
-<br/>
-
-<!-- SOCIAL BADGES -->
-![Profile Views](https://komarev.com/ghpvc/?username=vignesh2027&color=9333ea&style=for-the-badge&label=PROFILE+VIEWS&base=2023)
-&nbsp;
-![GitHub Analytics](https://img.shields.io/badge/GITHUB+ANALYTICS-2213%2B+VIEWS-c084fc?style=for-the-badge&labelColor=0d1117&logo=github&logoColor=white)
-&nbsp;
-![Stars](https://img.shields.io/github/stars/vignesh2027?style=for-the-badge&logo=starship&label=TOTAL+STARS&color=FFD700&labelColor=0d1117&logoColor=FFD700)
-
-<br/>
-
+<!-- SOCIAL / CONNECT -->
 [![GitHub](https://img.shields.io/badge/GitHub-vignesh2027-181717?style=for-the-badge&logo=github&logoColor=white)](https://github.com/vignesh2027)
 &nbsp;
 [![LinkedIn](https://img.shields.io/badge/LinkedIn-Connect-0A66C2?style=for-the-badge&logo=linkedin&logoColor=white)](https://www.linkedin.com/in/vigneshwar-l-td729994)
 &nbsp;
-[![Portfolio](https://img.shields.io/badge/Portfolio-Live-9333ea?style=for-the-badge&logo=vercel&logoColor=white)](https://vignesh2027.github.io/F.W.D)
+[![Portfolio](https://img.shields.io/badge/Portfolio-Live-39d353?style=for-the-badge&logo=vercel&logoColor=white)](https://vignesh2027.github.io/F.W.D)
 &nbsp;
-[![Discord](https://img.shields.io/badge/Discord-Chat-5865F2?style=for-the-badge&logo=discord&logoColor=white)](https://discord.com)
+![Profile Views](https://komarev.com/ghpvc/?username=vignesh2027&color=39d353&style=for-the-badge&label=PROFILE+VIEWS&base=2023)
 &nbsp;
-[![Reddit](https://img.shields.io/badge/Reddit-Launches-FF4500?style=for-the-badge&logo=reddit&logoColor=white)](https://reddit.com)
-&nbsp;
-![Repos](https://img.shields.io/badge/PUBLIC+REPOS-40%2B-00d26a?style=for-the-badge&labelColor=0d1117&logo=github&logoColor=white)
+![Repos](https://img.shields.io/badge/PUBLIC+REPOS-40%2B-26a641?style=for-the-badge&labelColor=0d1117&logo=github&logoColor=white)
 
-<br/>
+<br/><br/>
+
+<!-- TECH STACK — organized green badges -->
+![Python](https://img.shields.io/badge/Python-0d1117?style=for-the-badge&logo=python&logoColor=39d353)
+![Rust](https://img.shields.io/badge/Rust-0d1117?style=for-the-badge&logo=rust&logoColor=39d353)
+![C++](https://img.shields.io/badge/C++-0d1117?style=for-the-badge&logo=cplusplus&logoColor=39d353)
+![TypeScript](https://img.shields.io/badge/TypeScript-0d1117?style=for-the-badge&logo=typescript&logoColor=39d353)
+![PyTorch](https://img.shields.io/badge/PyTorch-0d1117?style=for-the-badge&logo=pytorch&logoColor=39d353)
+![FastAPI](https://img.shields.io/badge/FastAPI-0d1117?style=for-the-badge&logo=fastapi&logoColor=39d353)
+![React](https://img.shields.io/badge/React-0d1117?style=for-the-badge&logo=react&logoColor=39d353)
+![Three.js](https://img.shields.io/badge/Three.js-0d1117?style=for-the-badge&logo=threedotjs&logoColor=39d353)
+![Flutter](https://img.shields.io/badge/Flutter-0d1117?style=for-the-badge&logo=flutter&logoColor=39d353)
+![AWS](https://img.shields.io/badge/AWS-0d1117?style=for-the-badge&logo=amazonaws&logoColor=39d353)
+![Docker](https://img.shields.io/badge/Docker-0d1117?style=for-the-badge&logo=docker&logoColor=39d353)
+![WebGL](https://img.shields.io/badge/WebGL-0d1117?style=for-the-badge&logo=webgl&logoColor=39d353)
 
 </div>
 
 <br/>
 
 <!-- ═══════════════════════════════════════════════════════════════════ -->
-<img width="100%" src="https://capsule-render.vercel.app/api?type=soft&color=gradient&customColorList=6,11,20&height=55&text=WHO+AM+I&fontSize=26&fontColor=ffffff&animation=fadeIn"/>
+<img width="100%" src="https://capsule-render.vercel.app/api?type=soft&color=0:0e4429,100:39d353&height=55&text=WHO+AM+I&fontSize=26&fontColor=ffffff&animation=fadeIn"/>
 
-<img align="right" alt="Coding" width="310" src="https://user-images.githubusercontent.com/74038190/212284100-561aa473-3905-4a80-b561-0d28506553ee.gif"/>
+<img align="right" alt="Coding" width="300" src="https://user-images.githubusercontent.com/74038190/212284100-561aa473-3905-4a80-b561-0d28506553ee.gif"/>
 
-I build things that shouldn't exist yet — then I sell them.
+**I build things that ship — then I sell them.**
 
-I'm **Vigneshwar** — a CS student at Chennai running three careers simultaneously: systems engineer, ML researcher, and digital entrepreneur. While most students are submitting assignments, I'm shipping products to real customers on Reddit, growing communities on Discord, and inventing neural architectures from my laptop.
+CS student at Chennai running three tracks at once: **systems engineer · ML researcher · digital entrepreneur**. Python-first, comfortable from GPU shaders to Rust systems to production ML.
 
-My primary language is **Python** — it's where I'm strongest, fastest, and most creative. I use it for everything from ML research to backend APIs to automation pipelines. I also work with **C and C++** for systems-level work (built an 8-world game engine with C++17 + Raylib), and across the full web stack in TypeScript, JavaScript, and GLSL for GPU shaders.
+I've built and **sold 7 digital products** — all launched organically through Reddit & Discord. No VC, no paid ads.
 
-I've built and sold **7 digital products** — eLearning platforms, developer tools, automation systems, analytics dashboards — all launched organically through communities. No VC, no paid ads, no gatekeepers.
+The edge: I write the code, design the architecture, train the model, run the campaign, and close the sale. Most people pick one — I compound all of them.
 
-The combination is the edge: I can write the code, design the architecture, train the model, write the copy, run the campaign, and close the sale. Most people pick one. I run all of them and they compound.
-
-**Primary:** Python · FastAPI · PyTorch · React/Vue · Three.js · AWS/GCP  
-**Systems:** C++17 · Raylib · CMake · WebAssembly · GLSL  
-**Open-Source:** SYNTHRON (multi-agent AI) · VORTEXRAG (7-layer RAG) · puredata.py · datamend.py  
-**Currently:** NEURALSTACK (stealth) · LLM Eval Framework · Shipping daily — 40+ public repos
+**Primary:** Python · FastAPI · PyTorch · React · Three.js · AWS  
+**Systems:** C++17 · Rust · WebAssembly · GLSL  
+**Open-Source:** SYNTHRON · VORTEXRAG · puredata.py · datamend.py
 
 <br clear="right"/>
 
 <br/>
 
 <!-- ═══════════════════════════════════════════════════════════════════ -->
-<img width="100%" src="https://capsule-render.vercel.app/api?type=soft&color=gradient&customColorList=6,11,20&height=55&text=WHAT+I+DO&fontSize=26&fontColor=ffffff&animation=fadeIn"/>
+<img width="100%" src="https://capsule-render.vercel.app/api?type=soft&color=0:0e4429,100:39d353&height=55&text=WHAT+I+DO&fontSize=26&fontColor=ffffff&animation=fadeIn"/>
 
 <div align="center">
 
@@ -146,7 +128,7 @@ The combination is the edge: I can write the code, design the architecture, trai
 <tr>
 <td align="center" width="16%">
 <br/>
-<img src="https://img.shields.io/badge/MULTI--AGENT-AI-6B46C1?style=for-the-badge&logo=openai&logoColor=white"/>
+<img src="https://img.shields.io/badge/MULTI--AGENT-AI-006d32?style=for-the-badge&logo=openai&logoColor=white"/>
 <br/><br/>
 <b>AI Framework Builder</b><br/>
 <sub>SYNTHRON multi-agent framework · VORTEXRAG 7-layer RAG · LLM eval · agentic orchestration at scale.</sub>
@@ -194,8 +176,8 @@ The combination is the edge: I can write the code, design the architecture, trai
 <br/>
 
 <!-- WAVE DIVIDER -->
-<img width="100%" src="https://capsule-render.vercel.app/api?type=waving&color=gradient&customColorList=6,11,20&height=80&section=footer"/>
-<img width="100%" src="https://capsule-render.vercel.app/api?type=waving&color=gradient&customColorList=6,11,20&height=80&section=header"/>
+<img width="100%" src="https://capsule-render.vercel.app/api?type=waving&color=0:0e4429,100:39d353&height=80&section=footer"/>
+<img width="100%" src="https://capsule-render.vercel.app/api?type=waving&color=0:0e4429,100:39d353&height=80&section=header"/>
 
 <div align="center">
 
@@ -212,7 +194,7 @@ The combination is the edge: I can write the code, design the architecture, trai
 </div>
 
 <!-- ═══════════════════════════════════════════════════════════════════ -->
-<img width="100%" src="https://capsule-render.vercel.app/api?type=soft&color=gradient&customColorList=6,11,20&height=55&text=SHIPPED+AND+SOLD&fontSize=26&fontColor=ffffff&animation=fadeIn"/>
+<img width="100%" src="https://capsule-render.vercel.app/api?type=soft&color=0:0e4429,100:39d353&height=55&text=SHIPPED+AND+SOLD&fontSize=26&fontColor=ffffff&animation=fadeIn"/>
 
 <div align="center">
 
@@ -220,21 +202,7 @@ The combination is the edge: I can write the code, design the architecture, trai
 
 </div>
 
-**The eLearning Platform — Sold for 68K**
-
-Built a complete eLearning platform from the ground up: course infrastructure, payment integration, student progress tracking, instructor dashboards, content delivery system. Marketed and sold exclusively through organic community channels — Reddit threads, Discord servers, and developer forums. Found its buyer without a single rupee spent on advertising.
-
-**The Playbook:**
-
-```
-STEP 1 | Identify real pain in a niche technical community
-STEP 2 | Build the solution fast, focused, polished
-STEP 3 | Soft-launch on Reddit - genuine posts, no hype
-STEP 4 | Engage authentically - answer questions, give value
-STEP 5 | Let the product speak - demos, GIFs, live links
-STEP 6 | Collect feedback, iterate, close buyers in DMs
-STEP 7 | Repeat with a new product in a new niche
-```
+**Flagship: a full eLearning platform — sold for 68K.** Course infra, payments, progress tracking, instructor dashboards. Marketed and sold entirely through Reddit & Discord. Zero ad spend.
 
 **Product Portfolio**
 
@@ -253,7 +221,7 @@ STEP 7 | Repeat with a new product in a new niche
 <br/>
 
 <!-- ═══════════════════════════════════════════════════════════════════ -->
-<img width="100%" src="https://capsule-render.vercel.app/api?type=soft&color=gradient&customColorList=6,11,20&height=55&text=WHO+I+WORK+WITH&fontSize=26&fontColor=ffffff&animation=fadeIn"/>
+<img width="100%" src="https://capsule-render.vercel.app/api?type=soft&color=0:0e4429,100:39d353&height=55&text=WHO+I+WORK+WITH&fontSize=26&fontColor=ffffff&animation=fadeIn"/>
 
 <div align="center">
 
@@ -261,16 +229,16 @@ STEP 7 | Repeat with a new product in a new niche
 <tr>
 <td width="50%" valign="top">
 
-**Startups and Scale-ups**
+**Startups & Scale-ups**
 
-I work with early-stage and growth-stage startups that need senior-level engineering without senior-level headcount. Full-stack features, ML pipeline integration, cloud infrastructure, WebGL/3D visualization for data products.
+Senior-level engineering without senior-level headcount — full-stack features, ML pipelines, cloud infra, WebGL/3D data products.
 
 </td>
 <td width="50%" valign="top">
 
-**HR Managers and Talent Teams**
+**HR & Talent Teams**
 
-Built internal tools for HR and talent acquisition teams: ATS integrations, automated screening pipelines, candidate analytics dashboards, attendance intelligence systems. Reduced their workflow time significantly.
+Internal tools — ATS integrations, automated screening, candidate analytics, attendance intelligence.
 
 </td>
 </tr>
@@ -279,16 +247,14 @@ Built internal tools for HR and talent acquisition teams: ATS integrations, auto
 
 **Cloud Cost Optimization — AWS + GCP**
 
-Audit infrastructure · right-size resources · implement reserved instances · set up cost monitoring via Grafana + CloudWatch. Average 30–50% infra cost reduction with zero performance loss.
-
-Stack: **Aerospike · Grafana · Docker · AWS · GCP · CloudWatch**
+Audit, right-size, monitor via Grafana + CloudWatch. Average **30–50% infra cost reduction**, zero performance loss.
 
 </td>
 <td width="50%" valign="top">
 
-**Digital Marketing for Tech Products**
+**Digital Marketing for Tech**
 
-For technical founders who can't market, and marketers who can't speak to engineers. I bridge the gap. SEO for developer tools, community-led growth on Reddit/Discord, content strategy that converts technical audiences.
+The bridge between founders who can't market and marketers who can't speak to engineers. SEO + community-led growth that converts technical audiences.
 
 </td>
 </tr>
@@ -299,7 +265,7 @@ For technical founders who can't market, and marketers who can't speak to engine
 <br/>
 
 <!-- ═══════════════════════════════════════════════════════════════════ -->
-<img width="100%" src="https://capsule-render.vercel.app/api?type=soft&color=gradient&customColorList=6,11,20&height=55&text=TECH+ARSENAL&fontSize=26&fontColor=ffffff&animation=fadeIn"/>
+<img width="100%" src="https://capsule-render.vercel.app/api?type=soft&color=0:0e4429,100:39d353&height=55&text=TECH+ARSENAL&fontSize=26&fontColor=ffffff&animation=fadeIn"/>
 
 <div align="center">
 
@@ -348,12 +314,12 @@ For technical founders who can't market, and marketers who can't speak to engine
 
 ### ML · AI · RAG
 
-![Claude API](https://img.shields.io/badge/Claude%20API-6B46C1?style=for-the-badge&logo=anthropic&logoColor=white)
+![Claude API](https://img.shields.io/badge/Claude%20API-006d32?style=for-the-badge&logo=anthropic&logoColor=white)
 ![OpenAI](https://img.shields.io/badge/OpenAI-74aa9c?style=for-the-badge&logo=openai&logoColor=white)
 ![Ollama](https://img.shields.io/badge/Ollama-000000?style=for-the-badge&logo=ollama&logoColor=white)
 ![MLOps](https://img.shields.io/badge/MLOps-FF6B6B?style=for-the-badge&logo=mlflow&logoColor=white)
-![RAG Systems](https://img.shields.io/badge/RAG%20Systems-9333EA?style=for-the-badge)
-![Vector DB](https://img.shields.io/badge/Vector%20DB-9333EA?style=for-the-badge)
+![RAG Systems](https://img.shields.io/badge/RAG%20Systems-39D353?style=for-the-badge)
+![Vector DB](https://img.shields.io/badge/Vector%20DB-39D353?style=for-the-badge)
 
 ### Cloud · Infra · Observability
 
@@ -395,7 +361,7 @@ For technical founders who can't market, and marketers who can't speak to engine
 <br/>
 
 <!-- ═══════════════════════════════════════════════════════════════════ -->
-<img width="100%" src="https://capsule-render.vercel.app/api?type=soft&color=gradient&customColorList=6,11,20&height=55&text=FEATURED+BUILDS&fontSize=26&fontColor=ffffff&animation=fadeIn"/>
+<img width="100%" src="https://capsule-render.vercel.app/api?type=soft&color=0:0e4429,100:39d353&height=55&text=FEATURED+BUILDS&fontSize=26&fontColor=ffffff&animation=fadeIn"/>
 
 <div align="center">
 
@@ -411,7 +377,7 @@ For technical founders who can't market, and marketers who can't speak to engine
 ![npm](https://img.shields.io/npm/v/vilvona?color=22c55e&label=npm&style=flat-square)
 ![Claude Fable 5](https://img.shields.io/badge/Claude%20Fable%205-15803d?style=flat-square)
 ![Tamil & Hindi](https://img.shields.io/badge/Tamil%20%26%20Hindi-f59e0b?style=flat-square)
-![Self-hosted](https://img.shields.io/badge/Self--hosted-9333EA?style=flat-square)
+![Self-hosted](https://img.shields.io/badge/Self--hosted-39D353?style=flat-square)
 ![MIT](https://img.shields.io/badge/MIT-22c55e?style=flat-square)
 
 **[Star the Repo](https://github.com/vignesh2027/Vilvona-AI)** · **[Docs](https://vignesh2027.github.io/Vilvona-AI)** · **[npm](https://www.npmjs.com/package/vilvona)** · **[Get Pro](https://vignesh2027.mojo.page/vilvona-ai-pro)**
@@ -427,8 +393,8 @@ For technical founders who can't market, and marketers who can't speak to engine
 > Built from real shipping experience. Covers advanced patterns, hooks, MCP servers, tool orchestration, and workflows no official documentation touches. The guide engineers actually use when vibe coding at scale.
 
 ![Shell](https://img.shields.io/badge/Shell-4EAA25?style=flat-square&logo=gnu-bash&logoColor=white)
-![AI Dev](https://img.shields.io/badge/AI%20Dev-6B46C1?style=flat-square)
-![Production](https://img.shields.io/badge/Production%20Patterns-9333EA?style=flat-square)
+![AI Dev](https://img.shields.io/badge/AI%20Dev-006d32?style=flat-square)
+![Production](https://img.shields.io/badge/Production%20Patterns-39D353?style=flat-square)
 
 **[Read the Guide](https://github.com/vignesh2027/claude-best-practice)**
 
@@ -443,7 +409,7 @@ For technical founders who can't market, and marketers who can't speak to engine
 ![PyTorch](https://img.shields.io/badge/PyTorch-EE4C2C?style=flat-square&logo=pytorch&logoColor=white)
 ![Python](https://img.shields.io/badge/Python-3776AB?style=flat-square&logo=python&logoColor=white)
 ![W&B](https://img.shields.io/badge/W%26B-FFBE00?style=flat-square&logo=weightsandbiases&logoColor=black)
-![Research](https://img.shields.io/badge/Novel%20Arch-9333EA?style=flat-square)
+![Research](https://img.shields.io/badge/Novel%20Arch-39D353?style=flat-square)
 
 **[View Architecture](https://github.com/vignesh2027/TemporalMesh-Transformer)**
 
@@ -553,8 +519,8 @@ For technical founders who can't market, and marketers who can't speak to engine
 > Orchestrate fleets of AI agents with real task decomposition, inter-agent communication, and fault tolerance. Not a wrapper — a framework. Built for production AI systems that need more than a single model call.
 
 ![Python](https://img.shields.io/badge/Python-3776AB?style=flat-square&logo=python&logoColor=white)
-![Multi-Agent](https://img.shields.io/badge/Multi--Agent-6B46C1?style=flat-square)
-![AI](https://img.shields.io/badge/AI%20Framework-9333EA?style=flat-square)
+![Multi-Agent](https://img.shields.io/badge/Multi--Agent-006d32?style=flat-square)
+![AI](https://img.shields.io/badge/AI%20Framework-39D353?style=flat-square)
 ![Open Source](https://img.shields.io/badge/Open%20Source-00d26a?style=flat-square&logo=github&logoColor=white)
 
 **[View Framework](https://github.com/vignesh2027/synthron)** | **[Docs](https://vignesh2027.github.io/synthron)**
@@ -568,7 +534,7 @@ For technical founders who can't market, and marketers who can't speak to engine
 > VORTEX: Vector Orthogonal Resonance-Tuned EXtraction. 7-layer architecture solving what standard RAG pipelines can't. Novel approach to retrieval that understands semantic relationships, not just vector proximity.
 
 ![Python](https://img.shields.io/badge/Python-3776AB?style=flat-square&logo=python&logoColor=white)
-![RAG](https://img.shields.io/badge/RAG%20Systems-9333EA?style=flat-square)
+![RAG](https://img.shields.io/badge/RAG%20Systems-39D353?style=flat-square)
 ![Novel Arch](https://img.shields.io/badge/Novel%20Architecture-EE4C2C?style=flat-square)
 ![PyTorch](https://img.shields.io/badge/PyTorch-EE4C2C?style=flat-square&logo=pytorch&logoColor=white)
 
@@ -585,7 +551,7 @@ For technical founders who can't market, and marketers who can't speak to engine
 > GPT-4 · Claude · Gemini · Mistral — all in one framework. Accuracy, latency, cost, hallucination rate, reasoning depth. The tool you use before trusting an LLM in production.
 
 ![Python](https://img.shields.io/badge/Python-3776AB?style=flat-square&logo=python&logoColor=white)
-![Claude API](https://img.shields.io/badge/Claude%20API-6B46C1?style=flat-square)
+![Claude API](https://img.shields.io/badge/Claude%20API-006d32?style=flat-square)
 ![OpenAI](https://img.shields.io/badge/OpenAI-74aa9c?style=flat-square&logo=openai&logoColor=white)
 ![Benchmarking](https://img.shields.io/badge/LLM%20Eval-FF6B6B?style=flat-square)
 
@@ -601,7 +567,7 @@ For technical founders who can't market, and marketers who can't speak to engine
 
 ![JavaScript](https://img.shields.io/badge/JavaScript-F7DF1E?style=flat-square&logo=javascript&logoColor=black)
 ![Three.js](https://img.shields.io/badge/Three.js-000?style=flat-square&logo=threedotjs&logoColor=white)
-![Real-time](https://img.shields.io/badge/Real--time%20AI-9333EA?style=flat-square)
+![Real-time](https://img.shields.io/badge/Real--time%20AI-39D353?style=flat-square)
 ![Zero Backend](https://img.shields.io/badge/Zero%20Backend-00d26a?style=flat-square)
 
 **[View Project](https://github.com/vignesh2027/graphite-web-)**
@@ -619,7 +585,7 @@ For technical founders who can't market, and marketers who can't speak to engine
 ![CesiumJS](https://img.shields.io/badge/CesiumJS-1F87B8?style=flat-square)
 ![JavaScript](https://img.shields.io/badge/JavaScript-F7DF1E?style=flat-square&logo=javascript&logoColor=black)
 ![3D Globe](https://img.shields.io/badge/3D%20Globe-00d26a?style=flat-square)
-![Zero Backend](https://img.shields.io/badge/Client--Side-9333EA?style=flat-square)
+![Zero Backend](https://img.shields.io/badge/Client--Side-39D353?style=flat-square)
 
 **[View Project](https://github.com/vignesh2027/-FLY-VIEW)**
 
@@ -650,7 +616,7 @@ For technical founders who can't market, and marketers who can't speak to engine
 ![JavaScript](https://img.shields.io/badge/JavaScript-F7DF1E?style=flat-square&logo=javascript&logoColor=black)
 ![D3.js](https://img.shields.io/badge/D3.js-F9A03C?style=flat-square&logo=d3dotjs&logoColor=white)
 ![Three.js](https://img.shields.io/badge/Three.js-000?style=flat-square&logo=threedotjs&logoColor=white)
-![Data Viz](https://img.shields.io/badge/Data%20Viz-9333EA?style=flat-square)
+![Data Viz](https://img.shields.io/badge/Data%20Viz-39D353?style=flat-square)
 
 **[View Project](https://github.com/vignesh2027/Tradeorbit)**
 
@@ -679,8 +645,8 @@ For technical founders who can't market, and marketers who can't speak to engine
 > Advanced Claude agent skills, workflows, and patterns built from shipping real production systems. The things no documentation tells you — from someone who's been using Claude Code in anger for 6 months.
 
 ![Shell](https://img.shields.io/badge/Shell-4EAA25?style=flat-square&logo=gnu-bash&logoColor=white)
-![Claude](https://img.shields.io/badge/Claude%20API-6B46C1?style=flat-square)
-![Agentic](https://img.shields.io/badge/Agentic%20AI-9333EA?style=flat-square)
+![Claude](https://img.shields.io/badge/Claude%20API-006d32?style=flat-square)
+![Agentic](https://img.shields.io/badge/Agentic%20AI-39D353?style=flat-square)
 
 **[View Project](https://github.com/vignesh2027/Claude-Agentic-Skills2.0-version)**
 
@@ -693,7 +659,7 @@ For technical founders who can't market, and marketers who can't speak to engine
 > Voice-driven AI assistant built from scratch. Wake word detection, intent parsing, multi-modal response. The Iron Man interface, made real.
 
 ![Python](https://img.shields.io/badge/Python-3776AB?style=flat-square&logo=python&logoColor=white)
-![Voice AI](https://img.shields.io/badge/Voice%20AI-9333EA?style=flat-square)
+![Voice AI](https://img.shields.io/badge/Voice%20AI-39D353?style=flat-square)
 ![Real-time](https://img.shields.io/badge/Real--time-FF6B6B?style=flat-square)
 
 **[View Project](https://github.com/vignesh2027/Jarvis-voice)**
@@ -711,7 +677,7 @@ For technical founders who can't market, and marketers who can't speak to engine
 ![Rust](https://img.shields.io/badge/Rust-000000?style=flat-square&logo=rust&logoColor=white)
 ![Raft](https://img.shields.io/badge/Raft%20Consensus-FF6B6B?style=flat-square)
 ![gRPC](https://img.shields.io/badge/gRPC-4285F4?style=flat-square&logo=google&logoColor=white)
-![Distributed Systems](https://img.shields.io/badge/Distributed%20Systems-9333EA?style=flat-square)
+![Distributed Systems](https://img.shields.io/badge/Distributed%20Systems-39D353?style=flat-square)
 
 **[View Project](https://github.com/vignesh2027/rustkvd)** | **[Docs](https://vignesh2027.github.io/rustkvd)**
 
@@ -726,7 +692,7 @@ For technical founders who can't market, and marketers who can't speak to engine
 ![Rust](https://img.shields.io/badge/Rust-000000?style=flat-square&logo=rust&logoColor=white)
 ![Time Series](https://img.shields.io/badge/Time--Series%20DB-F46800?style=flat-square)
 ![100+ Tests](https://img.shields.io/badge/100%2B%20Tests-00d26a?style=flat-square)
-![Systems](https://img.shields.io/badge/Systems%20Engineering-9333EA?style=flat-square)
+![Systems](https://img.shields.io/badge/Systems%20Engineering-39D353?style=flat-square)
 
 **[View Project](https://github.com/vignesh2027/fluxdb)** | **[Docs](https://vignesh2027.github.io/-FLUXDB)**
 
@@ -758,7 +724,7 @@ For technical founders who can't market, and marketers who can't speak to engine
 ![TypeScript](https://img.shields.io/badge/TypeScript-007ACC?style=flat-square&logo=typescript&logoColor=white)
 ![VS Code](https://img.shields.io/badge/VS%20Code%20Extension-0078D4?style=flat-square&logo=visualstudiocode&logoColor=white)
 ![Privacy](https://img.shields.io/badge/Privacy%20First-00d26a?style=flat-square)
-![AI Detection](https://img.shields.io/badge/AI%20Ratio%20Detection-9333EA?style=flat-square)
+![AI Detection](https://img.shields.io/badge/AI%20Ratio%20Detection-39D353?style=flat-square)
 
 **[View Project](https://github.com/vignesh2027/keystrand)**
 
@@ -774,7 +740,7 @@ For technical founders who can't market, and marketers who can't speak to engine
 
 ![JavaScript](https://img.shields.io/badge/JavaScript-F7DF1E?style=flat-square&logo=javascript&logoColor=black)
 ![Groq AI](https://img.shields.io/badge/Groq%20AI-FF6B6B?style=flat-square)
-![224 Templates](https://img.shields.io/badge/224%20Templates-9333ea?style=flat-square)
+![224 Templates](https://img.shields.io/badge/224%20Templates-39d353?style=flat-square)
 ![Live Product](https://img.shields.io/badge/Live%20Product-00d26a?style=flat-square)
 
 **[Live Site](https://craftezmyresume.com)** | **[Repo](https://github.com/vignesh2027/Craftez_my_resume)**
@@ -789,7 +755,7 @@ For technical founders who can't market, and marketers who can't speak to engine
 
 ![Flutter](https://img.shields.io/badge/Flutter-02569B?style=flat-square&logo=flutter&logoColor=white)
 ![Firebase](https://img.shields.io/badge/Firebase-FFCA28?style=flat-square&logo=firebase&logoColor=black)
-![Riverpod](https://img.shields.io/badge/Riverpod-9333EA?style=flat-square)
+![Riverpod](https://img.shields.io/badge/Riverpod-39D353?style=flat-square)
 ![4 Languages](https://img.shields.io/badge/4%20Languages-00d26a?style=flat-square)
 
 **[View Project](https://github.com/vignesh2027/sparshcare)**
@@ -803,7 +769,7 @@ For technical founders who can't market, and marketers who can't speak to engine
 <br/>
 
 <!-- ═══════════════════════════════════════════════════════════════════ -->
-<img width="100%" src="https://capsule-render.vercel.app/api?type=soft&color=gradient&customColorList=6,11,20&height=55&text=VORTEXRAG+%E2%80%94+LIVE+ON+GITHUB&fontSize=24&fontColor=ffffff&animation=fadeIn"/>
+<img width="100%" src="https://capsule-render.vercel.app/api?type=soft&color=0:0e4429,100:39d353&height=55&text=VORTEXRAG+%E2%80%94+LIVE+ON+GITHUB&fontSize=24&fontColor=ffffff&animation=fadeIn"/>
 
 <div align="center">
 
@@ -837,7 +803,7 @@ VORTEXRAG:      Query -> Temporal Embed -> Orthogonal Resonance Tuning
 <br/>
 
 <!-- ═══════════════════════════════════════════════════════════════════ -->
-<img width="100%" src="https://capsule-render.vercel.app/api?type=soft&color=gradient&customColorList=6,11,20&height=55&text=PYTHON+LIBRARIES+%E2%80%94+SHIPPED&fontSize=22&fontColor=ffffff&animation=fadeIn"/>
+<img width="100%" src="https://capsule-render.vercel.app/api?type=soft&color=0:0e4429,100:39d353&height=55&text=PYTHON+LIBRARIES+%E2%80%94+SHIPPED&fontSize=22&fontColor=ffffff&animation=fadeIn"/>
 
 <div align="center">
 
@@ -872,11 +838,22 @@ pipeline.fix().validate().monitor()    # one chain, complete data quality
 <br/>
 
 <!-- ═══════════════════════════════════════════════════════════════════ -->
-<img width="100%" src="https://capsule-render.vercel.app/api?type=soft&color=gradient&customColorList=6,11,20&height=55&text=GITHUB+STATS&fontSize=26&fontColor=ffffff&animation=fadeIn"/>
+<img width="100%" src="https://capsule-render.vercel.app/api?type=soft&color=0:0e4429,100:39d353&height=55&text=GITHUB+STATS&fontSize=26&fontColor=ffffff&animation=fadeIn"/>
 
 <div align="center">
 
-<img height="180em" src="https://github-readme-stats.vercel.app/api?username=vignesh2027&show_icons=true&hide_border=true&bg_color=0D1117&title_color=00d26a&icon_color=00d26a&text_color=c9d1d9&border_radius=10&count_private=true&include_all_commits=true&ring_color=00d26a"/>
+<!-- GREEN METRICS CARDS ROW -->
+![Repos](https://img.shields.io/badge/40%2B-PUBLIC+REPOS-39d353?style=for-the-badge&labelColor=0d1117)
+&nbsp;
+![Products](https://img.shields.io/badge/7-PRODUCTS+SOLD-26a641?style=for-the-badge&labelColor=0d1117)
+&nbsp;
+![Live](https://img.shields.io/badge/1-LIVE+SaaS-006d32?style=for-the-badge&labelColor=0d1117)
+&nbsp;
+![Domains](https://img.shields.io/badge/5-DOMAINS-0e4429?style=for-the-badge&labelColor=0d1117)
+
+<br/><br/>
+
+<img height="180em" src="https://github-readme-stats.vercel.app/api?username=vignesh2027&show_icons=true&hide=stars&hide_border=true&bg_color=0D1117&title_color=00d26a&icon_color=00d26a&text_color=c9d1d9&border_radius=10&count_private=true&include_all_commits=true&ring_color=00d26a"/>
 <img height="180em" src="https://streak-stats.demolab.com/?user=vignesh2027&hide_border=true&background=0D1117&ring=00d26a&fire=00d26a&currStreakLabel=00d26a&sideLabels=c9d1d9&currStreakNum=ffffff&sideNums=c9d1d9&dates=6b7280&stroke=00d26a"/>
 <img height="180em" src="https://github-readme-stats.vercel.app/api/top-langs/?username=vignesh2027&hide_border=true&bg_color=0D1117&title_color=00d26a&text_color=c9d1d9&layout=compact&border_radius=10&langs_count=8"/>
 
@@ -885,7 +862,7 @@ pipeline.fix().validate().monitor()    # one chain, complete data quality
 <br/>
 
 <!-- ═══════════════════════════════════════════════════════════════════ -->
-<img width="100%" src="https://capsule-render.vercel.app/api?type=soft&color=gradient&customColorList=6,11,20&height=55&text=CONTRIBUTION+ACTIVITY&fontSize=24&fontColor=ffffff&animation=fadeIn"/>
+<img width="100%" src="https://capsule-render.vercel.app/api?type=soft&color=0:0e4429,100:39d353&height=55&text=CONTRIBUTION+ACTIVITY&fontSize=24&fontColor=ffffff&animation=fadeIn"/>
 
 <div align="center">
 
@@ -896,7 +873,7 @@ pipeline.fix().validate().monitor()    # one chain, complete data quality
 <br/>
 
 <!-- ═══════════════════════════════════════════════════════════════════ -->
-<img width="100%" src="https://capsule-render.vercel.app/api?type=soft&color=gradient&customColorList=6,11,20&height=55&text=3D+CONTRIBUTION+GRAPH&fontSize=24&fontColor=ffffff&animation=fadeIn"/>
+<img width="100%" src="https://capsule-render.vercel.app/api?type=soft&color=0:0e4429,100:39d353&height=55&text=3D+CONTRIBUTION+GRAPH&fontSize=24&fontColor=ffffff&animation=fadeIn"/>
 
 <div align="center">
 
@@ -907,7 +884,7 @@ pipeline.fix().validate().monitor()    # one chain, complete data quality
 <br/>
 
 <!-- ═══════════════════════════════════════════════════════════════════ -->
-<img width="100%" src="https://capsule-render.vercel.app/api?type=soft&color=gradient&customColorList=6,11,20&height=55&text=TROPHY+CABINET&fontSize=26&fontColor=ffffff&animation=fadeIn"/>
+<img width="100%" src="https://capsule-render.vercel.app/api?type=soft&color=0:0e4429,100:39d353&height=55&text=TROPHY+CABINET&fontSize=26&fontColor=ffffff&animation=fadeIn"/>
 
 <div align="center">
 
@@ -918,7 +895,7 @@ pipeline.fix().validate().monitor()    # one chain, complete data quality
 <br/>
 
 <!-- ═══════════════════════════════════════════════════════════════════ -->
-<img width="100%" src="https://capsule-render.vercel.app/api?type=soft&color=gradient&customColorList=6,11,20&height=55&text=COMMUNITY+AND+HOW+I+LAUNCH&fontSize=22&fontColor=ffffff&animation=fadeIn"/>
+<img width="100%" src="https://capsule-render.vercel.app/api?type=soft&color=0:0e4429,100:39d353&height=55&text=COMMUNITY+AND+HOW+I+LAUNCH&fontSize=22&fontColor=ffffff&animation=fadeIn"/>
 
 <div align="center">
 
@@ -943,7 +920,7 @@ I don't launch behind paywalls or in isolation. I build in public, share progres
 <br/>
 
 <!-- ═══════════════════════════════════════════════════════════════════ -->
-<img width="100%" src="https://capsule-render.vercel.app/api?type=soft&color=gradient&customColorList=6,11,20&height=55&text=CONTRIBUTION+SNAKE&fontSize=24&fontColor=ffffff&animation=fadeIn"/>
+<img width="100%" src="https://capsule-render.vercel.app/api?type=soft&color=0:0e4429,100:39d353&height=55&text=CONTRIBUTION+SNAKE&fontSize=24&fontColor=ffffff&animation=fadeIn"/>
 
 <div align="center">
 
@@ -954,7 +931,7 @@ I don't launch behind paywalls or in isolation. I build in public, share progres
 <br/>
 
 <!-- ═══════════════════════════════════════════════════════════════════ -->
-<img width="100%" src="https://capsule-render.vercel.app/api?type=soft&color=gradient&customColorList=6,11,20&height=55&text=CONNECT&fontSize=26&fontColor=ffffff&animation=fadeIn"/>
+<img width="100%" src="https://capsule-render.vercel.app/api?type=soft&color=0:0e4429,100:39d353&height=55&text=CONNECT&fontSize=26&fontColor=ffffff&animation=fadeIn"/>
 
 <div align="center">
 
@@ -974,7 +951,7 @@ I don't launch behind paywalls or in isolation. I build in public, share progres
 </td>
 <td align="center">
 <a href="https://vignesh2027.github.io/F.W.D">
-<img src="https://img.shields.io/badge/Portfolio-Live-9333ea?style=for-the-badge&logo=vercel&logoColor=white"/>
+<img src="https://img.shields.io/badge/Portfolio-Live-39d353?style=for-the-badge&logo=vercel&logoColor=white"/>
 </a>
 </td>
 </tr>
@@ -999,7 +976,7 @@ I don't launch behind paywalls or in isolation. I build in public, share progres
 
 <br/>
 
-![Wave Divider](https://capsule-render.vercel.app/api?type=rect&color=gradient&customColorList=6,11,20&height=3&section=header)
+![Wave Divider](https://capsule-render.vercel.app/api?type=rect&color=0:0e4429,100:39d353&height=3&section=header)
 
 <br/>
 
@@ -1014,6 +991,6 @@ I don't launch behind paywalls or in isolation. I build in public, share progres
 
 <br/><br/>
 
-<img width="100%" src="https://capsule-render.vercel.app/api?type=waving&color=gradient&customColorList=6,11,20&height=160&section=footer&text=Build.+Ship.+Sell.+Repeat.&fontSize=38&fontColor=c084fc&animation=fadeIn&fontAlignY=65"/>
+<img width="100%" src="https://capsule-render.vercel.app/api?type=waving&color=0:0e4429,100:39d353&height=160&section=footer&text=Build.+Ship.+Sell.+Repeat.&fontSize=38&fontColor=26a641&animation=fadeIn&fontAlignY=65"/>
 
 </div>
