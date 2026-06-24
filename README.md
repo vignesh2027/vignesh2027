@@ -3,6 +3,11 @@
 <!-- MAIN HEADER — clean green wave banner -->
 <img width="100%" src="https://capsule-render.vercel.app/api?type=waving&color=0:0e4429,50:006d32,100:39d353&height=230&section=header&text=VIGNESHWAR&fontSize=92&fontColor=ffffff&animation=fadeIn&fontAlignY=38&desc=Engineer%20%E2%80%A2%20ML%20Architect%20%E2%80%A2%20Cloud%20%E2%80%A2%20Entrepreneur%20%E2%80%A2%20CS%20%40%20Chennai&descAlignY=58&descAlign=50&descColor=d2f5dd"/>
 
+<!-- PROFILE VIEWS — front and center, live counter -->
+<img src="https://komarev.com/ghpvc/?username=vignesh2027&color=39d353&style=for-the-badge&label=PROFILE+VIEWS&base=2023" height="34" alt="Profile Views"/>
+
+<br/><br/>
+
 <!-- ANIMATED GREEN TYPING TAGLINE -->
 <img src="https://readme-typing-svg.demolab.com?font=Fira+Code&weight=700&size=22&duration=2800&pause=900&color=39D353&center=true&vCenter=true&width=860&lines=Python+%7C+Rust+%7C+ML+%7C+WebGL+%7C+Cloud;I+build+things+that+ship+%E2%80%94+then+I+sell+them.;40%2B+repos+%E2%80%A2+7+products+sold+%E2%80%A2+1+live+SaaS;SYNTHRON+%E2%80%A2+VORTEXRAG+%E2%80%A2+rustkvd+%E2%80%A2+FluxDB" alt="Typing SVG" width="860"/>
 
@@ -23,8 +28,6 @@
 [![LinkedIn](https://img.shields.io/badge/LinkedIn-Connect-0A66C2?style=for-the-badge&logo=linkedin&logoColor=white)](https://www.linkedin.com/in/vigneshwar-l-td729994)
 &nbsp;
 [![Portfolio](https://img.shields.io/badge/Portfolio-Live-39d353?style=for-the-badge&logo=vercel&logoColor=white)](https://vignesh2027.github.io/F.W.D)
-&nbsp;
-![Profile Views](https://komarev.com/ghpvc/?username=vignesh2027&color=39d353&style=for-the-badge&label=PROFILE+VIEWS&base=2023)
 &nbsp;
 ![Repos](https://img.shields.io/badge/PUBLIC+REPOS-40%2B-26a641?style=for-the-badge&labelColor=0d1117&logo=github&logoColor=white)
 
