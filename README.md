@@ -27,7 +27,7 @@
 
 ## &nbsp;🔷&nbsp; Profile
 
-A backend and AI/ML engineer who contributes to production open-source infrastructure and engineers complex systems end to end. I work inside large-scale codebases under formal upstream review, testing, and release standards — and I design systems from first principles, from storage engines and distributed stores to novel model architectures.
+A backend engineer who contributes to production open-source infrastructure and engineers complex systems end to end. I work inside large-scale codebases under formal upstream review, testing, and release standards — and I design systems from first principles, from storage engines and distributed stores to novel model architectures.
 
 <img align="right" width="270" src="https://user-images.githubusercontent.com/74038190/212284100-561aa473-3905-4a80-b561-0d28506553ee.gif"/>
 
