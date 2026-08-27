@@ -18,9 +18,10 @@ jobs:
         with:
           github_user_name: vignesh2027
           outputs: |
-            dist/github-contribution-grid-snake.svg
+            dist/snake-navy.svg?color_snake=%2358a6ff&color_dots=%230d1117,%230b2545,%2313395e,%231b5299,%231f6feb
+            dist/snake-terminal.svg?color_snake=%23a5d6ff&color_dots=%2305070c,%230a2540,%23144272,%23205295,%232c74b3
             dist/github-contribution-grid-snake-dark.svg?palette=github-dark
-            dist/github-snake-green.svg?color_snake=%2339d353&color_dots=%23161b22,%230e4429,%23006d32,%2326a641,%2339d353
+            dist/github-contribution-grid-snake.svg
 
       - name: Push to snake-output branch
         uses: crazy-max/ghaction-github-pages@v3

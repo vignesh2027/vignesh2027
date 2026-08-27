@@ -1,0 +1,56 @@
+name: Panels
+
+on:
+  schedule:
+    - cron: "0 */6 * * *"
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths:
+      - "scripts/gen_panels.py"
+      - ".github/workflows/panels.yml"
+
+permissions:
+  contents: write
+
+jobs:
+  panels:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Render stat panels
+        run: python3 scripts/gen_panels.py
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+      # Fail loudly on malformed output rather than committing a broken profile.
+      - name: Validate SVGs
+        run: |
+          for f in assets/panel-*.svg; do
+            python3 -c "import xml.dom.minidom,sys; xml.dom.minidom.parse('$f')" || exit 1
+            test -s "$f" || { echo "$f is empty"; exit 1; }
+            echo "ok $f"
+          done
+
+      - name: Commit if changed
+        run: |
+          git config user.name "vignesh2027"
+          git config user.email "applemacbook6sep2004@gmail.com"
+          git add assets/panel-*.svg
+          if git diff --cached --quiet; then
+            echo "no panel changes"
+            exit 0
+          fi
+          git commit -m "chore: refresh stat panels"
+          # Another scheduled workflow may have pushed since checkout.
+          for i in 1 2 3; do
+            git push && exit 0
+            git pull --rebase origin main
+          done
+          exit 1
