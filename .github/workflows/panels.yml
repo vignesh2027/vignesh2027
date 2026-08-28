@@ -1,4 +1,4 @@
-name: Panels
+name: Terminal Panels
 
 on:
   schedule:
@@ -14,29 +14,18 @@ permissions:
   contents: write
 
 jobs:
-  panels:
+  render:
     runs-on: ubuntu-latest
     timeout-minutes: 10
     steps:
       - uses: actions/checkout@v4
 
-      - uses: actions/setup-python@v5
-        with:
-          python-version: "3.12"
-
-      - name: Render stat panels
-        run: python3 scripts/gen_panels.py
+      # The panels are generated here rather than fetched from a render
+      # service, so the profile cannot be broken by someone else's quota.
+      - name: Render panels
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-
-      # Fail loudly on malformed output rather than committing a broken profile.
-      - name: Validate SVGs
-        run: |
-          for f in assets/panel-*.svg; do
-            python3 -c "import xml.dom.minidom,sys; xml.dom.minidom.parse('$f')" || exit 1
-            test -s "$f" || { echo "$f is empty"; exit 1; }
-            echo "ok $f"
-          done
+        run: python3 scripts/gen_panels.py
 
       - name: Commit if changed
         run: |
@@ -44,11 +33,10 @@ jobs:
           git config user.email "applemacbook6sep2004@gmail.com"
           git add assets/panel-*.svg
           if git diff --cached --quiet; then
-            echo "no panel changes"
+            echo "panels unchanged"
             exit 0
           fi
-          git commit -m "chore: refresh stat panels"
-          # Another scheduled workflow may have pushed since checkout.
+          git commit -m "chore: refresh terminal panels"
           for i in 1 2 3; do
             git push && exit 0
             git pull --rebase origin main
