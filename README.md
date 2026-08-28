@@ -23,7 +23,7 @@
 &nbsp;
 <a href="https://github.com/vignesh2027?tab=repositories"><img src="https://img.shields.io/badge/Repositories-0d1117?style=flat-square&logo=github&logoColor=58a6ff" alt="Repositories"/></a>
 &nbsp;
-<img src="https://komarev.com/ghpvc/?username=vignesh2027&style=flat-square&color=1f6feb&label=PROFILE+VIEWS&base=11453" alt="Profile views"/>
+<img src="https://komarev.com/ghpvc/?username=vignesh2027&style=flat-square&color=1f6feb&label=PROFILE+VIEWS&base=10216" alt="Profile views"/>
 
 <br/><br/>
 

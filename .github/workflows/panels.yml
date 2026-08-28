@@ -4,11 +4,8 @@ on:
   schedule:
     - cron: "0 */6 * * *"
   workflow_dispatch:
-  push:
-    branches: [main]
-    paths:
-      - "scripts/gen_panels.py"
-      - ".github/workflows/panels.yml"
+  # Deliberately NOT triggered on push: it regenerates the very files a push
+  # just delivered, which collided with every manual push to main.
 
 permissions:
   contents: write
