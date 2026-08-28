@@ -1,19 +1,8 @@
 <div align="center">
 
-<table>
-<tr>
-<td width="40%" valign="top">
+<img src="https://raw.githubusercontent.com/vignesh2027/vignesh2027/main/assets/panel-terminal.svg" width="100%" alt="Vigneshwar L — backend, systems, AI/ML"/>
 
-<img src="https://raw.githubusercontent.com/vignesh2027/vignesh2027/main/assets/panel-particles.svg" width="100%" alt="Vigneshwar L"/>
-
-</td>
-<td width="60%" valign="top">
-
-<img src="https://raw.githubusercontent.com/vignesh2027/vignesh2027/main/assets/panel-identity.svg" width="100%" alt="Vigneshwar L — profile"/>
-
-</td>
-</tr>
-</table>
+<br/><br/>
 
 <a href="https://www.linkedin.com/in/vigneshwar-l-td729994"><img src="https://img.shields.io/badge/LinkedIn-0a66c2?style=flat-square&logo=linkedin&logoColor=white" alt="LinkedIn"/></a>
 &nbsp;
@@ -31,7 +20,7 @@
 
 <br/><br/>
 
-<img src="https://raw.githubusercontent.com/vignesh2027/vignesh2027/main/assets/panel-contrib.svg" width="100%" alt="contributions"/>
+<img src="https://raw.githubusercontent.com/vignesh2027/vignesh2027/main/assets/panel-skyline.svg" width="100%" alt="contributions"/>
 
 <br/><br/>
 
@@ -40,5 +29,9 @@
 <br/><br/>
 
 <img src="https://raw.githubusercontent.com/vignesh2027/vignesh2027/snake-output/snake-navy.svg" width="100%" alt="contribution snake"/>
+
+<br/><br/>
+
+<a href="https://github.com/sponsors/vignesh2027"><img src="https://raw.githubusercontent.com/vignesh2027/vignesh2027/main/assets/btn-sponsor.svg" alt="Sponsor on GitHub"/></a>
 
 </div>

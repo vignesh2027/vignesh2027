@@ -31,12 +31,19 @@ CARD   = "#0b1220"
 BORDER = "#13395e"
 BLUE   = "#58a6ff"
 BLUE_D = "#1f6feb"
-DIM    = "#7d8ea3"
+CYAN   = "#22d3ee"
+VIOLET = "#8b7cff"
+LIT    = "#a5d6ff"
+DIM    = "#8ba3bd"
 FAINT  = "#41536b"
-TEXT   = "#e6edf3"
+TEXT   = "#f0f6fc"
 MONO   = "ui-monospace, SFMono-Regular, Menlo, Consolas, 'DejaVu Sans Mono', monospace"
 
 HEAT = ["#0d1c30", "#13395e", "#1b5299", "#1f6feb", "#58a6ff"]
+
+# Windows in the skyline towers: lit ones cycle through the accent range so the
+# panel has colour without leaving the dark-blue scheme.
+WINDOW = ["#1f6feb", "#58a6ff", "#22d3ee", "#a5d6ff", "#8b7cff"]
 
 
 def esc(s):
@@ -71,7 +78,7 @@ def head(uid, w, h, label):
             f'<stop offset="0%" stop-color="{BLUE_D}" stop-opacity=".13"/>'
             f'<stop offset="100%" stop-color="{BLUE_D}" stop-opacity="0"/></radialGradient>'
             f'<linearGradient id="r{uid}" x1="0" y1="0" x2="1" y2="0">'
-            f'<stop offset="0%" stop-color="{BLUE}"/>'
+            f'<stop offset="0%" stop-color="{CYAN}"/>'
             f'<stop offset="100%" stop-color="#0b2545"/></linearGradient></defs>')
 
 
@@ -85,7 +92,7 @@ def shell(uid, w, h, title, label, black=False):
             f'fill="#0d1526" stroke="{BORDER}"/>'
             f'<circle cx="24" cy="21" r="5" fill="#1b5299"/>'
             f'<circle cx="43" cy="21" r="5" fill="#205295"/>'
-            f'<circle cx="62" cy="21" r="5" fill="#2c74b3"/>'
+            f'<circle cx="62" cy="21" r="5" fill="{CYAN}" opacity=".75"/>'
             f'<text x="{w/2}" y="26" font-family="{MONO}" font-size="13.5" fill="{DIM}" '
             f'text-anchor="middle">{esc(title)}</text>')
 
@@ -132,49 +139,109 @@ def fetch():
     }
 
 
-# ----------------------------------------------------------------- identity --
+# ----------------------------------------------------------------- terminal --
 
-def panel_identity():
-    w, h = 700, 852
+def panel_terminal(d):
+    """One full-width terminal: identity on the left, a live readout on the right.
+
+    Previously this was two boxes side by side, each with dead space below its
+    content. One wide terminal with two columns fills the width and leaves no
+    half-empty panel.
+    """
+    w, h = 1240, 624
+    lx, rx = 34, 660
+
     rows = [
         ("NAME",  "Vigneshwar L", TEXT),
         ("ROLE",  "Backend  ·  Systems  ·  AI / ML", TEXT),
-        ("STACK", "Python  ·  Go  ·  Rust", BLUE),
-        ("OPEN",  "OpenTelemetry · CNCF · Helm", DIM),
-        ("",      "oxc · ripgrep", DIM),
+        ("STACK", "Python  ·  Go  ·  Rust", CYAN),
+        ("OPEN",  "OpenTelemetry · CNCF · Helm · oxc", DIM),
         ("WORK",  "clients, startups & founders", DIM),
         ("",      "Shipd (Datacurve) · Handshake AI", DIM),
         ("BUILD", "models, RL environments, agents,", DIM),
         ("",      "RAG systems and storage engines", DIM),
         ("BASE",  "Tamil Nadu, India", DIM),
-        ("EDU",   "B.Tech CSE  ·  Linguaskill C1", DIM),
     ]
+
+    monthly = {}
+    for wk in d["weeks"]:
+        for day in wk["contributionDays"]:
+            k = day["date"][:7]
+            monthly[k] = monthly.get(k, 0) + day["contributionCount"]
+    spark = [monthly[k] for k in sorted(monthly)][-14:]
+    top = max(spark) or 1
+
+    stat = [
+        ("repositories",  f"{d['repos']}"),
+        ("followers",     f"{d['followers']}"),
+        ("contributions", f"{d['contribs']:,}"),
+        ("focus",         "storage engines"),
+        ("also",          "agents · RAG · RL"),
+        ("since",         "2023"),
+    ]
+
     p = [shell("id", w, h, "vigneshwar@github ~ profile", "Vigneshwar L")]
-    cmd, t = typed("cid", 30, 88, "cat /etc/profile", 0.6, size=15)
-    p.append(cmd)
-    y, t = 138, t + 0.8
+    c1, t = typed("cid", lx, 92, "cat /etc/profile", 0.5, size=15)
+    c2, _ = typed("cid2", rx, 92, "systemctl status vigneshwar", 0.5, size=15)
+    p += [c1, c2]
+
+    y, t = 144, t + 0.7
     for k, v, col in rows:
         p.append(f'<g opacity="1">{fade(t)}')
         if k:
-            p.append(f'<text x="30" y="{y}" font-family="{MONO}" font-size="14" '
-                     f'fill="{BLUE_D}" font-weight="600">{esc(k)}</text>')
-        p.append(f'<text x="126" y="{y}" font-family="{MONO}" font-size="14.5" '
+            p.append(f'<text x="{lx}" y="{y}" font-family="{MONO}" font-size="14" '
+                     f'fill="{BLUE_D}" font-weight="700">{esc(k)}</text>')
+        p.append(f'<text x="{lx+96}" y="{y}" font-family="{MONO}" font-size="14.5" '
                  f'fill="{col}">{esc(v)}</text></g>')
         y += 40 if k else 30
-        t += 0.9
-    p.append(f'<g opacity="1">{fade(t)}'
-             f'<rect x="30" y="{y+10}" width="{w-60}" height="1" fill="{BORDER}"/>'
-             f'<circle cx="36" cy="{y+48}" r="5" fill="{BLUE}">'
+        t += 0.8
+
+    # right column: status light + figures
+    ry, rt = 144, 1.4
+    p.append(f'<g opacity="1">{fade(rt)}'
+             f'<circle cx="{rx+6}" cy="{ry-5}" r="5.5" fill="{CYAN}">'
+             f'<animate attributeName="opacity" values="1;.25;1" dur="2.2s" repeatCount="indefinite"/>'
+             f'</circle>'
+             f'<text x="{rx+22}" y="{ry}" font-family="{MONO}" font-size="14.5" fill="{CYAN}" '
+             f'font-weight="700">active (running)</text></g>')
+    ry += 40
+    for k, v in stat:
+        dots = "." * max(2, 22 - len(k))
+        p.append(f'<g opacity="1">{fade(rt)}'
+                 f'<text x="{rx}" y="{ry}" font-family="{MONO}" font-size="14" fill="{DIM}">'
+                 f'{esc(k)} <tspan fill="#1b3a5c">{dots}</tspan> '
+                 f'<tspan fill="{TEXT}" font-weight="700">{esc(v)}</tspan></text></g>')
+        ry += 34
+        rt += 0.8
+
+    # activity sparkline
+    p.append(f'<g opacity="1">{fade(rt)}'
+             f'<text x="{rx}" y="{ry+14}" font-family="{MONO}" font-size="13" fill="{DIM}">activity</text></g>')
+    sw, sg = 26, 8
+    for i, v in enumerate(spark):
+        bh = max(4, round(v / top * 74))
+        bx = rx + 130 + i * (sw + sg)
+        p.append(f'<rect x="{bx}" y="{ry+30-bh}" width="{sw}" height="{bh}" rx="4" '
+                 f'fill="{CYAN if v == top else BLUE_D}" opacity="1">'
+                 + fade(rt + 0.2 + i * 0.12, 0.4) + '</rect>')
+    ry += 76
+
+    # footer strip: status + sponsor call, so no dead space at the bottom
+    fy = h - 108
+    p.append(f'<g opacity="1">{fade(rt + 1.4)}'
+             f'<rect x="{lx}" y="{fy-34}" width="{w-2*lx}" height="1" fill="{BORDER}"/>'
+             f'<circle cx="{lx+7}" cy="{fy+2}" r="6" fill="{CYAN}">'
              f'<animate attributeName="opacity" values="1;.3;1" dur="2.4s" repeatCount="indefinite"/>'
              f'</circle>'
-             f'<text x="52" y="{y+53}" font-family="{MONO}" font-size="15" fill="{BLUE}">'
-             f'available for hire</text>'
-             f'<text x="30" y="{y+84}" font-family="{MONO}" font-size="13" fill="{FAINT}">'
-             f'open to backend, systems and cloud-native work</text></g>')
-    p.append(f'<text x="30" y="{y+126}" font-family="{MONO}" font-size="15" fill="{BLUE_D}" '
-             f'opacity="1">$ <tspan fill="{DIM}">_'
-             f'<animate attributeName="opacity" values="1;0;1" dur="1.15s" repeatCount="indefinite"/>'
-             f'</tspan>{fade(t + 0.8)}</text>')
+             f'<text x="{lx+24}" y="{fy+8}" font-family="{MONO}" font-size="17" fill="{CYAN}" '
+             f'font-weight="700">available for hire</text>'
+             f'<text x="{lx}" y="{fy+40}" font-family="{MONO}" font-size="13" fill="{DIM}">'
+             f'open to backend, systems and cloud-native work &#183; building for clients and '
+             f'early-stage startups</text>'
+             f'<text x="{w-lx}" y="{fy+8}" font-family="{MONO}" font-size="13.5" fill="{VIOLET}" '
+             f'text-anchor="end">linkedin.com/in/vigneshwar-l-td729994</text>'
+             f'<text x="{w-lx}" y="{fy+40}" font-family="{MONO}" font-size="13.5" fill="{DIM}" '
+             f'text-anchor="end">lkvarnesh@gmail.com</text></g>')
     p.append("</svg>")
     return "".join(p)
 
@@ -246,87 +313,96 @@ def panel_langs():
     return "".join(p)
 
 
-# -------------------------------------------------------------- contributions --
+# ------------------------------------------------------------------ skyline --
 
-def panel_contrib(d):
-    """Full-year heatmap plus monthly totals, drawn from the real calendar."""
-    w, h = 1240, 430
-    weeks = d["weeks"]
-    cell, gap = 15, 4
-    step = cell + gap
-    ox, oy = 30, 132
+MONTHS = ["Jan", "Feb", "Mar", "Apr", "May", "Jun",
+          "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"]
 
-    nz = sorted(day["contributionCount"] for wk in weeks
-                for day in wk["contributionDays"] if day["contributionCount"] > 0)
 
-    def level(c):
-        if c == 0:
-            return 0
-        if not nz:
-            return 1
-        q = [nz[int(len(nz) * f)] for f in (0.25, 0.55, 0.85)]
-        return 1 + sum(c >= t for t in q)
+def panel_skyline(d):
+    """Contributions as a city skyline: one tower per month, lit windows inside.
+
+    Deliberately NOT a copy of GitHub's heatmap grid -- the point is that it
+    reads as its own thing while still being an honest plot of the same data.
+    Tower height is the month's contribution total; each lit window is a day
+    with activity, so a busy month is both taller and brighter.
+    """
+    w, h = 1240, 470
+    ground = h - 74
+
+    monthly, days = {}, {}
+    for wk in d["weeks"]:
+        for day in wk["contributionDays"]:
+            k = day["date"][:7]
+            monthly[k] = monthly.get(k, 0) + day["contributionCount"]
+            days.setdefault(k, []).append(day["contributionCount"])
+    keys = sorted(monthly)[-12:]
+    top = max((monthly[k] for k in keys), default=1) or 1
 
     p = [section("ct", w, h, "Contributions", "contributions",
                  f"{d['contribs']:,} in the last year")]
 
-    grid_w = len(weeks) * step
-    scale = min(1.0, (w - 60) / grid_w)
+    # ground line + soft glow beneath the city
+    p.append(f'<defs><linearGradient id="sky" x1="0" y1="0" x2="0" y2="1">'
+             f'<stop offset="0%" stop-color="{CYAN}" stop-opacity=".20"/>'
+             f'<stop offset="100%" stop-color="{CYAN}" stop-opacity="0"/></linearGradient></defs>'
+             f'<rect x="30" y="{ground-190}" width="{w-60}" height="190" fill="url(#sky)" opacity=".6"/>'
+             f'<rect x="30" y="{ground}" width="{w-60}" height="2" rx="1" fill="{BORDER}"/>')
 
-    p.append(f'<g transform="translate({ox},{oy}) scale({scale:.4f})">')
-    months, seen = [], set()
-    for wi, wk in enumerate(weeks):
-        for day in wk["contributionDays"]:
-            c = day["contributionCount"]
-            lvl = level(c)
-            x, y = wi * step, day["weekday"] * step
-            t = 1.2 + (wi / max(len(weeks) - 1, 1)) * 9.0   # sweeps left to right
-            p.append(f'<rect x="{x}" y="{y}" width="{cell}" height="{cell}" rx="3.5" '
-                     f'fill="{HEAT[lvl]}" opacity="1">{fade(t, 0.5)}</rect>')
-        mo = day["date"][:7]
-        if mo not in seen:
-            seen.add(mo)
-            if not months or wi * step - months[-1][0] > 70:
-                months.append((wi * step, day["date"]))
-    p.append('</g>')
+    slot = (w - 60) / 12
+    tw = slot - 26
+    max_h = ground - 150
 
-    labels = ["Jan", "Feb", "Mar", "Apr", "May", "Jun",
-              "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"]
-    for x, date in months:
-        mi = int(date[5:7]) - 1
-        p.append(f'<text x="{ox + x*scale:.0f}" y="{oy-12}" font-family="{MONO}" '
-                 f'font-size="11" fill="{FAINT}" opacity="1">{labels[mi]}{fade(1.0)}</text>')
+    def height_of(total):
+        # sqrt, not linear: one 385-commit month against a 12-commit one flattens
+        # every quiet month to an invisible stub on a linear scale.
+        return max(26, round((total / top) ** 0.5 * max_h))
 
-    # monthly totals
-    totals = {}
-    for wk in weeks:
-        for day in wk["contributionDays"]:
-            totals[day["date"][:7]] = totals.get(day["date"][:7], 0) + day["contributionCount"]
-    keys = sorted(totals)[-12:]
-    top = max((totals[k] for k in keys), default=1) or 1
-    bx, by, bw_max = 30, 396, 74
-    p.append(f'<text x="30" y="{by-128}" font-family="{MONO}" font-size="12.5" fill="{DIM}" '
-             f'opacity="1">monthly{fade(10.5)}</text>')
+
     for i, k in enumerate(keys):
-        bh = max(4, round(totals[k] / top * 96))
-        x = bx + i * ((w - 60) / 12)
-        t = 10.8 + i * 0.35
-        p.append(f'<g opacity="1">{fade(t)}'
-                 f'<rect x="{x:.0f}" y="{by-bh}" width="{bw_max}" height="{bh}" rx="4" fill="{BLUE_D}"/>'
-                 f'<text x="{x+bw_max/2:.0f}" y="{by+16}" font-family="{MONO}" font-size="10.5" '
-                 f'fill="{FAINT}" text-anchor="middle">{labels[int(k[5:7])-1]}</text>'
-                 f'<text x="{x+bw_max/2:.0f}" y="{by-bh-6}" font-family="{MONO}" font-size="10.5" '
-                 f'fill="{DIM}" text-anchor="middle">{totals[k]}</text></g>')
+        total = monthly[k]
+        th = height_of(total)
+        x = 30 + i * slot + 13
+        ty = ground - th
+        t = 1.2 + i * 0.75
 
-    # legend
-    lx = w - 210
-    p.append(f'<text x="{lx-42}" y="{by-120}" font-family="{MONO}" font-size="11" '
-             f'fill="{FAINT}" opacity="1">less{fade(10.5)}</text>')
-    for i, c in enumerate(HEAT):
-        p.append(f'<rect x="{lx + i*22}" y="{by-131}" width="15" height="15" rx="3.5" '
-                 f'fill="{c}" opacity="1">{fade(10.5)}</rect>')
-    p.append(f'<text x="{lx + 5*22 + 6}" y="{by-120}" font-family="{MONO}" font-size="11" '
-             f'fill="{FAINT}" opacity="1">more{fade(10.5)}</text>')
+        p.append(f'<g opacity="1">{fade(t)}')
+        # tower body grows from the ground
+        p.append(f'<rect x="{x:.0f}" y="{ty:.0f}" width="{tw:.0f}" height="{th}" rx="5" '
+                 f'fill="{CARD}" stroke="{BORDER}">'
+                 + anim("height", str(th), t, 1.2) + anim("y", f"{ty:.0f}", t, 1.2, start=str(ground)) +
+                 '</rect>')
+        # roof cap
+        p.append(f'<rect x="{x:.0f}" y="{ty:.0f}" width="{tw:.0f}" height="3" rx="1.5" fill="{CYAN}">'
+                 + anim("y", f"{ty:.0f}", t, 1.2, start=str(ground)) + '</rect>')
+
+        # lit windows: one per active day that fits inside the tower
+        active = [c for c in days[k] if c > 0]
+        cols = max(1, int((tw - 14) // 13))
+        rows_fit = max(0, int((th - 22) // 15))
+        lit = 0
+        for r in range(rows_fit):
+            for c in range(cols):
+                if lit >= len(active):
+                    break
+                wx = x + 8 + c * 13
+                wy = ty + 14 + r * 15
+                shade = WINDOW[(lit + i) % len(WINDOW)]
+                op = 0.30 + min(0.65, active[lit] / 12)
+                p.append(f'<rect x="{wx:.0f}" y="{wy:.0f}" width="7" height="8" rx="1.5" '
+                         f'fill="{shade}" opacity="{op:.2f}">'
+                         + anim("opacity", f"{op:.2f}", t + 0.5 + lit * 0.012, 0.5) + '</rect>')
+                lit += 1
+
+        p.append(f'<text x="{x + tw/2:.0f}" y="{ground+24}" font-family="{MONO}" font-size="12" '
+                 f'fill="{DIM}" text-anchor="middle">{MONTHS[int(k[5:7])-1]}</text>')
+        p.append(f'<text x="{x + tw/2:.0f}" y="{ty-10:.0f}" font-family="{MONO}" font-size="12.5" '
+                 f'fill="{CYAN}" text-anchor="middle" font-weight="700">{total}</text>')
+        p.append('</g>')
+
+    p.append(f'<text x="30" y="{h-22}" font-family="{MONO}" font-size="11.5" fill="{FAINT}" '
+             f'opacity="1">{fade(10.0)}tower height = commits that month  ·  each lit window = '
+             f'a day with activity</text>')
     p.append("</svg>")
     return "".join(p)
 
@@ -459,10 +535,10 @@ if __name__ == "__main__":
     d = fetch()
     os.makedirs("assets", exist_ok=True)
     panels = (
-        ("panel-identity.svg",   panel_identity()),
+        ("panel-terminal.svg",   panel_terminal(d)),
         ("panel-experience.svg", panel_experience()),
         ("panel-langs.svg",      panel_langs()),
-        ("panel-contrib.svg",    panel_contrib(d)),
+        ("panel-skyline.svg",    panel_skyline(d)),
         ("panel-story.svg",      panel_story()),
     )
     for name, svg in panels:
