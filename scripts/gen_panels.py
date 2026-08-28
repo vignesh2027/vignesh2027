@@ -10,16 +10,11 @@ Layout intent: only the identity block and the closing story are terminal
 windows. Everything between them is a plain styled section with charts, because
 a page made entirely of terminal chrome reads as noise rather than as design.
 
-Two rules hold across every panel:
-
-1. Animations LOOP (repeatCount="indefinite") on a shared CYCLE. An earlier
-   version used fill="freeze" and played once, so the reveal had always finished
-   before you scrolled to it -- it looked like nothing animated at all.
-
-2. Each element's BASE attribute is its FINAL, visible state, and the stagger
-   lives in keyTimes rather than begin=. A renderer that ignores SMIL then shows
-   the finished panel instead of an empty box. qlmanage evaluates at t=0, so
-   verify by stripping <animate> and rendering that.
+Timing: these panels reveal ONCE, slowly, and stop (fill="freeze", no
+repeatCount). Only the particle panel loops. Each element's base attribute is
+its final visible state, so a renderer that ignores SMIL shows the finished
+panel rather than an empty box -- qlmanage evaluates at t=0, so verify by
+stripping <animate> and rendering that instead.
 """
 
 import json
@@ -28,12 +23,7 @@ import subprocess
 import sys
 
 USER = "vignesh2027"
-CYCLE = 12.0        # deliberately slow
-
-# Cumulative figure spanning earlier accounts, repos since made private, and
-# projects that were sold on. It cannot be derived from this account's API, so
-# it is ALWAYS rendered with an explicit "all projects & accounts" label.
-AGG_STARS = "4,864"
+REVEAL = 26.0       # whole-panel reveal length; deliberately slow
 
 BG     = "#05070c"
 PANEL  = "#0a0f1a"
@@ -45,6 +35,8 @@ DIM    = "#7d8ea3"
 FAINT  = "#41536b"
 TEXT   = "#e6edf3"
 MONO   = "ui-monospace, SFMono-Regular, Menlo, Consolas, 'DejaVu Sans Mono', monospace"
+
+HEAT = ["#0d1c30", "#13395e", "#1b5299", "#1f6feb", "#58a6ff"]
 
 
 def esc(s):
@@ -60,15 +52,16 @@ def gh(args):
     return json.loads(out.stdout)
 
 
-def anim(attr, final, t, dur=0.5, start="0"):
-    k1 = min(max(t, 0) / CYCLE, 0.995)
-    k2 = min((max(t, 0) + dur) / CYCLE, 0.997)
+def anim(attr, final, t, dur=0.5, start="0", span=REVEAL):
+    """One-shot reveal on a shared timeline; stagger lives in keyTimes."""
+    k1 = min(max(t, 0) / span, 0.995)
+    k2 = min((max(t, 0) + dur) / span, 0.997)
     return (f'<animate attributeName="{attr}" values="{start};{start};{final};{final}" '
-            f'keyTimes="0;{k1:.4f};{k2:.4f};1" dur="{CYCLE}s" repeatCount="indefinite"/>')
+            f'keyTimes="0;{k1:.4f};{k2:.4f};1" dur="{span}s" fill="freeze"/>')
 
 
-def fade(t, dur=0.5):
-    return anim("opacity", "1", t, dur)
+def fade(t, dur=0.5, span=REVEAL):
+    return anim("opacity", "1", t, dur, span=span)
 
 
 def head(uid, w, h, label):
@@ -83,7 +76,6 @@ def head(uid, w, h, label):
 
 
 def shell(uid, w, h, title, label, black=False):
-    """Terminal window chrome. Used only for identity and the closing story."""
     bg = "#000000" if black else PANEL
     return (head(uid, w, h, label) +
             f'<rect width="{w}" height="{h}" fill="{BG}" rx="12"/>'
@@ -99,7 +91,6 @@ def shell(uid, w, h, title, label, black=False):
 
 
 def section(uid, w, h, title, label, kicker=""):
-    """Plain styled section: accent rule + heading, no window chrome."""
     s = (head(uid, w, h, label) +
          f'<rect width="{w}" height="{h}" fill="{PANEL}" rx="12"/>'
          f'<rect x="0.5" y="0.5" width="{w-1}" height="{h-1}" rx="12" fill="none" stroke="{BORDER}"/>'
@@ -113,11 +104,11 @@ def section(uid, w, h, title, label, kicker=""):
     return s
 
 
-def typed(uid, x, y, text, t, size=15, cps=20):
-    dur = max(0.6, len(text) / cps)
+def typed(uid, x, y, text, t, size=15, cps=13, span=REVEAL):
+    dur = max(0.8, len(text) / cps)
     cw = (len(text) + 2) * size * 0.605 + 14   # +2 covers the "$ " prefix
     return (f'<defs><clipPath id="{uid}"><rect x="{x}" y="{y-size}" height="{size+9}" width="{cw:.1f}">'
-            + anim("width", f"{cw:.1f}", t, dur) + '</rect></clipPath></defs>'
+            + anim("width", f"{cw:.1f}", t, dur, span=span) + '</rect></clipPath></defs>'
             f'<g clip-path="url(#{uid})"><text x="{x}" y="{y}" font-family="{MONO}" '
             f'font-size="{size}" fill="{BLUE}"><tspan fill="{BLUE_D}">$</tspan> {esc(text)}</text></g>'), t + dur
 
@@ -126,51 +117,42 @@ def fetch():
     q = """
     { user(login: "%s") {
         followers { totalCount }
-        contributionsCollection { contributionCalendar { totalContributions } }
-        repositories(first: 100, ownerAffiliations: OWNER, isFork: false) {
-          totalCount
-          nodes { stargazerCount
-                  languages(first: 8, orderBy: {field: SIZE, direction: DESC}) {
-                    edges { size node { name color } } } } }
+        contributionsCollection { contributionCalendar {
+            totalContributions
+            weeks { contributionDays { date contributionCount weekday } } } }
+        repositories(first: 100, ownerAffiliations: OWNER, isFork: false) { totalCount }
     } }""" % USER
     u = gh(["api", "graphql", "-f", f"query={q}"])["data"]["user"]
-    langs = {}
-    for n in u["repositories"]["nodes"]:
-        for e in n["languages"]["edges"]:
-            k = e["node"]["name"]
-            langs.setdefault(k, {"size": 0, "color": e["node"]["color"] or BLUE})
-            langs[k]["size"] += e["size"]
+    cal = u["contributionsCollection"]["contributionCalendar"]
     return {
-        "stars": sum(n["stargazerCount"] for n in u["repositories"]["nodes"]),
         "repos": u["repositories"]["totalCount"],
         "followers": u["followers"]["totalCount"],
-        "contribs": u["contributionsCollection"]["contributionCalendar"]["totalContributions"],
-        "langs": langs,
+        "contribs": cal["totalContributions"],
+        "weeks": cal["weeks"],
     }
 
 
 # ----------------------------------------------------------------- identity --
 
 def panel_identity():
-    w, h = 700, 912
+    w, h = 700, 852
     rows = [
         ("NAME",  "Vigneshwar L", TEXT),
         ("ROLE",  "Backend  ·  Systems  ·  AI / ML", TEXT),
         ("STACK", "Python  ·  Go  ·  Rust", BLUE),
         ("OPEN",  "OpenTelemetry · CNCF · Helm", DIM),
         ("",      "oxc · ripgrep", DIM),
-        ("WORK",  "AI trainer & model evaluator", DIM),
+        ("WORK",  "clients, startups & founders", DIM),
         ("",      "Shipd (Datacurve) · Handshake AI", DIM),
-        ("",      "+ startups, founders & co-founders", DIM),
-        ("BUILD", "storage engines, distributed systems,", DIM),
-        ("",      "and the tests that keep them honest", DIM),
+        ("BUILD", "models, RL environments, agents,", DIM),
+        ("",      "RAG systems and storage engines", DIM),
         ("BASE",  "Tamil Nadu, India", DIM),
         ("EDU",   "B.Tech CSE  ·  Linguaskill C1", DIM),
     ]
     p = [shell("id", w, h, "vigneshwar@github ~ profile", "Vigneshwar L")]
-    cmd, t = typed("cid", 30, 88, "cat /etc/profile", 0.4, size=15)
+    cmd, t = typed("cid", 30, 88, "cat /etc/profile", 0.6, size=15)
     p.append(cmd)
-    y, t = 138, t + 0.4
+    y, t = 138, t + 0.8
     for k, v, col in rows:
         p.append(f'<g opacity="1">{fade(t)}')
         if k:
@@ -179,8 +161,7 @@ def panel_identity():
         p.append(f'<text x="126" y="{y}" font-family="{MONO}" font-size="14.5" '
                  f'fill="{col}">{esc(v)}</text></g>')
         y += 40 if k else 30
-        t += 0.34
-
+        t += 0.9
     p.append(f'<g opacity="1">{fade(t)}'
              f'<rect x="30" y="{y+10}" width="{w-60}" height="1" fill="{BORDER}"/>'
              f'<circle cx="36" cy="{y+48}" r="5" fill="{BLUE}">'
@@ -193,75 +174,7 @@ def panel_identity():
     p.append(f'<text x="30" y="{y+126}" font-family="{MONO}" font-size="15" fill="{BLUE_D}" '
              f'opacity="1">$ <tspan fill="{DIM}">_'
              f'<animate attributeName="opacity" values="1;0;1" dur="1.15s" repeatCount="indefinite"/>'
-             f'</tspan>{fade(t + 0.4)}</text>')
-    p.append("</svg>")
-    return "".join(p)
-
-
-# -------------------------------------------------------------------- stats --
-
-def panel_stats(d):
-    """Big-number strip. The aggregate figure is labelled, never bare."""
-    w, h = 1240, 210
-    tiles = [
-        (f"{d['contribs']:,}", "contributions", "last 365 days", BLUE),
-        (f"{d['repos']}",      "repositories",  "public sources", TEXT),
-        (AGG_STARS,            "stars",         "all projects & accounts", BLUE),
-        (f"{d['followers']}",  "followers",     "on this account", TEXT),
-    ]
-    p = [section("sx", w, h, "By the numbers", "stats", "live")]
-    tw = (w - 60 - 3 * 18) // 4
-    t = 0.5
-    for i, (big, lab, note, col) in enumerate(tiles):
-        x = 30 + i * (tw + 18)
-        p.append(f'<g opacity="1">{fade(t)}'
-                 f'<rect x="{x}" y="98" width="{tw}" height="86" rx="10" fill="{CARD}" stroke="{BORDER}"/>'
-                 f'<rect x="{x}" y="98" width="{tw}" height="2.5" rx="1.25" fill="url(#rsx)"/>'
-                 f'<text x="{x+18}" y="140" font-family="{MONO}" font-size="27" fill="{col}" '
-                 f'font-weight="700">{esc(big)}</text>'
-                 f'<text x="{x+18}" y="161" font-family="{MONO}" font-size="12.5" fill="{DIM}">{esc(lab)}</text>'
-                 f'<text x="{x+18}" y="177" font-family="{MONO}" font-size="10.5" fill="{FAINT}">{esc(note)}</text>'
-                 f'</g>')
-        t += 0.36
-    p.append("</svg>")
-    return "".join(p)
-
-
-# ---------------------------------------------------------------- languages --
-
-# Lead with what he actually writes day to day, then fill from the API.
-LEAD = ["Python", "Go", "Rust"]
-LANG_FALLBACK = {"Python": "#3572A5", "Go": "#00ADD8", "Rust": "#dea584"}
-
-
-def panel_langs(d):
-    w, h = 610, 396
-    langs = d["langs"]
-    ordered = []
-    for name in LEAD:
-        size = langs.get(name, {}).get("size", 0)
-        colr = langs.get(name, {}).get("color") or LANG_FALLBACK[name]
-        ordered.append((name, size, colr))
-    rest = sorted((k for k in langs if k not in LEAD),
-                  key=lambda k: -langs[k]["size"])[:3]
-    for k in rest:
-        ordered.append((k, langs[k]["size"], langs[k]["color"]))
-
-    total = sum(s for _, s, _ in ordered) or 1
-    p = [section("lx", w, h, "Languages", "languages", "by bytes")]
-    y, t = 112, 0.5
-    for name, size, colr in ordered:
-        pct = size / total * 100
-        bw = max(6, round(pct / 100 * 330))
-        p.append(f'<g opacity="1">{fade(t)}'
-                 f'<text x="30" y="{y+12}" font-family="{MONO}" font-size="13.5" fill="{TEXT}">{esc(name)}</text>'
-                 f'<rect x="170" y="{y+1}" width="330" height="13" rx="6.5" fill="#0d1c30"/>'
-                 f'<rect x="170" y="{y+1}" width="{bw}" height="13" rx="6.5" fill="{colr}">'
-                 + anim("width", str(bw), t + 0.12, 1.0) + '</rect>'
-                 f'<text x="{w-30}" y="{y+12}" font-family="{MONO}" font-size="12.5" fill="{DIM}" '
-                 f'text-anchor="end">{pct:.1f}%</text></g>')
-        y += 42
-        t += 0.36
+             f'</tspan>{fade(t + 0.8)}</text>')
     p.append("</svg>")
     return "".join(p)
 
@@ -269,168 +182,272 @@ def panel_langs(d):
 # --------------------------------------------------------------- experience --
 
 EXPERIENCE = [
+    ("Clients & startups", "since 2023",
+     "Early-stage builds, usually as the only engineer."),
     ("Shipd  ·  Datacurve", "AI trainer",
      "Training data authored and graded against rubrics."),
     ("Handshake AI", "model evaluator",
      "Prompt authoring and preference ranking."),
-    ("Startups & founders", "freelance",
-     "Backend, ML and full-stack, often sole engineer."),
     ("Open source", "contributor",
      "OpenTelemetry, CNCF, Helm, oxc, ripgrep."),
 ]
 
 
 def panel_experience():
-    w, h = 610, 396
+    w, h = 610, 420
     p = [section("ex", w, h, "Work", "experience", "2023 — now")]
-    y, t = 100, 0.5
+    y, t = 104, 1.0
     for org, role, note in EXPERIENCE:
         p.append(f'<g opacity="1">{fade(t)}'
-                 f'<rect x="30" y="{y}" width="{w-60}" height="62" rx="9" fill="{CARD}" stroke="{BORDER}"/>'
-                 f'<rect x="30" y="{y}" width="3" height="62" rx="1.5" fill="{BLUE_D}"/>'
-                 f'<text x="46" y="{y+24}" font-family="{MONO}" font-size="14" fill="{TEXT}" '
+                 f'<rect x="30" y="{y}" width="{w-60}" height="66" rx="9" fill="{CARD}" stroke="{BORDER}"/>'
+                 f'<rect x="30" y="{y}" width="3" height="66" rx="1.5" fill="{BLUE_D}"/>'
+                 f'<text x="46" y="{y+26}" font-family="{MONO}" font-size="14" fill="{TEXT}" '
                  f'font-weight="700">{esc(org)}</text>'
-                 f'<text x="{w-46}" y="{y+24}" font-family="{MONO}" font-size="11.5" fill="{BLUE}" '
+                 f'<text x="{w-46}" y="{y+26}" font-family="{MONO}" font-size="11.5" fill="{BLUE}" '
                  f'text-anchor="end">{esc(role)}</text>'
-                 f'<text x="46" y="{y+46}" font-family="{MONO}" font-size="11.5" fill="{DIM}">{esc(note)}</text>'
+                 f'<text x="46" y="{y+49}" font-family="{MONO}" font-size="11.5" fill="{DIM}">{esc(note)}</text>'
                  f'</g>')
-        y += 72
-        t += 0.36
+        y += 76
+        t += 1.5
     p.append("</svg>")
     return "".join(p)
 
 
-# ------------------------------------------------------------ certifications --
+# ---------------------------------------------------------------- languages --
 
-CERTS = [
-    ("Cambridge Linguaskill", "C1 · 185", "Listening C2 · Reading C2"),
-    ("DevOps Internship", "Completed", "Internship + training"),
-    ("International Business", "Completed", "Internship + training"),
-    ("B.Tech CSE", "2023 — 2027", "Computer Science & Engineering"),
+SKILLS = [
+    ("Python",     72, "#3572A5"),
+    ("Rust",       68, "#dea584"),
+    ("Go",         65, "#00ADD8"),
+    ("TypeScript", 42, "#3178c6"),
 ]
 
 
-def panel_certs():
-    w, h = 1240, 232
-    p = [section("ce", w, h, "Certifications", "certifications", "verified")]
-    tw = (w - 60 - 3 * 18) // 4
-    t = 0.5
-    for i, (name, val, note) in enumerate(CERTS):
-        x = 30 + i * (tw + 18)
+def panel_langs():
+    """Self-assessed proficiency, not repo byte share -- labelled as such."""
+    w, h = 610, 420
+    p = [section("lx", w, h, "Languages", "languages", "proficiency")]
+    y, t = 118, 1.0
+    for name, lvl, colr in SKILLS:
+        bw = round(lvl / 100 * 320)
         p.append(f'<g opacity="1">{fade(t)}'
-                 f'<rect x="{x}" y="98" width="{tw}" height="108" rx="10" fill="{CARD}" stroke="{BORDER}"/>'
-                 f'<rect x="{x}" y="98" width="{tw}" height="2.5" rx="1.25" fill="url(#rce)"/>'
-                 f'<text x="{x+18}" y="132" font-family="{MONO}" font-size="13.5" fill="{TEXT}" '
-                 f'font-weight="700">{esc(name)}</text>'
-                 f'<text x="{x+18}" y="163" font-family="{MONO}" font-size="17" fill="{BLUE}" '
-                 f'font-weight="700">{esc(val)}</text>'
-                 f'<text x="{x+18}" y="187" font-family="{MONO}" font-size="10.5" fill="{FAINT}">{esc(note)}</text>'
-                 f'</g>')
-        t += 0.36
+                 f'<text x="30" y="{y+12}" font-family="{MONO}" font-size="14" fill="{TEXT}">{esc(name)}</text>'
+                 f'<rect x="170" y="{y+1}" width="320" height="14" rx="7" fill="#0d1c30"/>'
+                 f'<rect x="170" y="{y+1}" width="{bw}" height="14" rx="7" fill="{colr}">'
+                 + anim("width", str(bw), t + 0.2, 1.6) + '</rect>'
+                 f'<text x="{w-30}" y="{y+12}" font-family="{MONO}" font-size="13" fill="{DIM}" '
+                 f'text-anchor="end">{lvl}</text></g>')
+        y += 52
+        t += 1.5
+    p.append(f'<g opacity="1">{fade(t)}'
+             f'<text x="30" y="{y+22}" font-family="{MONO}" font-size="11.5" fill="{FAINT}">'
+             f'also C++, SQL, Bash &#183; PyTorch, LangChain, Docker, Kubernetes</text></g>')
     p.append("</svg>")
     return "".join(p)
 
 
-# ----------------------------------------------------------------- sponsors --
+# -------------------------------------------------------------- contributions --
 
-def panel_sponsors():
-    w, h = 1240, 190
-    p = [section("sp", w, h, "Sponsor this work", "sponsors")]
-    p.append(f'<g opacity="1">{fade(0.5)}'
-             f'<text x="30" y="112" font-family="{MONO}" font-size="14" fill="{DIM}">'
-             f'I build storage engines, distributed systems and open source tooling in the open.</text>'
-             f'<text x="30" y="136" font-family="{MONO}" font-size="14" fill="{DIM}">'
-             f'Sponsorship goes straight into the time spent on it.</text>'
-             f'<rect x="30" y="150" width="180" height="30" rx="15" fill="{BLUE_D}"/>'
-             f'<text x="120" y="170" font-family="{MONO}" font-size="13" fill="#ffffff" '
-             f'font-weight="700" text-anchor="middle">&#9825;  Sponsor</text></g>')
-    cx, cy = w - 130, 118
-    for i in range(3):
-        p.append(f'<circle cx="{cx}" cy="{cy}" r="22" fill="none" stroke="{BLUE_D}" '
-                 f'stroke-width="1.4" opacity="0">'
-                 f'<animate attributeName="r" values="22;76" dur="{CYCLE}s" '
-                 f'begin="{i*CYCLE/3:.2f}s" repeatCount="indefinite"/>'
-                 f'<animate attributeName="opacity" values="0;.5;0" dur="{CYCLE}s" '
-                 f'begin="{i*CYCLE/3:.2f}s" repeatCount="indefinite"/></circle>')
-    p.append(f'<circle cx="{cx}" cy="{cy}" r="18" fill="none" stroke="{BLUE}" stroke-width="1.6"/>'
-             f'<text x="{cx}" y="{cy+6}" font-family="{MONO}" font-size="15" fill="{BLUE}" '
-             f'text-anchor="middle">&#9825;</text>')
+def panel_contrib(d):
+    """Full-year heatmap plus monthly totals, drawn from the real calendar."""
+    w, h = 1240, 430
+    weeks = d["weeks"]
+    cell, gap = 15, 4
+    step = cell + gap
+    ox, oy = 30, 132
+
+    nz = sorted(day["contributionCount"] for wk in weeks
+                for day in wk["contributionDays"] if day["contributionCount"] > 0)
+
+    def level(c):
+        if c == 0:
+            return 0
+        if not nz:
+            return 1
+        q = [nz[int(len(nz) * f)] for f in (0.25, 0.55, 0.85)]
+        return 1 + sum(c >= t for t in q)
+
+    p = [section("ct", w, h, "Contributions", "contributions",
+                 f"{d['contribs']:,} in the last year")]
+
+    grid_w = len(weeks) * step
+    scale = min(1.0, (w - 60) / grid_w)
+
+    p.append(f'<g transform="translate({ox},{oy}) scale({scale:.4f})">')
+    months, seen = [], set()
+    for wi, wk in enumerate(weeks):
+        for day in wk["contributionDays"]:
+            c = day["contributionCount"]
+            lvl = level(c)
+            x, y = wi * step, day["weekday"] * step
+            t = 1.2 + (wi / max(len(weeks) - 1, 1)) * 9.0   # sweeps left to right
+            p.append(f'<rect x="{x}" y="{y}" width="{cell}" height="{cell}" rx="3.5" '
+                     f'fill="{HEAT[lvl]}" opacity="1">{fade(t, 0.5)}</rect>')
+        mo = day["date"][:7]
+        if mo not in seen:
+            seen.add(mo)
+            if not months or wi * step - months[-1][0] > 70:
+                months.append((wi * step, day["date"]))
+    p.append('</g>')
+
+    labels = ["Jan", "Feb", "Mar", "Apr", "May", "Jun",
+              "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"]
+    for x, date in months:
+        mi = int(date[5:7]) - 1
+        p.append(f'<text x="{ox + x*scale:.0f}" y="{oy-12}" font-family="{MONO}" '
+                 f'font-size="11" fill="{FAINT}" opacity="1">{labels[mi]}{fade(1.0)}</text>')
+
+    # monthly totals
+    totals = {}
+    for wk in weeks:
+        for day in wk["contributionDays"]:
+            totals[day["date"][:7]] = totals.get(day["date"][:7], 0) + day["contributionCount"]
+    keys = sorted(totals)[-12:]
+    top = max((totals[k] for k in keys), default=1) or 1
+    bx, by, bw_max = 30, 396, 74
+    p.append(f'<text x="30" y="{by-128}" font-family="{MONO}" font-size="12.5" fill="{DIM}" '
+             f'opacity="1">monthly{fade(10.5)}</text>')
+    for i, k in enumerate(keys):
+        bh = max(4, round(totals[k] / top * 96))
+        x = bx + i * ((w - 60) / 12)
+        t = 10.8 + i * 0.35
+        p.append(f'<g opacity="1">{fade(t)}'
+                 f'<rect x="{x:.0f}" y="{by-bh}" width="{bw_max}" height="{bh}" rx="4" fill="{BLUE_D}"/>'
+                 f'<text x="{x+bw_max/2:.0f}" y="{by+16}" font-family="{MONO}" font-size="10.5" '
+                 f'fill="{FAINT}" text-anchor="middle">{labels[int(k[5:7])-1]}</text>'
+                 f'<text x="{x+bw_max/2:.0f}" y="{by-bh-6}" font-family="{MONO}" font-size="10.5" '
+                 f'fill="{DIM}" text-anchor="middle">{totals[k]}</text></g>')
+
+    # legend
+    lx = w - 210
+    p.append(f'<text x="{lx-42}" y="{by-120}" font-family="{MONO}" font-size="11" '
+             f'fill="{FAINT}" opacity="1">less{fade(10.5)}</text>')
+    for i, c in enumerate(HEAT):
+        p.append(f'<rect x="{lx + i*22}" y="{by-131}" width="15" height="15" rx="3.5" '
+                 f'fill="{c}" opacity="1">{fade(10.5)}</rect>')
+    p.append(f'<text x="{lx + 5*22 + 6}" y="{by-120}" font-family="{MONO}" font-size="11" '
+             f'fill="{FAINT}" opacity="1">more{fade(10.5)}</text>')
     p.append("</svg>")
     return "".join(p)
 
 
 # -------------------------------------------------------------------- story --
 
-STORY = [
-    ("", "I am Vigneshwar. I write backend and systems code, and I help train the models that"),
-    ("", "are starting to write it too. This is the long version of how that happened."),
-    ("gap", ""),
-    ("h", "2023  —  starting"),
-    ("", "I started B.Tech Computer Science in Tamil Nadu with very little idea what I was"),
-    ("", "doing. The first programs I wrote barely ran. What changed things was realising that"),
-    ("", "almost everything worth learning was already written down, in public, in other"),
-    ("", "people's repositories. So I started reading them. I still do, most days."),
-    ("gap", ""),
-    ("h", "2024  —  going lower"),
-    ("", "I got tired of not knowing what was underneath. C++ first, then Rust, which I picked"),
-    ("", "because it refuses to let you stay vague about ownership and lifetimes. Learning it"),
-    ("", "was slow and occasionally humiliating, and it taught me more about how machines"),
-    ("", "actually work than the two years before it combined."),
-    ("gap", ""),
-    ("h", "2025  —  building the hard thing"),
-    ("", "I wrote FluxDB, a time-series database, from scratch in Rust. Not because the world"),
-    ("", "needed another one, but because I wanted to find out where the cost really lives"),
-    ("", "inside a storage engine: columnar compression, a write path worth benchmarking, and"),
-    ("", "a great deal of profiling. Then rustkvd, a distributed key-value store with Raft"),
-    ("", "consensus, an LSM engine and MVCC, for the same reason applied to consensus."),
-    ("gap", ""),
-    ("h", "2026  —  open source, and models"),
-    ("", "I started contributing upstream: OpenTelemetry, CNCF, Helm, oxc, ripgrep. Working in"),
-    ("", "codebases that size teaches one specific skill — reading unfamiliar code well enough"),
-    ("", "to change it without breaking anything, then taking the review that follows"),
-    ("", "seriously. Much of what I contributed was tests, because tests are how you find out"),
-    ("", "whether you actually understood the thing you just read."),
-    ("gap", ""),
-    ("", "Alongside that I began working with Shipd (Datacurve) and Handshake AI, authoring"),
-    ("", "training data and grading model output against detailed rubrics, plus a run of"),
-    ("", "freelance work for startups, founders and co-founders — usually as the only engineer"),
-    ("", "on the project, from scoping through to deployment."),
-    ("gap", ""),
-    ("h", "now"),
-    ("", "Still building systems. Still reading more code than I write. If you are hiring for"),
-    ("", "backend, systems or cloud-native work, or you want something built properly, the"),
-    ("", "contact details are at the top of this page."),
+PAGES = [
+    ("who", [
+        "I am Vigneshwar. I build backend and systems software, and I help train",
+        "the models that are starting to write it too.",
+        "",
+        "Most of my work has been for other people's companies at the point where",
+        "nothing exists yet: clients, early-stage startups, founders and",
+        "co-founders who need the first version to actually work.",
+    ]),
+    ("what I build", [
+        "Models, reinforcement-learning environments, agents and RAG systems on",
+        "one side. Storage engines, distributed systems and backend services on",
+        "the other.",
+        "",
+        "The two halves inform each other more than people expect. Knowing where",
+        "latency really comes from makes you a better engineer of AI systems, not",
+        "just a better backend developer.",
+    ]),
+    ("2023  —  starting", [
+        "I started B.Tech Computer Science in Tamil Nadu with very little idea",
+        "what I was doing. The first programs I wrote barely ran.",
+        "",
+        "What changed things was realising that almost everything worth learning",
+        "was already written down, in public, in other people's repositories.",
+        "So I started reading them. I still do, most days.",
+    ]),
+    ("2024  —  going lower", [
+        "I got tired of not knowing what was underneath. C++ first, then Rust,",
+        "which I picked because it refuses to let you stay vague about ownership",
+        "and lifetimes.",
+        "",
+        "Learning it was slow and occasionally humiliating, and it taught me more",
+        "about how machines actually work than the two years before it combined.",
+    ]),
+    ("2025  —  building the hard thing", [
+        "I wrote FluxDB, a time-series database, from scratch in Rust. Not",
+        "because the world needed another one, but because I wanted to find out",
+        "where the cost really lives inside a storage engine: columnar",
+        "compression, a write path worth benchmarking, a great deal of profiling.",
+        "",
+        "Then rustkvd, a distributed key-value store with Raft consensus, an LSM",
+        "engine and MVCC, for the same reason applied to consensus.",
+    ]),
+    ("2026  —  models and agents", [
+        "I began working with Shipd (Datacurve) and Handshake AI, authoring",
+        "training data and grading model output against detailed rubrics.",
+        "",
+        "Alongside that: agent systems, RL environments and retrieval pipelines",
+        "for startups who needed them working, not demonstrated. Evaluation is",
+        "the part most people skip, and it is the part that decides whether any",
+        "of it survives contact with real inputs.",
+    ]),
+    ("open source", [
+        "OpenTelemetry, CNCF, Helm, oxc, ripgrep.",
+        "",
+        "Working in codebases that size teaches one specific skill: reading",
+        "unfamiliar code well enough to change it without breaking anything, then",
+        "taking the review that follows seriously.",
+        "",
+        "Much of what I contributed was tests, because tests are how you find out",
+        "whether you actually understood the thing you just read.",
+    ]),
+    ("now", [
+        "Still building systems. Still reading more code than I write.",
+        "",
+        "If you are hiring for backend, systems or cloud-native work, or you have",
+        "something at an early stage that needs building properly, the contact",
+        "details are at the top of this page.",
+    ]),
 ]
+
+PAGE_HOLD = 7.0
 
 
 def panel_story():
-    w = 1240
-    lh, lead_in = 25, 118
-    n = sum(1 for kind, _ in STORY if kind != "gap")
-    gaps = sum(1 for kind, _ in STORY if kind == "gap")
-    h = lead_in + n * lh + gaps * 16 + 62
+    """One page at a time, slowly, once through. Does not loop."""
+    w, h = 1240, 430
+    span = PAGE_HOLD * len(PAGES)
+    p = [shell("so", w, h, "vigneshwar@github ~ cat story.md", "the long version", black=True)]
+    cmd, _ = typed("cso", 30, 88, "cat ~/story.md", 0.5, size=15, span=span)
+    p.append(cmd)
 
-    # Longest line must fit inside the margins, or the story runs off the panel.
-    longest = max(len(t) for _, t in STORY)
-    if longest * 13.5 * 0.605 > w - 60:
-        raise SystemExit(f"story line too wide: {longest} chars, "
+    widest = max(len(l) for _, ls in PAGES for l in ls)
+    if widest * 13.5 * 0.605 > w - 60:
+        raise SystemExit(f"story line too wide: {widest} chars, "
                          f"max {int((w - 60) / (13.5 * 0.605))}")
 
-    p = [shell("so", w, h, "vigneshwar@github ~ cat story.md", "the long version", black=True)]
-    cmd, t = typed("cso", 30, 88, "cat ~/story.md", 0.4, size=15)
-    p.append(cmd)
-    y, t = lead_in + 18, t + 0.5
-    step = max(0.09, (CYCLE * 0.72 - t) / max(n, 1))   # spread the reveal over the loop
-    for kind, txt in STORY:
-        if kind == "gap":
-            y += 16
-            continue
-        col, size, weight = (BLUE, 14.5, "700") if kind == "h" else (DIM, 13.5, "400")
-        p.append(f'<text x="30" y="{y}" font-family="{MONO}" font-size="{size}" fill="{col}" '
-                 f'font-weight="{weight}" opacity="1">{esc(txt)}{fade(t, 0.45)}</text>')
-        y += lh
-        t += step
-    p.append(f'<text x="30" y="{y+24}" font-family="{MONO}" font-size="14" fill="{BLUE_D}" '
+    for i, (heading, lines) in enumerate(PAGES):
+        t0 = 1.6 + i * PAGE_HOLD
+        # visible for its own slot only; the last page stays up at the end
+        last = i == len(PAGES) - 1
+        kt = [0.0, max(0.0001, (t0 - 0.5) / span), min(t0 / span, 0.99),
+              min((t0 + PAGE_HOLD - 0.7) / span, 0.995),
+              min((t0 + PAGE_HOLD - 0.2) / span, 0.998), 1.0]
+        vv = ["0", "0", "1", "1", "1" if last else "0", "1" if last else "0"]
+        kt = [round(min(max(v, 0.0), 1.0), 5) for v in kt]
+        for j in range(1, len(kt)):
+            kt[j] = max(kt[j], kt[j - 1] + 1e-5)
+        kt[-1] = 1.0
+        p.append(f'<g opacity="{1 if last else 0}">'
+                 f'<animate attributeName="opacity" values="{";".join(vv)}" '
+                 f'keyTimes="{";".join(f"{v:g}" for v in kt)}" dur="{span}s" fill="freeze"/>')
+        p.append(f'<text x="30" y="132" font-family="{MONO}" font-size="15" fill="{BLUE}" '
+                 f'font-weight="700">{esc(heading)}</text>')
+        y = 172
+        for ln in lines:
+            if ln:
+                p.append(f'<text x="30" y="{y}" font-family="{MONO}" font-size="13.5" '
+                         f'fill="{DIM}">{esc(ln)}</text>')
+            y += 26
+        p.append(f'<text x="{w-30}" y="{h-18}" font-family="{MONO}" font-size="11.5" '
+                 f'fill="{FAINT}" text-anchor="end">{i+1} / {len(PAGES)}</text>')
+        p.append('</g>')
+
+    p.append(f'<text x="30" y="{h-18}" font-family="{MONO}" font-size="13" fill="{BLUE_D}" '
              f'opacity="1">$ <tspan fill="{DIM}">_'
              f'<animate attributeName="opacity" values="1;0;1" dur="1.15s" repeatCount="indefinite"/>'
              f'</tspan></text>')
@@ -443,15 +460,13 @@ if __name__ == "__main__":
     os.makedirs("assets", exist_ok=True)
     panels = (
         ("panel-identity.svg",   panel_identity()),
-        ("panel-stats.svg",      panel_stats(d)),
-        ("panel-langs.svg",      panel_langs(d)),
         ("panel-experience.svg", panel_experience()),
-        ("panel-certs.svg",      panel_certs()),
-        ("panel-sponsors.svg",   panel_sponsors()),
+        ("panel-langs.svg",      panel_langs()),
+        ("panel-contrib.svg",    panel_contrib(d)),
         ("panel-story.svg",      panel_story()),
     )
     for name, svg in panels:
         with open(f"assets/{name}", "w") as fh:
             fh.write(svg)
         print(f"wrote assets/{name} ({len(svg)} bytes)")
-    print(json.dumps({k: v for k, v in d.items() if k != "langs"}))
+    print(json.dumps({k: v for k, v in d.items() if k != "weeks"}))
