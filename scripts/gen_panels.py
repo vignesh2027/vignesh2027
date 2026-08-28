@@ -23,6 +23,11 @@ import subprocess
 import sys
 
 USER = "vignesh2027"
+
+# Cumulative star figure spanning earlier accounts, repos since made private and
+# projects that were sold on. It cannot be derived from this account's API, so it
+# is ALWAYS rendered with an explicit "all projects & accounts" label.
+AGG_STARS = "4,658"
 REVEAL = 26.0       # whole-panel reveal length; deliberately slow
 
 BG     = "#05070c"
@@ -127,12 +132,14 @@ def fetch():
         contributionsCollection { contributionCalendar {
             totalContributions
             weeks { contributionDays { date contributionCount weekday } } } }
-        repositories(first: 100, ownerAffiliations: OWNER, isFork: false) { totalCount }
+        repositories(first: 100, ownerAffiliations: OWNER, isFork: false) {
+            totalCount nodes { stargazerCount } }
     } }""" % USER
     u = gh(["api", "graphql", "-f", f"query={q}"])["data"]["user"]
     cal = u["contributionsCollection"]["contributionCalendar"]
     return {
         "repos": u["repositories"]["totalCount"],
+        "stars": sum(n["stargazerCount"] for n in u["repositories"]["nodes"]),
         "followers": u["followers"]["totalCount"],
         "contribs": cal["totalContributions"],
         "weeks": cal["weeks"],
@@ -172,12 +179,11 @@ def panel_terminal(d):
     top = max(spark) or 1
 
     stat = [
-        ("repositories",  f"{d['repos']}"),
-        ("followers",     f"{d['followers']}"),
-        ("contributions", f"{d['contribs']:,}"),
-        ("focus",         "storage engines"),
-        ("also",          "agents · RAG · RL"),
-        ("since",         "2023"),
+        ("stars, all projects", AGG_STARS),
+        ("focus",              "storage engines"),
+        ("also",               "agents · RAG · RL"),
+        ("open source",        "OpenTelemetry · CNCF"),
+        ("since",              "2023"),
     ]
 
     p = [shell("id", w, h, "vigneshwar@github ~ profile", "Vigneshwar L")]
@@ -234,10 +240,10 @@ def panel_terminal(d):
              f'<animate attributeName="opacity" values="1;.3;1" dur="2.4s" repeatCount="indefinite"/>'
              f'</circle>'
              f'<text x="{lx+24}" y="{fy+8}" font-family="{MONO}" font-size="17" fill="{CYAN}" '
-             f'font-weight="700">available for hire</text>'
+             f'font-weight="700">looking for open source contributions</text>'
              f'<text x="{lx}" y="{fy+40}" font-family="{MONO}" font-size="13" fill="{DIM}">'
-             f'open to backend, systems and cloud-native work &#183; building for clients and '
-             f'early-stage startups</text>'
+             f'OpenTelemetry &#183; CNCF &#183; Helm &#183; oxc &#183; ripgrep &#183; '
+             f'open to new projects and mentorship programmes</text>'
              f'<text x="{w-lx}" y="{fy+8}" font-family="{MONO}" font-size="13.5" fill="{VIOLET}" '
              f'text-anchor="end">linkedin.com/in/vigneshwar-l-td729994</text>'
              f'<text x="{w-lx}" y="{fy+40}" font-family="{MONO}" font-size="13.5" fill="{DIM}" '
@@ -320,15 +326,15 @@ MONTHS = ["Jan", "Feb", "Mar", "Apr", "May", "Jun",
 
 
 def panel_skyline(d):
-    """Contributions as a city skyline: one tower per month, lit windows inside.
+    """Stars and contributions in one panel: stat tiles above, skyline below.
 
-    Deliberately NOT a copy of GitHub's heatmap grid -- the point is that it
-    reads as its own thing while still being an honest plot of the same data.
-    Tower height is the month's contribution total; each lit window is a day
-    with activity, so a busy month is both taller and brighter.
+    Two things this fixes from the first cut. The upper half was dead space, so
+    the star and repo figures now live up there instead of in a separate panel.
+    And every day of a month is drawn as a window -- unlit when there was no
+    activity -- so a quiet month reads as a dark tower rather than an empty box.
     """
-    w, h = 1240, 470
-    ground = h - 74
+    w, h = 1240, 520
+    ground = h - 78
 
     monthly, days = {}, {}
     for wk in d["weeks"]:
@@ -339,70 +345,92 @@ def panel_skyline(d):
     keys = sorted(monthly)[-12:]
     top = max((monthly[k] for k in keys), default=1) or 1
 
-    p = [section("ct", w, h, "Contributions", "contributions",
-                 f"{d['contribs']:,} in the last year")]
+    p = [section("ct", w, h, "Contributions & stars", "contributions and stars",
+                 f"{d['contribs']:,} contributions in the last year")]
 
-    # ground line + soft glow beneath the city
-    p.append(f'<defs><linearGradient id="sky" x1="0" y1="0" x2="0" y2="1">'
-             f'<stop offset="0%" stop-color="{CYAN}" stop-opacity=".20"/>'
-             f'<stop offset="100%" stop-color="{CYAN}" stop-opacity="0"/></linearGradient></defs>'
-             f'<rect x="30" y="{ground-190}" width="{w-60}" height="190" fill="url(#sky)" opacity=".6"/>'
-             f'<rect x="30" y="{ground}" width="{w-60}" height="2" rx="1" fill="{BORDER}"/>')
+    # --- stat tiles fill what used to be empty sky ---
+    tiles = [
+        (AGG_STARS, "stars",        "all projects & accounts",         CYAN),
+        ("5",       "communities",  "OpenTelemetry, CNCF, Helm, oxc",  BLUE),
+        ("9",       "projects",     "databases, agents, frameworks",   TEXT),
+        ("3 yrs",   "building",     "since 2023",                      TEXT),
+    ]
+    tw = (w - 60 - 3 * 18) // 4
+    for i, (big, lab, note, col) in enumerate(tiles):
+        x = 30 + i * (tw + 18)
+        p.append(f'<g opacity="1">{fade(0.6 + i * 0.5)}'
+                 f'<rect x="{x}" y="96" width="{tw}" height="90" rx="10" fill="{CARD}" stroke="{BORDER}"/>'
+                 f'<rect x="{x}" y="96" width="{tw}" height="2.5" rx="1.25" fill="url(#rct)"/>'
+                 f'<text x="{x+18}" y="140" font-family="{MONO}" font-size="28" fill="{col}" '
+                 f'font-weight="700">{esc(big)}</text>'
+                 f'<text x="{x+18}" y="162" font-family="{MONO}" font-size="12.5" fill="{DIM}">{esc(lab)}</text>'
+                 f'<text x="{x+18}" y="179" font-family="{MONO}" font-size="10.5" fill="{FAINT}">{esc(note)}</text>'
+                 f'</g>')
 
-    slot = (w - 60) / 12
-    tw = slot - 26
-    max_h = ground - 150
+    # --- skyline ---
+    max_h = ground - 246
 
     def height_of(total):
         # sqrt, not linear: one 385-commit month against a 12-commit one flattens
         # every quiet month to an invisible stub on a linear scale.
-        return max(26, round((total / top) ** 0.5 * max_h))
+        # floor of 88 so a quiet month is still a building with lit floors
+        # rather than a stub; the exact figure is printed above each tower.
+        return max(88, round((total / top) ** 0.5 * max_h))
 
+    p.append(f'<defs><linearGradient id="sky" x1="0" y1="0" x2="0" y2="1">'
+             f'<stop offset="0%" stop-color="{CYAN}" stop-opacity=".16"/>'
+             f'<stop offset="100%" stop-color="{CYAN}" stop-opacity="0"/></linearGradient></defs>'
+             f'<rect x="30" y="{ground-max_h-30}" width="{w-60}" height="{max_h+30}" '
+             f'fill="url(#sky)" opacity=".55"/>'
+             f'<rect x="30" y="{ground}" width="{w-60}" height="2" rx="1" fill="{BORDER}"/>')
+
+    slot = (w - 60) / 12
+    tower_w = slot - 26
 
     for i, k in enumerate(keys):
         total = monthly[k]
         th = height_of(total)
         x = 30 + i * slot + 13
         ty = ground - th
-        t = 1.2 + i * 0.75
+        t = 3.0 + i * 0.7
 
         p.append(f'<g opacity="1">{fade(t)}')
-        # tower body grows from the ground
-        p.append(f'<rect x="{x:.0f}" y="{ty:.0f}" width="{tw:.0f}" height="{th}" rx="5" '
+        p.append(f'<rect x="{x:.0f}" y="{ty:.0f}" width="{tower_w:.0f}" height="{th}" rx="5" '
                  f'fill="{CARD}" stroke="{BORDER}">'
-                 + anim("height", str(th), t, 1.2) + anim("y", f"{ty:.0f}", t, 1.2, start=str(ground)) +
-                 '</rect>')
-        # roof cap
-        p.append(f'<rect x="{x:.0f}" y="{ty:.0f}" width="{tw:.0f}" height="3" rx="1.5" fill="{CYAN}">'
+                 + anim("height", str(th), t, 1.2)
+                 + anim("y", f"{ty:.0f}", t, 1.2, start=str(ground)) + '</rect>')
+        p.append(f'<rect x="{x:.0f}" y="{ty:.0f}" width="{tower_w:.0f}" height="3" rx="1.5" '
+                 f'fill="{CYAN if total else BORDER}">'
                  + anim("y", f"{ty:.0f}", t, 1.2, start=str(ground)) + '</rect>')
 
-        # lit windows: one per active day that fits inside the tower
-        active = [c for c in days[k] if c > 0]
-        cols = max(1, int((tw - 14) // 13))
+        # EVERY day is a window; unlit ones keep the tower from looking hollow
+        counts = days[k]
+        cols = max(1, int((tower_w - 14) // 13))
         rows_fit = max(0, int((th - 22) // 15))
-        lit = 0
-        for r in range(rows_fit):
-            for c in range(cols):
-                if lit >= len(active):
-                    break
-                wx = x + 8 + c * 13
-                wy = ty + 14 + r * 15
-                shade = WINDOW[(lit + i) % len(WINDOW)]
-                op = 0.30 + min(0.65, active[lit] / 12)
-                p.append(f'<rect x="{wx:.0f}" y="{wy:.0f}" width="7" height="8" rx="1.5" '
-                         f'fill="{shade}" opacity="{op:.2f}">'
-                         + anim("opacity", f"{op:.2f}", t + 0.5 + lit * 0.012, 0.5) + '</rect>')
-                lit += 1
+        slots = cols * rows_fit
+        show = counts[:slots] if len(counts) > slots else counts
+        for n, c in enumerate(show):
+            wx = x + 8 + (n % cols) * 13
+            wy = ty + 14 + (n // cols) * 15
+            if c > 0:
+                shade = WINDOW[(n + i) % len(WINDOW)]
+                op = 0.35 + min(0.6, c / 12)
+            else:
+                shade, op = "#122744", 0.85
+            p.append(f'<rect x="{wx:.0f}" y="{wy:.0f}" width="7" height="8" rx="1.5" '
+                     f'fill="{shade}" opacity="{op:.2f}">'
+                     + anim("opacity", f"{op:.2f}", t + 0.5 + n * 0.01, 0.5) + '</rect>')
 
-        p.append(f'<text x="{x + tw/2:.0f}" y="{ground+24}" font-family="{MONO}" font-size="12" '
-                 f'fill="{DIM}" text-anchor="middle">{MONTHS[int(k[5:7])-1]}</text>')
-        p.append(f'<text x="{x + tw/2:.0f}" y="{ty-10:.0f}" font-family="{MONO}" font-size="12.5" '
-                 f'fill="{CYAN}" text-anchor="middle" font-weight="700">{total}</text>')
+        p.append(f'<text x="{x + tower_w/2:.0f}" y="{ground+26}" font-family="{MONO}" '
+                 f'font-size="12.5" fill="{DIM}" text-anchor="middle">{MONTHS[int(k[5:7])-1]}</text>')
+        p.append(f'<text x="{x + tower_w/2:.0f}" y="{ty-11:.0f}" font-family="{MONO}" '
+                 f'font-size="13" fill="{CYAN if total else FAINT}" text-anchor="middle" '
+                 f'font-weight="700">{total}</text>')
         p.append('</g>')
 
-    p.append(f'<text x="30" y="{h-22}" font-family="{MONO}" font-size="11.5" fill="{FAINT}" '
-             f'opacity="1">{fade(10.0)}tower height = commits that month  ·  each lit window = '
-             f'a day with activity</text>')
+    p.append(f'<text x="30" y="{h-20}" font-family="{MONO}" font-size="11.5" fill="{FAINT}" '
+             f'opacity="1">{fade(11.5)}tower height = commits that month  &#183;  each window = '
+             f'a day, lit when there was activity</text>')
     p.append("</svg>")
     return "".join(p)
 
