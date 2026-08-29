@@ -295,8 +295,8 @@ def bug_hunt(x, y, w=430):
     as a snake rather than the string of loose dots this was before.
     """
     # x positions of the three bugs, and the timeline that hunts them
-    b1, b2, b3 = 250, 120, 336
-    legs = [10.0, 6.5, 3.5, 3.0]                 # slower -> faster, then a pause
+    b1, b2, b3 = 232, 96, 330
+    legs = [12.0, 8.0, 4.5, 3.5]                 # slower -> faster, then a pause
     total = sum(legs)
     k = []
     acc = 0.0
@@ -315,41 +315,41 @@ def bug_hunt(x, y, w=430):
                  f'<animate attributeName="opacity" values="1;1;0;0;1" '
                  f'keyTimes="0;{gone:.4f};{min(gone+0.012,0.999):.4f};0.9999;1" '
                  f'dur="{total}s" calcMode="discrete" repeatCount="indefinite"/>'
-                 f'<g stroke="#c94848" stroke-width="1.5" stroke-linecap="round" fill="none">'
-                 f'<path d="M-5 27 l-6 -5"/><path d="M-5 32 l-7 1"/><path d="M-5 36 l-6 5"/>'
-                 f'<path d="M5 27 l6 -5"/><path d="M5 32 l7 1"/><path d="M5 36 l6 5"/></g>'
-                 f'<ellipse cx="0" cy="32" rx="7" ry="5.5" fill="#e05a5a"/>'
-                 f'<ellipse cx="0" cy="30" rx="7" ry="2" fill="#c94848"/>'
-                 f'<circle cx="0" cy="25.5" r="3.4" fill="#c94848"/>'
-                 f'<path d="M-2 23 l-2.5 -4 M2 23 l2.5 -4" stroke="#c94848" stroke-width="1.3" '
+                 f'<g stroke="#c94848" stroke-width="1.2" stroke-linecap="round" fill="none">'
+                 f'<path d="M-4 29 l-4.5 -4"/><path d="M-4 32.5 l-5 1"/><path d="M-4 36 l-4.5 4"/>'
+                 f'<path d="M4 29 l4.5 -4"/><path d="M4 32.5 l5 1"/><path d="M4 36 l4.5 4"/></g>'
+                 f'<ellipse cx="0" cy="33" rx="5" ry="4" fill="#e05a5a"/>'
+                 f'<ellipse cx="0" cy="31.5" rx="5" ry="1.5" fill="#c94848"/>'
+                 f'<circle cx="0" cy="27.5" r="2.5" fill="#c94848"/>'
+                 f'<path d="M-1.5 25.5 l-2 -3 M1.5 25.5 l2 -3" stroke="#c94848" stroke-width="1.1" '
                  f'stroke-linecap="round" fill="none"/>'
-                 f'<circle cx="-1.3" cy="25" r="0.9" fill="#f2d0d0"/>'
-                 f'<circle cx="1.3" cy="25" r="0.9" fill="#f2d0d0"/></g>')
+                 f'<circle cx="-1" cy="27" r="0.7" fill="#f2d0d0"/>'
+                 f'<circle cx="1" cy="27" r="0.7" fill="#f2d0d0"/></g>')
 
     # --- the snake ---
-    g.append(f'<g transform="translate(112,0)">'
+    g.append(f'<g transform="translate(80,0)">'
              f'<animateTransform attributeName="transform" type="translate" '
-             f'values="112 0; {b1} 0; {b2} 0; {b3} 0; 112 0" '
+             f'values="80 0; {b1} 0; {b2} 0; {b3} 0; 80 0" '
              f'keyTimes="0;{k[0]:.4f};{k[1]:.4f};{k[2]:.4f};1" '
              f'dur="{total}s" repeatCount="indefinite"/>')
     # inner group flips to face the direction of travel
     g.append(f'<g><animateTransform attributeName="transform" type="scale" '
-             f'values="1 1; 1 1; -1 1; 1 1; 1 1" '
+             f'values="1 1; -1 1; 1 1; 1 1; 1 1" '
              f'keyTimes="0;{k[0]:.4f};{k[1]:.4f};{k[2]:.4f};1" '
              f'dur="{total}s" calcMode="discrete" repeatCount="indefinite"/>')
-    body_a = "M0 32 q -16 -9 -32 0 t -32 0 t -30 0"
-    body_b = "M0 32 q -16 9 -32 0 t -32 0 t -30 0"
-    g.append(f'<path d="{body_a}" fill="none" stroke="{ACCENT}" stroke-width="11" '
+    body_a = "M0 32 q -13 -7 -26 0 t -24 0"
+    body_b = "M0 32 q -13 7 -26 0 t -24 0"
+    g.append(f'<path d="{body_a}" fill="none" stroke="{ACCENT}" stroke-width="9" '
              f'stroke-linecap="round" opacity=".95">'
-             f'<animate attributeName="d" values="{body_a};{body_b};{body_a}" dur="1.6s" '
+             f'<animate attributeName="d" values="{body_a};{body_b};{body_a}" dur="2.4s" '
              f'repeatCount="indefinite"/></path>')
-    g.append(f'<path d="{body_a}" fill="none" stroke="{ACC_D}" stroke-width="4" '
+    g.append(f'<path d="{body_a}" fill="none" stroke="{ACC_D}" stroke-width="3.2" '
              f'stroke-linecap="round" opacity=".5">'
-             f'<animate attributeName="d" values="{body_a};{body_b};{body_a}" dur="1.6s" '
+             f'<animate attributeName="d" values="{body_a};{body_b};{body_a}" dur="2.4s" '
              f'repeatCount="indefinite"/></path>')
-    g.append(f'<ellipse cx="6" cy="32" rx="10" ry="8" fill="{ACC_D}"/>'
-             f'<circle cx="9" cy="29" r="1.9" fill="#04050a"/>'
-             f'<path d="M16 32 l8 -3 m-8 3 l8 3" stroke="#e05a5a" stroke-width="1.4" '
+    g.append(f'<ellipse cx="5" cy="32" rx="8" ry="6.5" fill="{ACC_D}"/>'
+             f'<circle cx="7.5" cy="30" r="1.5" fill="#04050a"/>'
+             f'<path d="M13 32 l6 -2.5 m-6 2.5 l6 2.5" stroke="#e05a5a" stroke-width="1.2" '
              f'fill="none" stroke-linecap="round">'
              f'<animate attributeName="opacity" values="1;0;1;1" dur="1.1s" '
              f'repeatCount="indefinite"/></path>')
@@ -379,6 +379,43 @@ def workstation(x, y, label_rows, flip=False):
     return "".join(g)
 
 
+
+def laptop(x, y, rows):
+    """A laptop: tilted lid with scrolling output, and a wedge base."""
+    w, h = 118, 72
+    uid = f"lap{x}"
+    g = [f'<g transform="translate({x},{y})">']
+    g.append(f'<rect width="{w}" height="{h}" rx="5" fill="#0a1020" stroke="#2b3d5e"/>'
+             f'<rect x="4" y="4" width="{w-8}" height="{h-8}" rx="3" fill="#050a16"/>'
+             f'<clipPath id="{uid}"><rect x="4" y="4" width="{w-8}" height="{h-8}"/></clipPath>')
+    g.append(f'<g clip-path="url(#{uid})"><g>'
+             f'<animateTransform attributeName="transform" type="translate" '
+             f'values="0 0; 0 -{11*len(rows)//2}; 0 0" dur="38s" repeatCount="indefinite"/>')
+    for i, r in enumerate(rows):
+        col = "#6ee7a8" if ("ok" in r or "pass" in r or "merged" in r) else DIM
+        g.append(f'<text x="9" y="{15 + i*11}" font-family="{MONO}" font-size="7" '
+                 f'fill="{col}">{esc(r)}</text>')
+    g.append('</g></g>')
+    # base wedge, wider than the lid
+    g.append(f'<path d="M-13 {h+1} h{w+26} l-9 9 h{-(w+8)} z" fill="#22314f"/>'
+             f'<rect x="{w/2-16}" y="{h+3}" width="32" height="2.5" rx="1.25" fill="#0f1830"/>')
+    g.append('</g>')
+    return "".join(g)
+
+
+def mug(x, y):
+    """Coffee, steaming."""
+    return (f'<g transform="translate({x},{y})">'
+            f'<path d="M0 0 h16 v13 a8 8 0 0 1 -16 0 z" fill="#e8eefc"/>'
+            f'<path d="M16 3 h4 a4 4 0 0 1 0 8 h-4" fill="none" stroke="#e8eefc" stroke-width="2.2"/>'
+            f'<rect x="2" y="2" width="12" height="2.5" rx="1.25" fill="#6b4a2f"/>'
+            f'<g stroke="#8ea2c4" stroke-width="1.4" stroke-linecap="round" fill="none" opacity=".55">'
+            f'<path d="M5 -5 q3 -4 0 -8"><animate attributeName="opacity" '
+            f'values=".15;.6;.15" dur="4.2s" repeatCount="indefinite"/></path>'
+            f'<path d="M11 -5 q3 -5 0 -9"><animate attributeName="opacity" '
+            f'values=".6;.15;.6" dur="4.2s" repeatCount="indefinite"/></path></g></g>')
+
+
 def scene(x, y, t):
     """Tux and a rubber duck pair-programming, each at their own screen.
 
@@ -395,8 +432,9 @@ def scene(x, y, t):
 
     g.append(workstation(112, 52, ["$ cargo test", " wal ... ok", " lsm ... ok",
                                    " raft .. ok", "3 passed", "$ ./deploy", " shipped"]))
-    g.append(workstation(300, 52, ["$ git diff", " +12 -4", "$ review", " nit: naming",
-                                   " looks ok", "$ approve", " merged"]))
+    g.append(laptop(300, 56, ["$ git diff", " +12 -4", "$ review", " nit: naming",
+                              " looks ok", "$ approve", " merged"]))
+    g.append(mug(258, 112))
 
     # --- Tux, typing ---
     g.append('<g transform="translate(18,44)">'
@@ -435,6 +473,12 @@ def scene(x, y, t):
              'dur="2.1s" repeatCount="indefinite"/></path>'
              '<circle cx="43" cy="21" r="2.8" fill="#12151c"/>'
              '<circle cx="44.1" cy="19.9" r="1" fill="#ffffff"/>'
+             # glasses
+             '<g fill="none" stroke="#1b2029" stroke-width="2.2">'
+             '<circle cx="43" cy="21" r="7.5"/><circle cx="28" cy="23" r="7"/>'
+             '<path d="M35.6 21.4 q3.5 -2 7 -0.6"/><path d="M21 22 l-6 -2"/></g>'
+             '<circle cx="43" cy="21" r="7.5" fill="#cfe0ff" opacity=".12"/>'
+             '<circle cx="28" cy="23" r="7" fill="#cfe0ff" opacity=".12"/>'
              + headset(38, 15, 16, mic_left=True) + '</g>'
              # keyboard, and both wings tapping it
              '<rect x="0" y="74" width="58" height="8" rx="3" fill="#22314f"/>'
