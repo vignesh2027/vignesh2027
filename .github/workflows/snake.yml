@@ -13,15 +13,14 @@ jobs:
     runs-on: ubuntu-latest
     timeout-minutes: 10
     steps:
-      # Monochrome to match the panels: white snake on greys, white for the
-      # densest days. No accent hue anywhere.
+      # Monochrome to match the panels: white snake on greys, premium dark blue, matching the panels.
       - name: Generate snakes
         uses: Platane/snk@v3
         with:
           github_user_name: vignesh2027
           outputs: |
-            dist/snake-navy.svg?color_snake=%23ffffff&color_dots=%23000000,%231f2023,%233a3d42,%238b9096,%23ffffff
-            dist/snake-terminal.svg?color_snake=%23c9ced4&color_dots=%23000000,%231a1b1e,%2334373c,%23787d84,%23ffffff
+            dist/snake-navy.svg?color_snake=%234d8dff&color_dots=%2306080f,%231b2740,%232f4a7d,%234d8dff,%239dc0ff
+            dist/snake-terminal.svg?color_snake=%239dc0ff&color_dots=%2306080f,%23142038,%23264069,%233f79e0,%23b3ceff
 
       - name: Push to snake-output branch
         uses: crazy-max/ghaction-github-pages@v3

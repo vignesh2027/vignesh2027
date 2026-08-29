@@ -49,7 +49,7 @@ ICONS = {
         '<path d="M17.5 6.5h2.4a3.6 3.6 0 0 1 0 7.2h-2.4" fill="none" stroke="url(#cup)" '
         'stroke-width="2"/>'
         '<rect x="0.5" y="20.5" width="19" height="2.2" rx="1.1" fill="url(#cup)" opacity=".85"/>'
-        '<g stroke="#c9ced4" stroke-width="1.6" stroke-linecap="round" opacity=".7">'
+        '<g stroke="#f7c948" stroke-width="1.6" stroke-linecap="round" opacity=".7">'
         '<path d="M7 1.5c0 -1.6 -1.6 -2 -1.6 -3.6">'
         '<animate attributeName="opacity" values=".2;.9;.2" dur="2.8s" repeatCount="indefinite"/>'
         '</path>'
@@ -59,14 +59,14 @@ ICONS = {
 }
 
 CUP_DEFS = ('<defs><linearGradient id="cup" x1="0" y1="0" x2="1" y2="1">'
-            '<stop offset="0%" stop-color="#ffffff"/>'
-            '<stop offset="100%" stop-color="#9aa0a6"/></linearGradient></defs>')
+            '<stop offset="0%" stop-color="#f7c948"/>'
+            '<stop offset="100%" stop-color="#f0932b"/></linearGradient></defs>')
 
 BUTTONS = {
-    "btn-linkedin.svg": ("LinkedIn",        "linkedin", "#d8dade", "#0e0f12", ""),
-    "btn-email.svg":    ("Email",           "email",    "#d8dade", "#0e0f12", ""),
-    "btn-repos.svg":    ("Repositories",    "repos",    "#d8dade", "#0e0f12", ""),
-    "btn-sponsor.svg":  ("Buy me a coffee", "coffee",   "#ffffff", "#141518", CUP_DEFS),
+    "btn-linkedin.svg": ("LinkedIn",        "linkedin", "#4d8dff", "#0b1020", ""),
+    "btn-email.svg":    ("Email",           "email",    "#7aa7ff", "#0b1020", ""),
+    "btn-repos.svg":    ("Repositories",    "repos",    "#9db6ff", "#0b1020", ""),
+    "btn-sponsor.svg":  ("Buy me a coffee", "coffee",   "#f7c948", "#171308", CUP_DEFS),
 }
 
 
@@ -82,7 +82,7 @@ def button(label, icon_key, accent, fill, defs):
             f'<g transform="translate(12,{ty:.1f}) scale({scale:.4f})">'
             f'{markup.replace("{a}", accent)}</g>'
             f'<text x="{TEXT_X}" y="{H/2+4.5}" font-family="{MONO}" font-size="{FS}" '
-            f'fill="#f0f6fc" font-weight="700">{label}</text></svg>')
+            f'fill="#e8eefc" font-weight="700">{label}</text></svg>')
 
 
 if __name__ == "__main__":

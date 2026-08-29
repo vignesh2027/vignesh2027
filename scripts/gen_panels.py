@@ -33,28 +33,31 @@ REVEAL = 26.0       # whole-panel reveal length; deliberately slow
 # Monochrome base with a single warm accent. Dark blue read as "another dev
 # profile"; black and white with one accent colour is the more restrained,
 # more professional look, and the accent carries the emphasis on its own.
-BG     = "#000000"
-PANEL  = "#08090b"
-CARD   = "#0e0f12"
-BORDER = "#26282d"
-TEXT   = "#ffffff"
-DIM    = "#9aa0a6"
-FAINT  = "#55595f"
-ACCENT = "#ffffff"      # no accent hue: the page is pure black and white
-ACC_D  = "#b9bec4"
+# Premium dark blue: a near-black blue ground with a clean bright accent.
+# Reads more expensive than either the flat navy or the pure monochrome that
+# came before it.
+BG     = "#04050a"
+PANEL  = "#06080f"
+CARD   = "#0b1020"
+BORDER = "#1b2740"
+TEXT   = "#e8eefc"
+DIM    = "#8ea2c4"
+FAINT  = "#4a5b7a"
+ACCENT = "#4d8dff"
+ACC_D  = "#7aa7ff"
 # aliases so existing call sites keep working
 BLUE   = TEXT
 BLUE_D = ACCENT
 CYAN   = ACCENT
-VIOLET = "#c9ced4"
-LIT    = "#ffffff"
+VIOLET = "#9db6ff"
+LIT    = "#cfe0ff"
 MONO   = "ui-monospace, SFMono-Regular, Menlo, Consolas, 'DejaVu Sans Mono', monospace"
 
-HEAT = ["#141518", "#2a2c31", "#4a4d54", "#8b9096", "#ffffff"]
+HEAT = ["#0e1526", "#1b2b4a", "#2f4a7d", "#4d8dff", "#9dc0ff"]
 
 # Windows in the skyline towers: lit ones cycle through the accent range so the
 # panel has colour without leaving the dark-blue scheme.
-WINDOW = ["#4a4d54", "#6e737a", "#9aa0a6", "#c9ced4", "#ffffff"]
+WINDOW = ["#4d8dff", "#6ea1ff", "#8fb6ff", "#b3ceff", "#dcebff"]
 
 
 def esc(s):
@@ -83,7 +86,15 @@ def fade(t, dur=0.5, span=REVEAL):
 
 
 def particles(uid, w, h, n=150):
-    """Static drifting particle field behind a panel.
+    """Disabled. The drifting dot field read as noise rather than depth, so the
+    background is now a flat near-black with only the soft top glow for depth.
+    Kept as a no-op so every call site stays valid.
+    """
+    return ""
+
+
+def _particles_unused(uid, w, h, n=150):
+    """Former particle field.
 
     Positions come from a small deterministic LCG rather than random(), so a
     rebuild produces byte-identical output and the committed SVG only changes
@@ -102,7 +113,7 @@ def particles(uid, w, h, n=150):
         op = 0.05 + (seed % 100) / 100 * 0.22
         seed = (1103515245 * seed + 12345) % (1 << 31)
         dur = 9 + (seed % 100) / 100 * 14
-        col = "#ffffff"
+        col = "#9db6ff"
         out.append(f'<circle cx="{x}" cy="{y}" r="{r:.2f}" fill="{col}" opacity="{op:.3f}">'
                    f'<animate attributeName="opacity" values="{op:.3f};{op*2.4:.3f};{op:.3f}" '
                    f'dur="{dur:.1f}s" repeatCount="indefinite"/>'
@@ -116,26 +127,25 @@ def head(uid, w, h, label):
     return (f'<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 {w} {h}" width="{w}" '
             f'height="{h}" role="img" aria-label="{esc(label)}">'
             f'<defs><radialGradient id="g{uid}" cx="50%" cy="0%" r="90%">'
-            f'<stop offset="0%" stop-color="#ffffff" stop-opacity=".05"/>'
-            f'<stop offset="100%" stop-color="#ffffff" stop-opacity="0"/></radialGradient>'
+            f'<stop offset="0%" stop-color="#4d8dff" stop-opacity=".07"/>'
+            f'<stop offset="100%" stop-color="#4d8dff" stop-opacity="0"/></radialGradient>'
             f'<linearGradient id="r{uid}" x1="0" y1="0" x2="1" y2="0">'
             f'<stop offset="0%" stop-color="{ACCENT}"/>'
-            f'<stop offset="100%" stop-color="#2a2c31"/></linearGradient>'
-            f'<clipPath id="c{uid}"><rect width="{w}" height="{h}" rx="12"/></clipPath>'
+            f'<stop offset="100%" stop-color="#0e1526"/></linearGradient>'
+            f'<clipPath id="c{uid}"><rect width="{w}" height="{h}"/></clipPath>'
             f'</defs>')
 
 
 def shell(uid, w, h, title, label, black=False):
     bg = "#000000" if black else PANEL
     return (head(uid, w, h, label) +
-            f'<rect width="{w}" height="{h}" fill="{BG}" rx="12"/>'
-            f'<rect x="0.5" y="0.5" width="{w-1}" height="{h-1}" rx="12" fill="{bg}" stroke="{BORDER}"/>'
-            f'<rect x="1" y="1" width="{w-2}" height="{h-2}" rx="11" fill="url(#g{uid})"/>'
+            f'<rect width="{w}" height="{h}" fill="{bg}"/>'
+            f'<rect width="{w}" height="{h}" fill="url(#g{uid})"/>'
             + particles(uid, w, h) +
             f'<path d="M0.5 12.5a12 12 0 0 1 12-12h{w-25}a12 12 0 0 1 12 12V42H0.5z" '
-            f'fill="#101114" stroke="{BORDER}"/>'
-            f'<circle cx="24" cy="21" r="5" fill="#3a3d42"/>'
-            f'<circle cx="43" cy="21" r="5" fill="#5c6067"/>'
+            f'fill="#0a0f1c" stroke="{BORDER}"/>'
+            f'<circle cx="24" cy="21" r="5" fill="#25334f"/>'
+            f'<circle cx="43" cy="21" r="5" fill="#35486d"/>'
             f'<circle cx="62" cy="21" r="5" fill="{ACCENT}" opacity=".8"/>'
             f'<text x="{w/2}" y="26" font-family="{MONO}" font-size="13.5" fill="{DIM}" '
             f'text-anchor="middle">{esc(title)}</text>')
@@ -143,9 +153,10 @@ def shell(uid, w, h, title, label, black=False):
 
 def section(uid, w, h, title, label, kicker=""):
     s = (head(uid, w, h, label) +
-         f'<rect width="{w}" height="{h}" fill="{PANEL}" rx="12"/>'
-         f'<rect x="0.5" y="0.5" width="{w-1}" height="{h-1}" rx="12" fill="none" stroke="{BORDER}"/>'
-         f'<rect x="1" y="1" width="{w-2}" height="{h-2}" rx="11" fill="url(#g{uid})"/>'
+         # Full-bleed and unstroked: rounded, bordered sections read as a stack
+         # of boxes; butting them together makes the README one continuous page.
+         f'<rect width="{w}" height="{h}" fill="{PANEL}"/>'
+         f'<rect width="{w}" height="{h}" fill="url(#g{uid})"/>'
          + particles(uid, w, h) +
          f'<rect x="30" y="34" width="46" height="3" rx="1.5" fill="url(#r{uid})"/>'
          f'<text x="30" y="72" font-family="{MONO}" font-size="21" fill="{TEXT}" '
@@ -222,18 +233,98 @@ CODE = [
 ]
 
 
+
+def headset(cx, cy, r, col="#33507f", mic_left=True):
+    """Over-ear headset: band, two cups, boom mic with a live indicator."""
+    mx = cx - r - 5 if mic_left else cx + r + 5
+    tip = mx + (9 if mic_left else -9)
+    return (f'<path d="M{cx-r-2} {cy} a{r+2} {r+2} 0 0 1 {2*(r+2)} 0" fill="none" '
+            f'stroke="{col}" stroke-width="4" stroke-linecap="round"/>'
+            f'<rect x="{cx-r-6}" y="{cy-3}" width="9" height="15" rx="4.5" fill="{col}"/>'
+            f'<rect x="{cx+r-3}" y="{cy-3}" width="9" height="15" rx="4.5" fill="{col}"/>'
+            f'<path d="M{mx} {cy+10} q {6 if mic_left else -6} 9 {tip-mx} 12" fill="none" '
+            f'stroke="{col}" stroke-width="2.6" stroke-linecap="round"/>'
+            f'<circle cx="{tip}" cy="{cy+22}" r="2.6" fill="{ACCENT}">'
+            f'<animate attributeName="opacity" values="1;.3;1" dur="2.2s" repeatCount="indefinite"/>'
+            f'</circle>')
+
+
+def scene(x, y, t):
+    """Tux and a rubber duck pair-programming.
+
+    Not decoration: Tux types, the duck reviews and points at the screen, and a
+    status line cycles run -> pass -> ship, so the pair is visibly working the
+    problem rather than posing beside it.
+    """
+    g = [f'<g transform="translate({x},{y})" opacity="1">{fade(t)}']
+
+    g.append(f'<rect x="0" y="126" width="470" height="7" rx="3.5" fill="#16203a"/>'
+             f'<rect x="26" y="133" width="7" height="46" fill="#0f1830"/>'
+             f'<rect x="437" y="133" width="7" height="46" fill="#0f1830"/>')
+
+    # Tux, seated left, typing
+    g.append('<g transform="translate(92,24)">'
+             '<path d="M-6 98 h74 v10 a10 10 0 0 1 -10 10 h-54 a10 10 0 0 1 -10 -10 z" fill="#16203a"/>'
+             '<ellipse cx="31" cy="76" rx="30" ry="28" fill="#12151c"/>'
+             '<ellipse cx="31" cy="80" rx="20" ry="21" fill="#e8eefc"/>'
+             '<ellipse cx="31" cy="36" rx="22" ry="21" fill="#12151c"/>'
+             '<ellipse cx="23" cy="35" rx="6.5" ry="8" fill="#e8eefc"/>'
+             '<ellipse cx="39" cy="35" rx="6.5" ry="8" fill="#e8eefc"/>'
+             '<circle cx="24.5" cy="36" r="3.2" fill="#0a0c11"/>'
+             '<circle cx="37.5" cy="36" r="3.2" fill="#0a0c11"/>'
+             '<ellipse cx="31" cy="47" rx="7.5" ry="5.2" fill="#f5a623"/>'
+             + headset(31, 24, 22, mic_left=False) +
+             '<ellipse cx="4" cy="88" rx="9" ry="6" fill="#12151c">'
+             '<animateTransform attributeName="transform" type="rotate" '
+             'values="0 4 88; -18 4 88; 0 4 88" dur="0.66s" repeatCount="indefinite"/></ellipse>'
+             '<ellipse cx="58" cy="88" rx="9" ry="6" fill="#12151c">'
+             '<animateTransform attributeName="transform" type="rotate" '
+             'values="0 58 88; 18 58 88; 0 58 88" dur="0.66s" begin="0.33s" '
+             'repeatCount="indefinite"/></ellipse>'
+             '<ellipse cx="18" cy="98" rx="26" ry="4" fill="#0b1020"/>'
+             '</g>')
+
+    # duck, seated right, reviewing and pointing
+    g.append('<g transform="translate(266,42)">'
+             '<path d="M-4 80 h72 v10 a10 10 0 0 1 -10 10 h-52 a10 10 0 0 1 -10 -10 z" fill="#16203a"/>'
+             '<ellipse cx="31" cy="60" rx="30" ry="22" fill="#f7c948"/>'
+             '<path d="M8 60 q13 -17 33 -10 -10 15 -33 10z" fill="#e0a915"/>'
+             '<g><animateTransform attributeName="transform" type="rotate" '
+             'values="0 44 32; -8 44 32; 0 44 32; 0 44 32" dur="3.4s" repeatCount="indefinite"/>'
+             '<circle cx="44" cy="30" r="17" fill="#f7c948"/>'
+             '<path d="M59 27h9q5 0 5 4.5t-5 4.5h-9z" fill="#f0932b"/>'
+             '<circle cx="49" cy="25" r="3" fill="#12151c"/>'
+             '<circle cx="50.2" cy="23.8" r="1.1" fill="#ffffff"/>'
+             + headset(44, 19, 17, mic_left=True) + '</g>'
+             '<path d="M14 48 q-14 -12 -20 -30" fill="none" stroke="#e0a915" stroke-width="7" '
+             'stroke-linecap="round">'
+             '<animateTransform attributeName="transform" type="rotate" '
+             'values="0 14 48; -13 14 48; 0 14 48" dur="2.6s" repeatCount="indefinite"/></path>'
+             '</g>')
+
+    msgs = [("running tests ...", DIM), ("3 passed, 0 failed", "#6ee7a8"), ("LGTM - ship it", ACC_D)]
+    for i, (m, col) in enumerate(msgs):
+        k = i / len(msgs)
+        g.append(f'<text x="235" y="176" font-family="{MONO}" font-size="12.5" fill="{col}" '
+                 f'text-anchor="middle" opacity="0">{esc(m)}'
+                 f'<animate attributeName="opacity" values="0;1;1;0;0" '
+                 f'keyTimes="0;{k+0.02:.3f};{k+0.28:.3f};{k+0.31:.3f};1" dur="9s" '
+                 f'repeatCount="indefinite"/></text>')
+    g.append('</g>')
+    return "".join(g)
+
+
 def panel_header(d):
     """Name and title on the left, code typing itself out on the right."""
-    w, h = 1240, 448
+    w, h = 1240, 630
     lx = 40
     ex, ey, ew, eh = 636, 66, 566, 330      # editor pane
     fs, lh = 13, 22
     ch = fs * 0.605
 
     p = [head("hd", w, h, "Vigneshwar L")]
-    p.append(f'<rect width="{w}" height="{h}" fill="{BG}" rx="12"/>'
-             f'<rect x="0.5" y="0.5" width="{w-1}" height="{h-1}" rx="12" fill="{PANEL}" stroke="{BORDER}"/>'
-             f'<rect x="1" y="1" width="{w-2}" height="{h-2}" rx="11" fill="url(#ghd)"/>'
+    p.append(f'<rect width="{w}" height="{h}" fill="{PANEL}"/>'
+             f'<rect width="{w}" height="{h}" fill="url(#ghd)"/>'
              + particles("hd", w, h))
 
     # ---- left: identity ----
@@ -265,23 +356,23 @@ def panel_header(d):
              f'open to new projects, mentorships and international contract work</text></g>')
 
     # ---- right: editor pane ----
-    p.append(f'<rect x="{ex}" y="{ey}" width="{ew}" height="{eh}" rx="10" fill="#0b0c0f" '
+    p.append(f'<rect x="{ex}" y="{ey}" width="{ew}" height="{eh}" rx="10" fill="#080c18" '
              f'stroke="{BORDER}"/>'
              f'<path d="M{ex}.5 {ey+10}a10 10 0 0 1 10-10h{ew-21}a10 10 0 0 1 10 10v22H{ex}.5z" '
-             f'fill="#121317" stroke="{BORDER}"/>'
-             f'<circle cx="{ex+18}" cy="{ey+17}" r="4" fill="#3a3d42"/>'
+             f'fill="#0f1526" stroke="{BORDER}"/>'
+             f'<circle cx="{ex+18}" cy="{ey+17}" r="4" fill="#25334f"/>'
              f'<circle cx="{ex+33}" cy="{ey+17}" r="4" fill="#55595f"/>'
              f'<circle cx="{ex+48}" cy="{ey+17}" r="4" fill="#787d84"/>'
              f'<text x="{ex+ew/2}" y="{ey+21}" font-family="{MONO}" font-size="12" fill="{FAINT}" '
              f'text-anchor="middle">engine.rs</text>'
-             f'<rect x="{ex+1}" y="{ey+33}" width="34" height="{eh-34}" fill="#0e0f13"/>')
+             f'<rect x="{ex+1}" y="{ey+33}" width="34" height="{eh-34}" fill="#0a0f1e"/>')
 
     cy = ey + 62
     t = 1.0
     for i, spans in enumerate(CODE):
         plain = "".join(tx for tx, _ in spans)
         p.append(f'<text x="{ex+22}" y="{cy}" font-family="{MONO}" font-size="11.5" '
-                 f'fill="#3a3d42" text-anchor="end" opacity="1">{i+1}{fade(t)}</text>')
+                 f'fill="#25334f" text-anchor="end" opacity="1">{i+1}{fade(t)}</text>')
         if plain.strip():
             cw = len(plain) * ch + 10
             uid = f"cl{i}"
@@ -296,6 +387,8 @@ def panel_header(d):
             p.append('</text></g>')
         cy += lh
         t += 0.62
+
+    p.append(scene(ex + 46, ey + 356, t + 0.4))
 
     # caret parked at the end
     p.append(f'<rect x="{ex+44}" y="{cy-fs-2}" width="7.5" height="15" fill="#d4d4d4" opacity="1">'
@@ -347,7 +440,7 @@ SKILLS = [
     ("Python",     72, ACCENT),
     ("Rust",       68, "#ffffff"),
     ("Go",         65, "#9aa0a6"),
-    ("TypeScript", 42, "#5c6067"),
+    ("TypeScript", 42, "#3a4f78"),
 ]
 
 
@@ -360,7 +453,7 @@ def panel_langs():
         bw = round(lvl / 100 * 320)
         p.append(f'<g opacity="1">{fade(t)}'
                  f'<text x="30" y="{y+12}" font-family="{MONO}" font-size="14" fill="{TEXT}">{esc(name)}</text>'
-                 f'<rect x="170" y="{y+1}" width="320" height="14" rx="7" fill="#191b1f"/>'
+                 f'<rect x="170" y="{y+1}" width="320" height="14" rx="7" fill="#0e1526"/>'
                  f'<rect x="170" y="{y+1}" width="{bw}" height="14" rx="7" fill="{colr}">'
                  + anim("width", str(bw), t + 0.2, 1.6) + '</rect>'
                  f'<text x="{w-30}" y="{y+12}" font-family="{MONO}" font-size="13" fill="{DIM}" '
@@ -432,8 +525,8 @@ def panel_skyline(d):
         return max(88, round((total / top) ** 0.5 * max_h))
 
     p.append(f'<defs><linearGradient id="sky" x1="0" y1="0" x2="0" y2="1">'
-             f'<stop offset="0%" stop-color="#ffffff" stop-opacity=".07"/>'
-             f'<stop offset="100%" stop-color="#ffffff" stop-opacity="0"/></linearGradient></defs>'
+             f'<stop offset="0%" stop-color="#4d8dff" stop-opacity=".12"/>'
+             f'<stop offset="100%" stop-color="#4d8dff" stop-opacity="0"/></linearGradient></defs>'
              f'<rect x="30" y="{ground-max_h-30}" width="{w-60}" height="{max_h+30}" '
              f'fill="url(#sky)" opacity=".55"/>'
              f'<rect x="30" y="{ground}" width="{w-60}" height="2" rx="1" fill="{BORDER}"/>')

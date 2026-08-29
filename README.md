@@ -12,7 +12,7 @@
 &nbsp;
 <a href="https://github.com/sponsors/vignesh2027"><img src="https://raw.githubusercontent.com/vignesh2027/vignesh2027/main/assets/btn-sponsor.svg" alt="Buy me a coffee"/></a>
 &nbsp;
-<img src="https://komarev.com/ghpvc/?username=vignesh2027&style=flat-square&color=1f6feb&label=PROFILE+VIEWS&base=10216" alt="Profile views"/>
+<img src="https://komarev.com/ghpvc/?username=vignesh2027&style=flat-square&color=4d8dff&label=PROFILE+VIEWS&base=10216" alt="Profile views"/>
 
 <br/><br/>
 
