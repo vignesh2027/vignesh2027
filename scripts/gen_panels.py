@@ -286,70 +286,72 @@ def pc_case(x, y):
             f'<rect x="7" y="40" width="20" height="14" rx="2" fill="#050a16"/></g>')
 
 
-def swim_duck(scale=1.0, flip=False):
-    """A small yellow duck seen side on, sitting in the water."""
-    f = 'transform="scale(-1,1)" ' if flip else ''
-    return (f'<g {f}transform-origin="0 0">'
-            f'<ellipse cx="0" cy="4" rx="17" ry="11" fill="#f7c948"/>'
-            f'<path d="M-13 4 q9 -12 22 -7 -7 11 -22 7z" fill="#e0a915"/>'
-            f'<path d="M-17 2 q-6 -7 -1 -11 3 5 6 6z" fill="#f7c948"/>'
-            f'<circle cx="13" cy="-11" r="10" fill="#f7c948"/>'
-            f'<path d="M22 -14h7q4 0 4 3.5t-4 3.5h-7z" fill="#f0932b"/>'
-            f'<circle cx="16" cy="-14" r="1.9" fill="#12151c"/>'
-            f'<circle cx="16.7" cy="-14.7" r="0.7" fill="#ffffff"/>'
-            f'</g>')
+# Fragments that drift past in the code river. Short, real, and varied in
+# length so the lanes never line up into a visible grid.
+RIVER_LANES = [
+    ("impl Engine { fn flush(&mut self) -> Result<()> { self.wal.sync()?; }   "
+     "let seg = self.memtable.freeze();   ", "#4d8dff", 0.55, 62.0, 10.5),
+    ("async fn run(jobs: Receiver<Job>) { while let Some(j) = jobs.recv().await { }   "
+     "tokio::spawn(handle(j));   ", "#6ea1ff", 0.42, 78.0, 10.0),
+    ("go func() { defer wg.Done(); if err := span.End(); err != nil { return } }()   "
+     "ctx, cancel := context.WithTimeout(ctx, 5*time.Second)   ", "#3f79e0", 0.34, 94.0, 9.5),
+    ("def evaluate(model, rubric): return sum(score(r, model) for r in rubric) / len(rubric)   "
+     "assert recall > 0.92   ", "#7aa7ff", 0.30, 110.0, 9.0),
+    ("SELECT p50, p99 FROM latency WHERE service = 'wal' GROUP BY minute;   "
+     "EXPLAIN ANALYZE;   ", "#2f6bb5", 0.24, 128.0, 8.5),
+]
 
 
-def river(x, y, w=430):
-    """Two ducks drifting on a river.
+def code_river(x, y, w=430, h=74):
+    """A river made of code: lanes of source drifting past at different speeds.
 
-    Replaces the snake-and-bug hunt. They bob, drift at slightly different
-    speeds so they never move as one, and trail ripples behind them.
+    Each lane is two copies of the same string side by side, translated by
+    exactly one copy's width, so the loop is seamless. A gradient mask fades
+    both banks so text enters and leaves rather than popping.
     """
     g = [f'<g transform="translate({x},{y})">']
     g.append(f'<text x="0" y="6" font-family="{MONO}" font-size="11" fill="{FAINT}">'
-             f'$ afk &#8212; rubber duck debugging, offline</text>')
+             f'$ tail -f /dev/river</text>')
 
-    # --- water ---
-    g.append(f'<clipPath id="riv"><rect x="0" y="18" width="{w}" height="46" rx="4"/></clipPath>')
-    g.append(f'<g clip-path="url(#riv)">'
-             f'<rect x="0" y="18" width="{w}" height="46" rx="4" fill="#0a1526"/>')
-    waves = [(30, "#1b3a5c", 0.9, 17.0), (42, "#22508a", 0.75, 21.0),
-             (54, "#2f6bb5", 0.55, 26.0)]
-    for wy, col, op, dur in waves:
-        seg = 46
+    g.append(f'<defs>'
+             f'<linearGradient id="rvfade" x1="0" y1="0" x2="1" y2="0">'
+             f'<stop offset="0%" stop-color="#000"/><stop offset="12%" stop-color="#fff"/>'
+             f'<stop offset="88%" stop-color="#fff"/><stop offset="100%" stop-color="#000"/>'
+             f'</linearGradient>'
+             f'<mask id="rvmask"><rect x="0" y="16" width="{w}" height="{h}" '
+             f'fill="url(#rvfade)"/></mask>'
+             f'<clipPath id="rvclip"><rect x="0" y="16" width="{w}" height="{h}" rx="4"/></clipPath>'
+             f'</defs>')
+
+    g.append(f'<rect x="0" y="16" width="{w}" height="{h}" rx="4" fill="#080e1c"/>')
+    g.append('<g clip-path="url(#rvclip)" mask="url(#rvmask)">')
+
+    ly = 31
+    for text, col, op, dur, size in RIVER_LANES:
+        cw = len(text) * size * 0.605          # width of one copy
+        g.append(f'<g transform="translate(0,0)">'
+                 f'<animateTransform attributeName="transform" type="translate" '
+                 f'values="0 0; -{cw:.0f} 0" dur="{dur}s" repeatCount="indefinite"/>'
+                 f'<text x="0" y="{ly}" font-family="{MONO}" font-size="{size}" fill="{col}" '
+                 f'opacity="{op}" xml:space="preserve">{esc(text)}{esc(text)}</text>'
+                 f'<text x="{cw*2:.0f}" y="{ly}" font-family="{MONO}" font-size="{size}" '
+                 f'fill="{col}" opacity="{op}" xml:space="preserve">{esc(text)}{esc(text)}</text>'
+                 f'</g>')
+        ly += 12.5
+
+    # a couple of slow current lines, so it still reads as water
+    for i, (wy, cop, cdur) in enumerate([(42, 0.18, 34.0), (66, 0.13, 44.0)]):
+        seg = 52
         d = f"M-{seg} {wy} " + " ".join(
-            f"q {seg/4:.0f} {-6 if i % 2 == 0 else 6} {seg/2:.0f} 0 t {seg/2:.0f} 0"
-            for i in range(int(w / seg) + 3))
-        g.append(f'<path d="{d}" fill="none" stroke="{col}" stroke-width="2" '
-                 f'stroke-linecap="round" opacity="{op}">'
+            f"q {seg/4:.0f} {-4 if j % 2 == 0 else 4} {seg/2:.0f} 0 t {seg/2:.0f} 0"
+            for j in range(int(w / seg) + 3))
+        g.append(f'<path d="{d}" fill="none" stroke="#9dc0ff" stroke-width="1" '
+                 f'opacity="{cop}">'
                  f'<animateTransform attributeName="transform" type="translate" '
-                 f'values="0 0; {seg} 0" dur="{dur}s" repeatCount="indefinite"/></path>')
+                 f'values="0 0; {seg} 0" dur="{cdur}s" repeatCount="indefinite"/></path>')
+
     g.append('</g>')
-
-    # --- the two ducks, drawn OUTSIDE the water clip so their heads are whole ---
-    for i, (start, span, dur, bob, sc) in enumerate(
-            [(120, w + 80, 34.0, 3.2, 1.0), (268, w + 80, 41.0, 2.4, 0.82)]):
-        yy = 42 + i * 9
-        g.append(f'<g transform="translate({start},{yy})">'
-                 f'<animateTransform attributeName="transform" type="translate" '
-                 f'values="-40 {yy}; {span} {yy}" dur="{dur}s" '
-                 f'repeatCount="indefinite"/>')
-        # ripples trailing behind
-        for r in range(2):
-            g.append(f'<ellipse cx="{-22 - r*15}" cy="{6*sc:.0f}" rx="{9 - r*3}" ry="2.4" '
-                     f'fill="none" stroke="#2f6bb5" stroke-width="1.2" opacity="{0.5 - r*0.18:.2f}">'
-                     f'<animate attributeName="rx" values="{9-r*3};{16-r*3};{9-r*3}" '
-                     f'dur="3.4s" begin="{r*0.9:.1f}s" repeatCount="indefinite"/>'
-                     f'<animate attributeName="opacity" values="{0.5-r*0.18:.2f};0;'
-                     f'{0.5-r*0.18:.2f}" dur="3.4s" begin="{r*0.9:.1f}s" '
-                     f'repeatCount="indefinite"/></ellipse>')
-        g.append(f'<g transform="scale({sc})">'
-                 f'<animateTransform attributeName="transform" type="translate" '
-                 f'values="0 0; 0 -3; 0 0" dur="{bob}s" repeatCount="indefinite" additive="sum"/>'
-                 + swim_duck() + '</g>')
-        g.append('</g>')
-
+    g.append(f'<rect x="0" y="16" width="{w}" height="{h}" rx="4" fill="none" stroke="#16203a"/>')
     g.append('</g>')
     return "".join(g)
 
@@ -587,7 +589,7 @@ def panel_header(d):
              f'open to new projects, mentorships and international contract work</text></g>')
 
     # ---- left, lower: the snake hunting a bug ----
-    p.append(f'<g opacity="1">{fade(11.0, 1.2)}' + river(lx, 470) + '</g>')
+    p.append(f'<g opacity="1">{fade(11.0, 1.2)}' + code_river(lx, 470) + '</g>')
 
     # ---- right: code pane, cycling through the scenes ----
     p.append(f'<rect x="{ex}" y="{ey}" width="{ew}" height="{eh}" rx="10" fill="#080c18" '
