@@ -10,6 +10,8 @@
 &nbsp;
 <a href="https://github.com/vignesh2027?tab=repositories"><img src="https://raw.githubusercontent.com/vignesh2027/vignesh2027/main/assets/btn-repos.svg" alt="Repositories"/></a>
 &nbsp;
+<a href="https://github.com/sponsors/vignesh2027"><img src="https://raw.githubusercontent.com/vignesh2027/vignesh2027/main/assets/btn-sponsor.svg" alt="Buy me a coffee"/></a>
+&nbsp;
 <img src="https://komarev.com/ghpvc/?username=vignesh2027&style=flat-square&color=1f6feb&label=PROFILE+VIEWS&base=10216" alt="Profile views"/>
 
 <br/><br/>
@@ -30,8 +32,5 @@
 
 <img src="https://raw.githubusercontent.com/vignesh2027/vignesh2027/snake-output/snake-navy.svg" width="100%" alt="contribution snake"/>
 
-<br/><br/>
-
-<a href="https://github.com/sponsors/vignesh2027"><img src="https://raw.githubusercontent.com/vignesh2027/vignesh2027/main/assets/btn-sponsor.svg" alt="Sponsor on GitHub"/></a>
 
 </div>
