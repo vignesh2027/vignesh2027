@@ -235,7 +235,7 @@ CODE = [
 
 
 def headset(cx, cy, r, col="#33507f", mic_left=True):
-    """Over-ear headset: band, two cups, boom mic with a live indicator."""
+    """Over-ear headset: band, cups, boom mic with a live indicator."""
     mx = cx - r - 5 if mic_left else cx + r + 5
     tip = mx + (9 if mic_left else -9)
     return (f'<path d="M{cx-r-2} {cy} a{r+2} {r+2} 0 0 1 {2*(r+2)} 0" fill="none" '
@@ -245,160 +245,304 @@ def headset(cx, cy, r, col="#33507f", mic_left=True):
             f'<path d="M{mx} {cy+10} q {6 if mic_left else -6} 9 {tip-mx} 12" fill="none" '
             f'stroke="{col}" stroke-width="2.6" stroke-linecap="round"/>'
             f'<circle cx="{tip}" cy="{cy+22}" r="2.6" fill="{ACCENT}">'
-            f'<animate attributeName="opacity" values="1;.3;1" dur="2.2s" repeatCount="indefinite"/>'
+            f'<animate attributeName="opacity" values="1;.3;1" dur="3.4s" repeatCount="indefinite"/>'
             f'</circle>')
 
 
-def scene(x, y, t):
-    """Tux and a rubber duck pair-programming.
-
-    Not decoration: Tux types, the duck reviews and points at the screen, and a
-    status line cycles run -> pass -> ship, so the pair is visibly working the
-    problem rather than posing beside it.
-    """
-    g = [f'<g transform="translate({x},{y})" opacity="1">{fade(t)}']
-
-    g.append(f'<rect x="0" y="126" width="470" height="7" rx="3.5" fill="#16203a"/>'
-             f'<rect x="26" y="133" width="7" height="46" fill="#0f1830"/>'
-             f'<rect x="437" y="133" width="7" height="46" fill="#0f1830"/>')
-
-    # Tux, seated left, typing
-    g.append('<g transform="translate(92,24)">'
-             '<path d="M-6 98 h74 v10 a10 10 0 0 1 -10 10 h-54 a10 10 0 0 1 -10 -10 z" fill="#16203a"/>'
-             '<ellipse cx="31" cy="76" rx="30" ry="28" fill="#12151c"/>'
-             '<ellipse cx="31" cy="80" rx="20" ry="21" fill="#e8eefc"/>'
-             '<ellipse cx="31" cy="36" rx="22" ry="21" fill="#12151c"/>'
-             '<ellipse cx="23" cy="35" rx="6.5" ry="8" fill="#e8eefc"/>'
-             '<ellipse cx="39" cy="35" rx="6.5" ry="8" fill="#e8eefc"/>'
-             '<circle cx="24.5" cy="36" r="3.2" fill="#0a0c11"/>'
-             '<circle cx="37.5" cy="36" r="3.2" fill="#0a0c11"/>'
-             '<ellipse cx="31" cy="47" rx="7.5" ry="5.2" fill="#f5a623"/>'
-             + headset(31, 24, 22, mic_left=False) +
-             '<ellipse cx="4" cy="88" rx="9" ry="6" fill="#12151c">'
-             '<animateTransform attributeName="transform" type="rotate" '
-             'values="0 4 88; -18 4 88; 0 4 88" dur="0.66s" repeatCount="indefinite"/></ellipse>'
-             '<ellipse cx="58" cy="88" rx="9" ry="6" fill="#12151c">'
-             '<animateTransform attributeName="transform" type="rotate" '
-             'values="0 58 88; 18 58 88; 0 58 88" dur="0.66s" begin="0.33s" '
-             'repeatCount="indefinite"/></ellipse>'
-             '<ellipse cx="18" cy="98" rx="26" ry="4" fill="#0b1020"/>'
-             '</g>')
-
-    # duck, seated right, reviewing and pointing
-    g.append('<g transform="translate(266,42)">'
-             '<path d="M-4 80 h72 v10 a10 10 0 0 1 -10 10 h-52 a10 10 0 0 1 -10 -10 z" fill="#16203a"/>'
-             '<ellipse cx="31" cy="60" rx="30" ry="22" fill="#f7c948"/>'
-             '<path d="M8 60 q13 -17 33 -10 -10 15 -33 10z" fill="#e0a915"/>'
-             '<g><animateTransform attributeName="transform" type="rotate" '
-             'values="0 44 32; -8 44 32; 0 44 32; 0 44 32" dur="3.4s" repeatCount="indefinite"/>'
-             '<circle cx="44" cy="30" r="17" fill="#f7c948"/>'
-             '<path d="M59 27h9q5 0 5 4.5t-5 4.5h-9z" fill="#f0932b"/>'
-             '<circle cx="49" cy="25" r="3" fill="#12151c"/>'
-             '<circle cx="50.2" cy="23.8" r="1.1" fill="#ffffff"/>'
-             + headset(44, 19, 17, mic_left=True) + '</g>'
-             '<path d="M14 48 q-14 -12 -20 -30" fill="none" stroke="#e0a915" stroke-width="7" '
-             'stroke-linecap="round">'
-             '<animateTransform attributeName="transform" type="rotate" '
-             'values="0 14 48; -13 14 48; 0 14 48" dur="2.6s" repeatCount="indefinite"/></path>'
-             '</g>')
-
-    msgs = [("running tests ...", DIM), ("3 passed, 0 failed", "#6ee7a8"), ("LGTM - ship it", ACC_D)]
-    for i, (m, col) in enumerate(msgs):
-        k = i / len(msgs)
-        g.append(f'<text x="235" y="176" font-family="{MONO}" font-size="12.5" fill="{col}" '
-                 f'text-anchor="middle" opacity="0">{esc(m)}'
-                 f'<animate attributeName="opacity" values="0;1;1;0;0" '
-                 f'keyTimes="0;{k+0.02:.3f};{k+0.28:.3f};{k+0.31:.3f};1" dur="9s" '
-                 f'repeatCount="indefinite"/></text>')
+def desk_monitor(x, y, w=132, h=88):
+    """A small monitor on the desk, screen scrolling its own output."""
+    g = [f'<g transform="translate({x},{y})">']
+    g.append(f'<rect width="{w}" height="{h}" rx="6" fill="#0a1020" stroke="#2b3d5e"/>'
+             f'<rect x="5" y="5" width="{w-10}" height="{h-14}" rx="3" fill="#050a16"/>')
+    g.append(f'<clipPath id="mscr"><rect x="5" y="5" width="{w-10}" height="{h-14}"/></clipPath>')
+    rows = ["$ cargo test", "  wal .... ok", "  lsm .... ok", "  raft ... ok",
+            "3 passed", "$ ./deploy", "  building", "  shipped"]
+    g.append('<g clip-path="url(#mscr)"><g>'
+             '<animateTransform attributeName="transform" type="translate" '
+             'values="0 0; 0 -96; 0 0" dur="34s" repeatCount="indefinite"/>')
+    for i, r in enumerate(rows):
+        col = "#6ee7a8" if "ok" in r or "passed" in r else DIM
+        g.append(f'<text x="11" y="{18 + i*12}" font-family="{MONO}" font-size="7.5" '
+                 f'fill="{col}">{esc(r)}</text>')
+    g.append('</g></g>')
+    g.append(f'<rect x="{w/2-14}" y="{h-9}" width="28" height="5" fill="#2b3d5e"/>'
+             f'<rect x="{w/2-24}" y="{h-5}" width="48" height="4" rx="2" fill="#22314f"/>')
     g.append('</g>')
     return "".join(g)
 
 
+def pc_case(x, y):
+    """Tower under the desk, drive light blinking."""
+    return (f'<g transform="translate({x},{y})">'
+            f'<rect width="34" height="62" rx="4" fill="#0d1424" stroke="#2b3d5e"/>'
+            f'<rect x="7" y="8" width="20" height="3" rx="1.5" fill="#22314f"/>'
+            f'<rect x="7" y="15" width="20" height="3" rx="1.5" fill="#22314f"/>'
+            f'<circle cx="11" cy="28" r="2.6" fill="{ACCENT}">'
+            f'<animate attributeName="opacity" values="1;.15;1" dur="1.6s" repeatCount="indefinite"/>'
+            f'</circle>'
+            f'<circle cx="21" cy="28" r="2.2" fill="#6ee7a8">'
+            f'<animate attributeName="opacity" values=".2;1;.2" dur="4.2s" repeatCount="indefinite"/>'
+            f'</circle>'
+            f'<rect x="7" y="40" width="20" height="14" rx="2" fill="#050a16"/></g>')
+
+
+def bug_hunt(x, y, w=430):
+    """A snake crawling the floor, hunting a bug. Slow, looping."""
+    g = [f'<g transform="translate({x},{y})">']
+    g.append(f'<rect x="0" y="34" width="{w}" height="1" fill="#16203a"/>')
+    # the bug scurries ahead
+    g.append(f'<g transform="translate({w-40},0)">'
+             f'<animateTransform attributeName="transform" type="translate" '
+             f'values="{w-40} 0; 40 0; {w-40} 0" dur="26s" repeatCount="indefinite"/>'
+             f'<ellipse cx="0" cy="26" rx="6" ry="4.5" fill="#e05a5a"/>'
+             f'<circle cx="6" cy="26" r="3" fill="#c94848"/>'
+             f'<g stroke="#e05a5a" stroke-width="1.4" stroke-linecap="round">'
+             f'<path d="M-4 22 l-4 -5"/><path d="M0 22 l0 -6"/><path d="M4 22 l4 -5"/>'
+             f'<path d="M-4 30 l-4 5"/><path d="M0 30 l0 6"/><path d="M4 30 l4 5"/></g></g>')
+    # the snake follows, body segments trailing
+    g.append(f'<g transform="translate(20,0)">'
+             f'<animateTransform attributeName="transform" type="translate" '
+             f'values="20 0; {w-80} 0; 20 0" dur="26s" repeatCount="indefinite"/>')
+    for i in range(7):
+        r = 6.5 - i * 0.6
+        g.append(f'<circle cx="{-i*11}" cy="26" r="{r:.1f}" fill="{ACCENT}" '
+                 f'opacity="{0.95 - i*0.09:.2f}">'
+                 f'<animate attributeName="cy" values="26;{22 + (i%2)*8};26" dur="2.6s" '
+                 f'begin="{i*0.16:.2f}s" repeatCount="indefinite"/></circle>')
+    g.append(f'<circle cx="9" cy="26" r="7.5" fill="{ACC_D}"/>'
+             f'<circle cx="12" cy="23.5" r="1.7" fill="#04050a"/>'
+             f'<path d="M16 26 l7 -2 m-7 2 l7 2" stroke="#e05a5a" stroke-width="1.3" '
+             f'fill="none" stroke-linecap="round"/>')
+    g.append('</g>')
+    g.append(f'<text x="0" y="12" font-family="{MONO}" font-size="11" fill="{FAINT}">'
+             f'$ debugging &#8212; the snake always finds it eventually</text>')
+    g.append('</g>')
+    return "".join(g)
+
+
+def scene(x, y, t):
+    """Tux and a rubber duck pair-programming at a real desk.
+
+    Tux types on a keyboard, the duck talks (its beak opens) and points, a
+    monitor between them scrolls its own test output, and a tower hums away
+    underneath. The status line is a clipped scroller rather than three
+    stacked <text> elements -- overlapping opacity animations printed all
+    three messages on top of each other.
+    """
+    g = [f'<g transform="translate({x},{y})" opacity="1">{fade(t)}']
+
+    g.append(pc_case(6, 132))
+    g.append(f'<rect x="0" y="126" width="470" height="7" rx="3.5" fill="#16203a"/>'
+             f'<rect x="437" y="133" width="7" height="52" fill="#0f1830"/>')
+    g.append(desk_monitor(170, 30))
+
+    # --- Tux, typing ---
+    g.append('<g transform="translate(58,34)">'
+             '<path d="M-6 88 h74 v10 a10 10 0 0 1 -10 10 h-54 a10 10 0 0 1 -10 -10 z" fill="#16203a"/>'
+             '<ellipse cx="31" cy="66" rx="30" ry="28" fill="#12151c"/>'
+             '<ellipse cx="31" cy="70" rx="20" ry="21" fill="#e8eefc"/>'
+             '<ellipse cx="31" cy="26" rx="22" ry="21" fill="#12151c"/>'
+             '<ellipse cx="23" cy="25" rx="6.5" ry="8" fill="#e8eefc"/>'
+             '<ellipse cx="39" cy="25" rx="6.5" ry="8" fill="#e8eefc"/>'
+             '<circle cx="24.5" cy="26" r="3.2" fill="#0a0c11"/>'
+             '<circle cx="37.5" cy="26" r="3.2" fill="#0a0c11"/>'
+             '<ellipse cx="31" cy="37" rx="7.5" ry="5.2" fill="#f5a623"/>'
+             + headset(31, 14, 22, mic_left=False) +
+             # keyboard, and flippers tapping it
+             '<rect x="0" y="86" width="62" height="9" rx="3" fill="#22314f"/>'
+             '<rect x="4" y="88" width="54" height="2" rx="1" fill="#0f1830"/>'
+             '<ellipse cx="12" cy="82" rx="8.5" ry="5.5" fill="#12151c">'
+             '<animateTransform attributeName="transform" type="translate" '
+             'values="0 0; 0 4; 0 0" dur="0.9s" repeatCount="indefinite"/></ellipse>'
+             '<ellipse cx="50" cy="82" rx="8.5" ry="5.5" fill="#12151c">'
+             '<animateTransform attributeName="transform" type="translate" '
+             'values="0 0; 0 4; 0 0" dur="0.9s" begin="0.45s" repeatCount="indefinite"/></ellipse>'
+             '</g>')
+
+    # --- duck, talking and pointing ---
+    g.append('<g transform="translate(330,44)">'
+             '<path d="M-4 78 h72 v10 a10 10 0 0 1 -10 10 h-52 a10 10 0 0 1 -10 -10 z" fill="#16203a"/>'
+             '<ellipse cx="31" cy="58" rx="30" ry="22" fill="#f7c948"/>'
+             '<path d="M8 58 q13 -17 33 -10 -10 15 -33 10z" fill="#e0a915"/>'
+             '<g><animateTransform attributeName="transform" type="rotate" '
+             'values="0 40 30; -7 40 30; 0 40 30; 0 40 30" dur="5.2s" repeatCount="indefinite"/>'
+             '<circle cx="40" cy="28" r="17" fill="#f7c948"/>'
+             # beak: upper fixed, lower hinges open and shut while it talks
+             '<path d="M55 24h9q5 0 5 4t-5 4h-9z" fill="#f0932b"/>'
+             '<path d="M55 32h9q4 0 4 3t-4 3h-9z" fill="#d97e1f">'
+             '<animateTransform attributeName="transform" type="rotate" '
+             'values="0 55 32; 11 55 32; 0 55 32; 0 55 32; 3 55 32; 0 55 32" '
+             'dur="2.1s" repeatCount="indefinite"/></path>'
+             '<circle cx="45" cy="23" r="3" fill="#12151c"/>'
+             '<circle cx="46.2" cy="21.8" r="1.1" fill="#ffffff"/>'
+             + headset(40, 17, 17, mic_left=True) + '</g>'
+             '<path d="M14 46 q-16 -14 -22 -34" fill="none" stroke="#e0a915" stroke-width="7" '
+             'stroke-linecap="round">'
+             '<animateTransform attributeName="transform" type="rotate" '
+             'values="0 14 46; -12 14 46; 0 14 46" dur="4.4s" repeatCount="indefinite"/></path>'
+             '</g>')
+
+    # --- status: a clipped scroller, so exactly one line is ever visible ---
+    msgs = [("running tests ...", DIM), ("3 passed, 0 failed", "#6ee7a8"),
+            ("reviewing the diff ...", DIM), ("LGTM - ship it", ACC_D)]
+    g.append('<clipPath id="stat"><rect x="120" y="150" width="300" height="20"/></clipPath>')
+    g.append('<g clip-path="url(#stat)"><g>'
+             '<animateTransform attributeName="transform" type="translate" '
+             'values="0 0; 0 -22; 0 -44; 0 -66; 0 0" keyTimes="0;0.25;0.5;0.75;1" '
+             'dur="26s" repeatCount="indefinite"/>')
+    for i, (m, col) in enumerate(msgs):
+        g.append(f'<text x="270" y="{165 + i*22}" font-family="{MONO}" font-size="12.5" '
+                 f'fill="{col}" text-anchor="middle">{esc(m)}</text>')
+    g.append('</g></g>')
+    g.append('</g>')
+    return "".join(g)
+
+
+# The code pane tells the story of code itself, not a personal timeline:
+# hello world, then input and failure, then concurrency, then the guards you
+# only write once something is in production.
+SCENES = [
+    ("hello.rs", [
+        [("fn ", "kw"), ("main", "fn"), ("() {", "op")],
+        [('    println!', "fn"), ("(", "op"), ('"hello, world"', "str"), (");", "op")],
+        [("}", "op")],
+    ]),
+    ("input.rs", [
+        [("fn ", "kw"), ("parse", "fn"), ("(", "op"), ("s", "var"), (": &", "op"),
+         ("str", "ty"), (") -> ", "op"), ("Result", "ty"), ("<", "op"), ("u64", "ty"), ("> {", "op")],
+        [("    // the first thing the world teaches you", "com")],
+        [("    s.", "op"), ("trim", "fn"), ("().", "op"), ("parse", "fn"),
+         ("().", "op"), ("map_err", "fn"), ("(Error::", "op"), ("Parse", "ty"), (")", "op")],
+        [("}", "op")],
+    ]),
+    ("worker.rs", [
+        [("async fn ", "kw"), ("run", "fn"), ("(", "op"), ("jobs", "var"), (": ", "op"),
+         ("Receiver", "ty"), ("<", "op"), ("Job", "ty"), (">) {", "op")],
+        [("    while let ", "kw"), ("Some", "ty"), ("(job) = jobs.", "op"),
+         ("recv", "fn"), ("().", "op"), ("await", "kw"), (" {", "op")],
+        [("        tokio::", "op"), ("spawn", "fn"), ("(", "op"), ("handle", "fn"), ("(job));", "op")],
+        [("    }", "op")],
+        [("}", "op")],
+    ]),
+    ("guard.rs", [
+        [("// production is where the edge cases live", "com")],
+        [("fn ", "kw"), ("admit", "fn"), ("(&", "op"), ("self", "var"), (", ", "op"),
+         ("req", "var"), (": ", "op"), ("Request", "ty"), (") -> ", "op"), ("Result", "ty"), ("<()> {", "op")],
+        [("    if ", "kw"), ("self", "var"), (".inflight >= ", "op"), ("self", "var"), (".limit {", "op")],
+        [("        return ", "kw"), ("Err", "ty"), ("(", "op"), ("Shed", "ty"), ("::Overloaded);", "op")],
+        [("    }", "op")],
+        [("    self", "var"), (".budget.", "fn"), ("charge", "fn"), ("(req.cost)?;", "op")],
+        [("    Ok", "ty"), ("(())", "op")],
+        [("}", "op")],
+    ]),
+]
+
+SYN = {
+    "kw":  "#c586c0", "ty":  "#4ec9b0", "fn":  "#dcdcaa", "str": "#ce9178",
+    "num": "#b5cea8", "com": "#6a9955", "op":  "#d4d4d4", "var": "#9cdcfe",
+}
+
+SCENE_SECS = 16.0                     # each program gets its own slow turn
+CYCLE_SECS = SCENE_SECS * len(SCENES)
+
+
 def panel_header(d):
-    """Name and title on the left, code typing itself out on the right."""
-    w, h = 1240, 630
+    """Name and title left; a code pane and the pair-programming desk right."""
+    w, h = 1240, 596
     lx = 40
-    ex, ey, ew, eh = 636, 66, 566, 330      # editor pane
-    fs, lh = 13, 22
+    ex, ey, ew, eh = 636, 56, 566, 268
+    fs, lh = 13, 21
     ch = fs * 0.605
 
     p = [head("hd", w, h, "Vigneshwar L")]
     p.append(f'<rect width="{w}" height="{h}" fill="{PANEL}"/>'
-             f'<rect width="{w}" height="{h}" fill="url(#ghd)"/>'
-             + particles("hd", w, h))
+             f'<rect width="{w}" height="{h}" fill="url(#ghd)"/>')
 
     # ---- left: identity ----
-    p.append(f'<g opacity="1">{fade(0.4)}'
+    p.append(f'<g opacity="1">{fade(0.6)}'
              f'<rect x="{lx}" y="72" width="52" height="3" rx="1.5" fill="url(#rhd)"/>'
              f'<text x="{lx}" y="132" font-family="{MONO}" font-size="38" fill="{TEXT}" '
              f'font-weight="700">Vigneshwar L</text></g>')
     lines = [
-        ("Backend  ·  Systems  ·  AI / ML", TEXT, 15.5, 1.0),
-        ("Python  ·  Go  ·  Rust", DIM, 14.5, 1.6),
-        ("OpenTelemetry · CNCF · Helm · oxc · ripgrep", DIM, 13.5, 2.2),
-        ("clients, startups & founders · Shipd · Handshake AI", DIM, 13.5, 2.8),
-        ("models, RL environments, agents, RAG and storage engines", DIM, 13.5, 3.4),
-        ("Tamil Nadu, India", FAINT, 13, 4.0),
+        ("Backend  ·  Systems  ·  AI / ML", TEXT, 15.5, 1.8),
+        ("Python  ·  Go  ·  Rust", DIM, 14.5, 3.0),
+        ("OpenTelemetry · CNCF · Helm · oxc · ripgrep", DIM, 13.5, 4.2),
+        ("clients, startups & founders · Shipd · Handshake AI", DIM, 13.5, 5.4),
+        ("models, RL environments, agents, RAG and storage engines", DIM, 13.5, 6.6),
+        ("Tamil Nadu, India", FAINT, 13, 7.8),
     ]
     y = 170
     for txt, col, size, t in lines:
         p.append(f'<text x="{lx}" y="{y}" font-family="{MONO}" font-size="{size}" '
-                 f'fill="{col}" opacity="1">{esc(txt)}{fade(t)}</text>')
+                 f'fill="{col}" opacity="1">{esc(txt)}{fade(t, 1.0)}</text>')
         y += 30
-    p.append(f'<g opacity="1">{fade(4.6)}'
+    p.append(f'<g opacity="1">{fade(9.2, 1.0)}'
              f'<rect x="{lx}" y="{y+6}" width="540" height="1" fill="{BORDER}"/>'
-             f'<circle cx="{lx+6}" cy="{y+44}" r="5.5" fill="{TEXT}">'
-             f'<animate attributeName="opacity" values="1;.25;1" dur="2.4s" repeatCount="indefinite"/>'
+             f'<circle cx="{lx+6}" cy="{y+44}" r="5.5" fill="{ACCENT}">'
+             f'<animate attributeName="opacity" values="1;.25;1" dur="3.6s" repeatCount="indefinite"/>'
              f'</circle>'
              f'<text x="{lx+22}" y="{y+49}" font-family="{MONO}" font-size="15" fill="{TEXT}" '
              f'font-weight="700">looking for open source contributions</text>'
              f'<text x="{lx}" y="{y+78}" font-family="{MONO}" font-size="12.5" fill="{FAINT}">'
              f'open to new projects, mentorships and international contract work</text></g>')
 
-    # ---- right: editor pane ----
+    # ---- left, lower: the snake hunting a bug ----
+    p.append(f'<g opacity="1">{fade(11.0, 1.2)}' + bug_hunt(lx, 470) + '</g>')
+
+    # ---- right: code pane, cycling through the scenes ----
     p.append(f'<rect x="{ex}" y="{ey}" width="{ew}" height="{eh}" rx="10" fill="#080c18" '
              f'stroke="{BORDER}"/>'
              f'<path d="M{ex}.5 {ey+10}a10 10 0 0 1 10-10h{ew-21}a10 10 0 0 1 10 10v22H{ex}.5z" '
              f'fill="#0f1526" stroke="{BORDER}"/>'
              f'<circle cx="{ex+18}" cy="{ey+17}" r="4" fill="#25334f"/>'
-             f'<circle cx="{ex+33}" cy="{ey+17}" r="4" fill="#55595f"/>'
-             f'<circle cx="{ex+48}" cy="{ey+17}" r="4" fill="#787d84"/>'
-             f'<text x="{ex+ew/2}" y="{ey+21}" font-family="{MONO}" font-size="12" fill="{FAINT}" '
-             f'text-anchor="middle">engine.rs</text>'
+             f'<circle cx="{ex+33}" cy="{ey+17}" r="4" fill="#35486d"/>'
+             f'<circle cx="{ex+48}" cy="{ey+17}" r="4" fill="{ACCENT}" opacity=".8"/>'
              f'<rect x="{ex+1}" y="{ey+33}" width="34" height="{eh-34}" fill="#0a0f1e"/>')
 
-    cy = ey + 62
-    t = 1.0
-    for i, spans in enumerate(CODE):
-        plain = "".join(tx for tx, _ in spans)
-        p.append(f'<text x="{ex+22}" y="{cy}" font-family="{MONO}" font-size="11.5" '
-                 f'fill="#25334f" text-anchor="end" opacity="1">{i+1}{fade(t)}</text>')
-        if plain.strip():
-            cw = len(plain) * ch + 10
-            uid = f"cl{i}"
-            p.append(f'<defs><clipPath id="{uid}"><rect x="{ex+44}" y="{cy-fs}" '
-                     f'height="{fs+7}" width="{cw:.1f}">'
-                     + anim("width", f"{cw:.1f}", t, max(0.5, len(plain) / 22)) +
-                     '</rect></clipPath></defs>')
-            p.append(f'<g clip-path="url(#{uid})"><text x="{ex+44}" y="{cy}" '
-                     f'font-family="{MONO}" font-size="{fs}" xml:space="preserve">')
-            for tx, kind in spans:
-                p.append(f'<tspan fill="{SYN[kind]}">{esc(tx)}</tspan>')
-            p.append('</text></g>')
-        cy += lh
-        t += 0.62
+    for si, (fname, code) in enumerate(SCENES):
+        k0 = si * SCENE_SECS / CYCLE_SECS
+        k1 = (si * SCENE_SECS + 0.4) / CYCLE_SECS
+        k2 = ((si + 1) * SCENE_SECS - 0.8) / CYCLE_SECS
+        k3 = ((si + 1) * SCENE_SECS - 0.4) / CYCLE_SECS
+        last = si == len(SCENES) - 1
+        # base opacity: the final scene stays visible if SMIL never runs
+        p.append(f'<g opacity="{1 if last else 0}">'
+                 f'<animate attributeName="opacity" values="0;1;1;0;0" '
+                 f'keyTimes="0;{k1:.4f};{k2:.4f};{k3:.4f};1" dur="{CYCLE_SECS}s" '
+                 f'repeatCount="indefinite"/>')
+        p.append(f'<text x="{ex+ew/2}" y="{ey+21}" font-family="{MONO}" font-size="12" '
+                 f'fill="{FAINT}" text-anchor="middle">{esc(fname)}</text>')
+        cy = ey + 62
+        tt = si * SCENE_SECS + 0.8
+        for li, spans in enumerate(code):
+            plain = "".join(tx for tx, _ in spans)
+            p.append(f'<text x="{ex+22}" y="{cy}" font-family="{MONO}" font-size="11.5" '
+                     f'fill="#2b3d5e" text-anchor="end">{li+1}</text>')
+            if plain.strip():
+                cw = len(plain) * ch + 10
+                uid = f"s{si}l{li}"
+                a0 = tt / CYCLE_SECS
+                a1 = (tt + max(0.9, len(plain) / 14)) / CYCLE_SECS
+                p.append(f'<clipPath id="{uid}"><rect x="{ex+44}" y="{cy-fs}" height="{fs+7}" '
+                         f'width="{cw:.1f}">'
+                         f'<animate attributeName="width" values="0;0;{cw:.1f};{cw:.1f}" '
+                         f'keyTimes="0;{a0:.4f};{a1:.4f};1" dur="{CYCLE_SECS}s" '
+                         f'repeatCount="indefinite"/></rect></clipPath>')
+                p.append(f'<g clip-path="url(#{uid})"><text x="{ex+44}" y="{cy}" '
+                         f'font-family="{MONO}" font-size="{fs}" xml:space="preserve">')
+                for tx, kind in spans:
+                    p.append(f'<tspan fill="{SYN[kind]}">{esc(tx)}</tspan>')
+                p.append('</text></g>')
+                tt += max(0.9, len(plain) / 14) + 0.25
+            cy += lh
+        p.append('</g>')
 
-    p.append(scene(ex + 46, ey + 356, t + 0.4))
-
-    # caret parked at the end
-    p.append(f'<rect x="{ex+44}" y="{cy-fs-2}" width="7.5" height="15" fill="#d4d4d4" opacity="1">'
-             f'<animate attributeName="opacity" values="1;0;1" dur="1.1s" repeatCount="indefinite"/>'
-             f'{fade(t)}</rect>')
+    # ---- right, lower: the desk ----
+    p.append(scene(ex + 40, ey + 300, 12.0))
     p.append("</svg>")
     return "".join(p)
 
 
-# --------------------------------------------------------------- experience --
 
 EXPERIENCE = [
     ("Clients & startups", "since 2023",
