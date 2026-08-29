@@ -418,7 +418,7 @@ def panel_experience():
     y, t = 104, 1.0
     for org, role, note in EXPERIENCE:
         p.append(f'<g opacity="1">{fade(t)}'
-                 f'<rect x="30" y="{y}" width="{w-60}" height="66" rx="9" fill="{CARD}" stroke="{BORDER}"/>'
+                 f'<rect x="30" y="{y}" width="{w-60}" height="66" fill="{CARD}"/>'
                  f'<rect x="30" y="{y}" width="3" height="66" rx="1.5" fill="{BLUE_D}"/>'
                  f'<text x="46" y="{y+26}" font-family="{MONO}" font-size="14" fill="{TEXT}" '
                  f'font-weight="700">{esc(org)}</text>'
@@ -506,7 +506,7 @@ def panel_skyline(d):
     for i, (big, lab, note, col) in enumerate(tiles):
         x = 30 + i * (tw + 18)
         p.append(f'<g opacity="1">{fade(0.6 + i * 0.5)}'
-                 f'<rect x="{x}" y="96" width="{tw}" height="90" rx="10" fill="{CARD}" stroke="{BORDER}"/>'
+                 f'<rect x="{x}" y="96" width="{tw}" height="90" fill="{CARD}"/>'
                  f'<rect x="{x}" y="96" width="{tw}" height="2.5" rx="1.25" fill="url(#rct)"/>'
                  f'<text x="{x+18}" y="140" font-family="{MONO}" font-size="28" fill="{col}" '
                  f'font-weight="700">{esc(big)}</text>'
