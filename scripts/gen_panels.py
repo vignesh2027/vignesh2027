@@ -286,74 +286,71 @@ def pc_case(x, y):
             f'<rect x="7" y="40" width="20" height="14" rx="2" fill="#050a16"/></g>')
 
 
-def bug_hunt(x, y, w=430):
-    """A snake hunting three bugs in sequence, getting faster each time.
+def swim_duck(scale=1.0, flip=False):
+    """A small yellow duck seen side on, sitting in the water."""
+    f = 'transform="scale(-1,1)" ' if flip else ''
+    return (f'<g {f}transform-origin="0 0">'
+            f'<ellipse cx="0" cy="4" rx="17" ry="11" fill="#f7c948"/>'
+            f'<path d="M-13 4 q9 -12 22 -7 -7 11 -22 7z" fill="#e0a915"/>'
+            f'<path d="M-17 2 q-6 -7 -1 -11 3 5 6 6z" fill="#f7c948"/>'
+            f'<circle cx="13" cy="-11" r="10" fill="#f7c948"/>'
+            f'<path d="M22 -14h7q4 0 4 3.5t-4 3.5h-7z" fill="#f0932b"/>'
+            f'<circle cx="16" cy="-14" r="1.9" fill="#12151c"/>'
+            f'<circle cx="16.7" cy="-14.7" r="0.7" fill="#ffffff"/>'
+            f'</g>')
 
-    Right to the first bug, turn and back left for the second, then a fast dash
-    right for the third. Each bug vanishes as the snake reaches it. The body is
-    one stroked path whose `d` is animated between two wave phases, so it reads
-    as a snake rather than the string of loose dots this was before.
+
+def river(x, y, w=430):
+    """Two ducks drifting on a river.
+
+    Replaces the snake-and-bug hunt. They bob, drift at slightly different
+    speeds so they never move as one, and trail ripples behind them.
     """
-    # x positions of the three bugs, and the timeline that hunts them
-    b1, b2, b3 = 232, 96, 330
-    legs = [12.0, 8.0, 4.5, 3.5]                 # slower -> faster, then a pause
-    total = sum(legs)
-    k = []
-    acc = 0.0
-    for L in legs:
-        acc += L
-        k.append(acc / total)
-
     g = [f'<g transform="translate({x},{y})">']
-    g.append(f'<rect x="0" y="40" width="{w}" height="1" fill="#16203a"/>')
-    g.append(f'<text x="0" y="14" font-family="{MONO}" font-size="11" fill="{FAINT}">'
-             f'$ debugging &#8212; three bugs, one snake, increasing speed</text>')
+    g.append(f'<text x="0" y="6" font-family="{MONO}" font-size="11" fill="{FAINT}">'
+             f'$ afk &#8212; rubber duck debugging, offline</text>')
 
-    # --- the three bugs ---
-    for i, (bx, gone) in enumerate([(b1, k[0]), (b2, k[1]), (b3, k[2])]):
-        g.append(f'<g transform="translate({bx},0)" opacity="1">'
-                 f'<animate attributeName="opacity" values="1;1;0;0;1" '
-                 f'keyTimes="0;{gone:.4f};{min(gone+0.012,0.999):.4f};0.9999;1" '
-                 f'dur="{total}s" calcMode="discrete" repeatCount="indefinite"/>'
-                 f'<g stroke="#c94848" stroke-width="1.2" stroke-linecap="round" fill="none">'
-                 f'<path d="M-4 29 l-4.5 -4"/><path d="M-4 32.5 l-5 1"/><path d="M-4 36 l-4.5 4"/>'
-                 f'<path d="M4 29 l4.5 -4"/><path d="M4 32.5 l5 1"/><path d="M4 36 l4.5 4"/></g>'
-                 f'<ellipse cx="0" cy="33" rx="5" ry="4" fill="#e05a5a"/>'
-                 f'<ellipse cx="0" cy="31.5" rx="5" ry="1.5" fill="#c94848"/>'
-                 f'<circle cx="0" cy="27.5" r="2.5" fill="#c94848"/>'
-                 f'<path d="M-1.5 25.5 l-2 -3 M1.5 25.5 l2 -3" stroke="#c94848" stroke-width="1.1" '
-                 f'stroke-linecap="round" fill="none"/>'
-                 f'<circle cx="-1" cy="27" r="0.7" fill="#f2d0d0"/>'
-                 f'<circle cx="1" cy="27" r="0.7" fill="#f2d0d0"/></g>')
+    # --- water ---
+    g.append(f'<clipPath id="riv"><rect x="0" y="18" width="{w}" height="46" rx="4"/></clipPath>')
+    g.append(f'<g clip-path="url(#riv)">'
+             f'<rect x="0" y="18" width="{w}" height="46" rx="4" fill="#0a1526"/>')
+    waves = [(30, "#1b3a5c", 0.9, 17.0), (42, "#22508a", 0.75, 21.0),
+             (54, "#2f6bb5", 0.55, 26.0)]
+    for wy, col, op, dur in waves:
+        seg = 46
+        d = f"M-{seg} {wy} " + " ".join(
+            f"q {seg/4:.0f} {-6 if i % 2 == 0 else 6} {seg/2:.0f} 0 t {seg/2:.0f} 0"
+            for i in range(int(w / seg) + 3))
+        g.append(f'<path d="{d}" fill="none" stroke="{col}" stroke-width="2" '
+                 f'stroke-linecap="round" opacity="{op}">'
+                 f'<animateTransform attributeName="transform" type="translate" '
+                 f'values="0 0; {seg} 0" dur="{dur}s" repeatCount="indefinite"/></path>')
+    g.append('</g>')
 
-    # --- the snake ---
-    g.append(f'<g transform="translate(80,0)">'
-             f'<animateTransform attributeName="transform" type="translate" '
-             f'values="80 0; {b1} 0; {b2} 0; {b3} 0; 80 0" '
-             f'keyTimes="0;{k[0]:.4f};{k[1]:.4f};{k[2]:.4f};1" '
-             f'dur="{total}s" repeatCount="indefinite"/>')
-    # inner group flips to face the direction of travel
-    g.append(f'<g><animateTransform attributeName="transform" type="scale" '
-             f'values="1 1; -1 1; 1 1; 1 1; 1 1" '
-             f'keyTimes="0;{k[0]:.4f};{k[1]:.4f};{k[2]:.4f};1" '
-             f'dur="{total}s" calcMode="discrete" repeatCount="indefinite"/>')
-    body_a = "M0 32 q -13 -7 -26 0 t -24 0"
-    body_b = "M0 32 q -13 7 -26 0 t -24 0"
-    g.append(f'<path d="{body_a}" fill="none" stroke="{ACCENT}" stroke-width="9" '
-             f'stroke-linecap="round" opacity=".95">'
-             f'<animate attributeName="d" values="{body_a};{body_b};{body_a}" dur="2.4s" '
-             f'repeatCount="indefinite"/></path>')
-    g.append(f'<path d="{body_a}" fill="none" stroke="{ACC_D}" stroke-width="3.2" '
-             f'stroke-linecap="round" opacity=".5">'
-             f'<animate attributeName="d" values="{body_a};{body_b};{body_a}" dur="2.4s" '
-             f'repeatCount="indefinite"/></path>')
-    g.append(f'<ellipse cx="5" cy="32" rx="8" ry="6.5" fill="{ACC_D}"/>'
-             f'<circle cx="7.5" cy="30" r="1.5" fill="#04050a"/>'
-             f'<path d="M13 32 l6 -2.5 m-6 2.5 l6 2.5" stroke="#e05a5a" stroke-width="1.2" '
-             f'fill="none" stroke-linecap="round">'
-             f'<animate attributeName="opacity" values="1;0;1;1" dur="1.1s" '
-             f'repeatCount="indefinite"/></path>')
-    g.append('</g></g></g>')
+    # --- the two ducks, drawn OUTSIDE the water clip so their heads are whole ---
+    for i, (start, span, dur, bob, sc) in enumerate(
+            [(120, w + 80, 34.0, 3.2, 1.0), (268, w + 80, 41.0, 2.4, 0.82)]):
+        yy = 42 + i * 9
+        g.append(f'<g transform="translate({start},{yy})">'
+                 f'<animateTransform attributeName="transform" type="translate" '
+                 f'values="-40 {yy}; {span} {yy}" dur="{dur}s" '
+                 f'repeatCount="indefinite"/>')
+        # ripples trailing behind
+        for r in range(2):
+            g.append(f'<ellipse cx="{-22 - r*15}" cy="{6*sc:.0f}" rx="{9 - r*3}" ry="2.4" '
+                     f'fill="none" stroke="#2f6bb5" stroke-width="1.2" opacity="{0.5 - r*0.18:.2f}">'
+                     f'<animate attributeName="rx" values="{9-r*3};{16-r*3};{9-r*3}" '
+                     f'dur="3.4s" begin="{r*0.9:.1f}s" repeatCount="indefinite"/>'
+                     f'<animate attributeName="opacity" values="{0.5-r*0.18:.2f};0;'
+                     f'{0.5-r*0.18:.2f}" dur="3.4s" begin="{r*0.9:.1f}s" '
+                     f'repeatCount="indefinite"/></ellipse>')
+        g.append(f'<g transform="scale({sc})">'
+                 f'<animateTransform attributeName="transform" type="translate" '
+                 f'values="0 0; 0 -3; 0 0" dur="{bob}s" repeatCount="indefinite" additive="sum"/>'
+                 + swim_duck() + '</g>')
+        g.append('</g>')
+
+    g.append('</g>')
     return "".join(g)
 
 
@@ -473,12 +470,6 @@ def scene(x, y, t):
              'dur="2.1s" repeatCount="indefinite"/></path>'
              '<circle cx="43" cy="21" r="2.8" fill="#12151c"/>'
              '<circle cx="44.1" cy="19.9" r="1" fill="#ffffff"/>'
-             # glasses
-             '<g fill="none" stroke="#1b2029" stroke-width="2.2">'
-             '<circle cx="43" cy="21" r="7.5"/><circle cx="28" cy="23" r="7"/>'
-             '<path d="M35.6 21.4 q3.5 -2 7 -0.6"/><path d="M21 22 l-6 -2"/></g>'
-             '<circle cx="43" cy="21" r="7.5" fill="#cfe0ff" opacity=".12"/>'
-             '<circle cx="28" cy="23" r="7" fill="#cfe0ff" opacity=".12"/>'
              + headset(38, 15, 16, mic_left=True) + '</g>'
              # keyboard, and both wings tapping it
              '<rect x="0" y="74" width="58" height="8" rx="3" fill="#22314f"/>'
@@ -596,7 +587,7 @@ def panel_header(d):
              f'open to new projects, mentorships and international contract work</text></g>')
 
     # ---- left, lower: the snake hunting a bug ----
-    p.append(f'<g opacity="1">{fade(11.0, 1.2)}' + bug_hunt(lx, 470) + '</g>')
+    p.append(f'<g opacity="1">{fade(11.0, 1.2)}' + river(lx, 470) + '</g>')
 
     # ---- right: code pane, cycling through the scenes ----
     p.append(f'<rect x="{ex}" y="{ey}" width="{ew}" height="{eh}" rx="10" fill="#080c18" '
