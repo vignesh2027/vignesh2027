@@ -30,25 +30,31 @@ USER = "vignesh2027"
 AGG_STARS = "4,658"
 REVEAL = 26.0       # whole-panel reveal length; deliberately slow
 
-BG     = "#05070c"
-PANEL  = "#0a0f1a"
-CARD   = "#0b1220"
-BORDER = "#13395e"
-BLUE   = "#58a6ff"
-BLUE_D = "#1f6feb"
-CYAN   = "#22d3ee"
-VIOLET = "#8b7cff"
-LIT    = "#a5d6ff"
-DIM    = "#8ba3bd"
-FAINT  = "#41536b"
-TEXT   = "#f0f6fc"
+# Monochrome base with a single warm accent. Dark blue read as "another dev
+# profile"; black and white with one accent colour is the more restrained,
+# more professional look, and the accent carries the emphasis on its own.
+BG     = "#000000"
+PANEL  = "#08090b"
+CARD   = "#0e0f12"
+BORDER = "#26282d"
+TEXT   = "#ffffff"
+DIM    = "#9aa0a6"
+FAINT  = "#55595f"
+ACCENT = "#f0b429"      # amber, matches the coffee button
+ACC_D  = "#c98f18"
+# aliases so existing call sites keep working
+BLUE   = TEXT
+BLUE_D = ACCENT
+CYAN   = ACCENT
+VIOLET = "#d8dade"
+LIT    = "#ffffff"
 MONO   = "ui-monospace, SFMono-Regular, Menlo, Consolas, 'DejaVu Sans Mono', monospace"
 
-HEAT = ["#0d1c30", "#13395e", "#1b5299", "#1f6feb", "#58a6ff"]
+HEAT = ["#141518", "#2a2c31", "#4a4d54", "#8b9096", "#ffffff"]
 
 # Windows in the skyline towers: lit ones cycle through the accent range so the
 # panel has colour without leaving the dark-blue scheme.
-WINDOW = ["#1f6feb", "#58a6ff", "#22d3ee", "#a5d6ff", "#8b7cff"]
+WINDOW = ["#5c6067", "#8b9096", "#b9bec4", "#ffffff", "#f0b429"]
 
 
 def esc(s):
@@ -76,15 +82,47 @@ def fade(t, dur=0.5, span=REVEAL):
     return anim("opacity", "1", t, dur, span=span)
 
 
+def particles(uid, w, h, n=150):
+    """Static drifting particle field behind a panel.
+
+    Positions come from a small deterministic LCG rather than random(), so a
+    rebuild produces byte-identical output and the committed SVG only changes
+    when the data does.
+    """
+    seed = sum(ord(c) for c in uid) * 7919 + 12345
+    out = [f'<g clip-path="url(#c{uid})">']
+    for i in range(n):
+        seed = (1103515245 * seed + 12345) % (1 << 31)
+        x = seed % w
+        seed = (1103515245 * seed + 12345) % (1 << 31)
+        y = seed % h
+        seed = (1103515245 * seed + 12345) % (1 << 31)
+        r = 0.6 + (seed % 100) / 100 * 1.5
+        seed = (1103515245 * seed + 12345) % (1 << 31)
+        op = 0.05 + (seed % 100) / 100 * 0.22
+        seed = (1103515245 * seed + 12345) % (1 << 31)
+        dur = 9 + (seed % 100) / 100 * 14
+        col = ACCENT if i % 23 == 0 else "#ffffff"
+        out.append(f'<circle cx="{x}" cy="{y}" r="{r:.2f}" fill="{col}" opacity="{op:.3f}">'
+                   f'<animate attributeName="opacity" values="{op:.3f};{op*2.4:.3f};{op:.3f}" '
+                   f'dur="{dur:.1f}s" repeatCount="indefinite"/>'
+                   f'<animate attributeName="cy" values="{y};{max(0, y-14)};{y}" '
+                   f'dur="{dur*1.7:.1f}s" repeatCount="indefinite"/></circle>')
+    out.append('</g>')
+    return "".join(out)
+
+
 def head(uid, w, h, label):
     return (f'<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 {w} {h}" width="{w}" '
             f'height="{h}" role="img" aria-label="{esc(label)}">'
             f'<defs><radialGradient id="g{uid}" cx="50%" cy="0%" r="90%">'
-            f'<stop offset="0%" stop-color="{BLUE_D}" stop-opacity=".13"/>'
-            f'<stop offset="100%" stop-color="{BLUE_D}" stop-opacity="0"/></radialGradient>'
+            f'<stop offset="0%" stop-color="#ffffff" stop-opacity=".05"/>'
+            f'<stop offset="100%" stop-color="#ffffff" stop-opacity="0"/></radialGradient>'
             f'<linearGradient id="r{uid}" x1="0" y1="0" x2="1" y2="0">'
-            f'<stop offset="0%" stop-color="{CYAN}"/>'
-            f'<stop offset="100%" stop-color="#0b2545"/></linearGradient></defs>')
+            f'<stop offset="0%" stop-color="{ACCENT}"/>'
+            f'<stop offset="100%" stop-color="#3a2f14"/></linearGradient>'
+            f'<clipPath id="c{uid}"><rect width="{w}" height="{h}" rx="12"/></clipPath>'
+            f'</defs>')
 
 
 def shell(uid, w, h, title, label, black=False):
@@ -93,11 +131,12 @@ def shell(uid, w, h, title, label, black=False):
             f'<rect width="{w}" height="{h}" fill="{BG}" rx="12"/>'
             f'<rect x="0.5" y="0.5" width="{w-1}" height="{h-1}" rx="12" fill="{bg}" stroke="{BORDER}"/>'
             f'<rect x="1" y="1" width="{w-2}" height="{h-2}" rx="11" fill="url(#g{uid})"/>'
+            + particles(uid, w, h) +
             f'<path d="M0.5 12.5a12 12 0 0 1 12-12h{w-25}a12 12 0 0 1 12 12V42H0.5z" '
-            f'fill="#0d1526" stroke="{BORDER}"/>'
-            f'<circle cx="24" cy="21" r="5" fill="#1b5299"/>'
-            f'<circle cx="43" cy="21" r="5" fill="#205295"/>'
-            f'<circle cx="62" cy="21" r="5" fill="{CYAN}" opacity=".75"/>'
+            f'fill="#101114" stroke="{BORDER}"/>'
+            f'<circle cx="24" cy="21" r="5" fill="#3a3d42"/>'
+            f'<circle cx="43" cy="21" r="5" fill="#5c6067"/>'
+            f'<circle cx="62" cy="21" r="5" fill="{ACCENT}" opacity=".8"/>'
             f'<text x="{w/2}" y="26" font-family="{MONO}" font-size="13.5" fill="{DIM}" '
             f'text-anchor="middle">{esc(title)}</text>')
 
@@ -107,6 +146,7 @@ def section(uid, w, h, title, label, kicker=""):
          f'<rect width="{w}" height="{h}" fill="{PANEL}" rx="12"/>'
          f'<rect x="0.5" y="0.5" width="{w-1}" height="{h-1}" rx="12" fill="none" stroke="{BORDER}"/>'
          f'<rect x="1" y="1" width="{w-2}" height="{h-2}" rx="11" fill="url(#g{uid})"/>'
+         + particles(uid, w, h) +
          f'<rect x="30" y="34" width="46" height="3" rx="1.5" fill="url(#r{uid})"/>'
          f'<text x="30" y="72" font-family="{MONO}" font-size="21" fill="{TEXT}" '
          f'font-weight="700">{esc(title)}</text>')
@@ -215,7 +255,7 @@ def panel_terminal(d):
         dots = "." * max(2, 22 - len(k))
         p.append(f'<g opacity="1">{fade(rt)}'
                  f'<text x="{rx}" y="{ry}" font-family="{MONO}" font-size="14" fill="{DIM}">'
-                 f'{esc(k)} <tspan fill="#1b3a5c">{dots}</tspan> '
+                 f'{esc(k)} <tspan fill="#2f3237">{dots}</tspan> '
                  f'<tspan fill="{TEXT}" font-weight="700">{esc(v)}</tspan></text></g>')
         ry += 34
         rt += 0.8
@@ -288,11 +328,13 @@ def panel_experience():
 
 # ---------------------------------------------------------------- languages --
 
+# Monochrome ramp with the accent on the leader. GitHub's official language
+# colours were the only hues left breaking the black-and-white scheme.
 SKILLS = [
-    ("Python",     72, "#3572A5"),
-    ("Rust",       68, "#dea584"),
-    ("Go",         65, "#00ADD8"),
-    ("TypeScript", 42, "#3178c6"),
+    ("Python",     72, ACCENT),
+    ("Rust",       68, "#ffffff"),
+    ("Go",         65, "#9aa0a6"),
+    ("TypeScript", 42, "#5c6067"),
 ]
 
 
@@ -305,7 +347,7 @@ def panel_langs():
         bw = round(lvl / 100 * 320)
         p.append(f'<g opacity="1">{fade(t)}'
                  f'<text x="30" y="{y+12}" font-family="{MONO}" font-size="14" fill="{TEXT}">{esc(name)}</text>'
-                 f'<rect x="170" y="{y+1}" width="320" height="14" rx="7" fill="#0d1c30"/>'
+                 f'<rect x="170" y="{y+1}" width="320" height="14" rx="7" fill="#191b1f"/>'
                  f'<rect x="170" y="{y+1}" width="{bw}" height="14" rx="7" fill="{colr}">'
                  + anim("width", str(bw), t + 0.2, 1.6) + '</rect>'
                  f'<text x="{w-30}" y="{y+12}" font-family="{MONO}" font-size="13" fill="{DIM}" '
@@ -378,8 +420,8 @@ def panel_skyline(d):
         return max(88, round((total / top) ** 0.5 * max_h))
 
     p.append(f'<defs><linearGradient id="sky" x1="0" y1="0" x2="0" y2="1">'
-             f'<stop offset="0%" stop-color="{CYAN}" stop-opacity=".16"/>'
-             f'<stop offset="100%" stop-color="{CYAN}" stop-opacity="0"/></linearGradient></defs>'
+             f'<stop offset="0%" stop-color="#ffffff" stop-opacity=".07"/>'
+             f'<stop offset="100%" stop-color="#ffffff" stop-opacity="0"/></linearGradient></defs>'
              f'<rect x="30" y="{ground-max_h-30}" width="{w-60}" height="{max_h+30}" '
              f'fill="url(#sky)" opacity=".55"/>'
              f'<rect x="30" y="{ground}" width="{w-60}" height="2" rx="1" fill="{BORDER}"/>')
@@ -416,7 +458,7 @@ def panel_skyline(d):
                 shade = WINDOW[(n + i) % len(WINDOW)]
                 op = 0.35 + min(0.6, c / 12)
             else:
-                shade, op = "#122744", 0.85
+                shade, op = "#191b1f", 0.9
             p.append(f'<rect x="{wx:.0f}" y="{wy:.0f}" width="7" height="8" rx="1.5" '
                      f'fill="{shade}" opacity="{op:.2f}">'
                      + anim("opacity", f"{op:.2f}", t + 0.5 + n * 0.01, 0.5) + '</rect>')

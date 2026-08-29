@@ -63,10 +63,10 @@ CUP_DEFS = ('<defs><linearGradient id="cup" x1="0" y1="0" x2="1" y2="1">'
             '<stop offset="100%" stop-color="#ff9d2e"/></linearGradient></defs>')
 
 BUTTONS = {
-    "btn-linkedin.svg": ("LinkedIn",        "linkedin", "#58a6ff", "#0d1526", ""),
-    "btn-email.svg":    ("Email",           "email",    "#22d3ee", "#0d1526", ""),
-    "btn-repos.svg":    ("Repositories",    "repos",    "#8b7cff", "#0d1526", ""),
-    "btn-sponsor.svg":  ("Buy me a coffee", "coffee",   "#ffc233", "#141021", CUP_DEFS),
+    "btn-linkedin.svg": ("LinkedIn",        "linkedin", "#d8dade", "#0e0f12", ""),
+    "btn-email.svg":    ("Email",           "email",    "#d8dade", "#0e0f12", ""),
+    "btn-repos.svg":    ("Repositories",    "repos",    "#d8dade", "#0e0f12", ""),
+    "btn-sponsor.svg":  ("Buy me a coffee", "coffee",   "#f0b429", "#14110a", CUP_DEFS),
 }
 
 

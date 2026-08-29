@@ -13,15 +13,15 @@ jobs:
     runs-on: ubuntu-latest
     timeout-minutes: 10
     steps:
-      # Exactly two, both in the dark-blue palette: navy for the top of the
-      # README, a lighter terminal blue for the closing one.
+      # Monochrome to match the panels: white snake on greys, amber as the
+      # single accent for the densest days.
       - name: Generate snakes
         uses: Platane/snk@v3
         with:
           github_user_name: vignesh2027
           outputs: |
-            dist/snake-navy.svg?color_snake=%2358a6ff&color_dots=%2305070c,%230b2545,%2313395e,%231b5299,%231f6feb
-            dist/snake-terminal.svg?color_snake=%23cfe8ff&color_dots=%2305070c,%230a2540,%23144272,%23205295,%232c74b3
+            dist/snake-navy.svg?color_snake=%23ffffff&color_dots=%23000000,%231f2023,%233a3d42,%238b9096,%23f0b429
+            dist/snake-terminal.svg?color_snake=%23f0b429&color_dots=%23000000,%231a1b1e,%2334373c,%23787d84,%23ffffff
 
       - name: Push to snake-output branch
         uses: crazy-max/ghaction-github-pages@v3
