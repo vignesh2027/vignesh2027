@@ -1,6 +1,6 @@
 <div align="center">
 
-<img src="https://raw.githubusercontent.com/vignesh2027/vignesh2027/main/assets/panel-terminal.svg" width="100%" alt="Vigneshwar L — backend, systems, AI/ML"/>
+<img src="https://raw.githubusercontent.com/vignesh2027/vignesh2027/main/assets/panel-header.svg" width="100%" alt="Vigneshwar L — backend, systems, AI/ML"/>
 
 <br/><br/>
 

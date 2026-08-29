@@ -49,7 +49,7 @@ ICONS = {
         '<path d="M17.5 6.5h2.4a3.6 3.6 0 0 1 0 7.2h-2.4" fill="none" stroke="url(#cup)" '
         'stroke-width="2"/>'
         '<rect x="0.5" y="20.5" width="19" height="2.2" rx="1.1" fill="url(#cup)" opacity=".85"/>'
-        '<g stroke="{a}" stroke-width="1.6" stroke-linecap="round" opacity=".75">'
+        '<g stroke="#c9ced4" stroke-width="1.6" stroke-linecap="round" opacity=".7">'
         '<path d="M7 1.5c0 -1.6 -1.6 -2 -1.6 -3.6">'
         '<animate attributeName="opacity" values=".2;.9;.2" dur="2.8s" repeatCount="indefinite"/>'
         '</path>'
@@ -59,14 +59,14 @@ ICONS = {
 }
 
 CUP_DEFS = ('<defs><linearGradient id="cup" x1="0" y1="0" x2="1" y2="1">'
-            '<stop offset="0%" stop-color="#ffc233"/>'
-            '<stop offset="100%" stop-color="#ff9d2e"/></linearGradient></defs>')
+            '<stop offset="0%" stop-color="#ffffff"/>'
+            '<stop offset="100%" stop-color="#9aa0a6"/></linearGradient></defs>')
 
 BUTTONS = {
     "btn-linkedin.svg": ("LinkedIn",        "linkedin", "#d8dade", "#0e0f12", ""),
     "btn-email.svg":    ("Email",           "email",    "#d8dade", "#0e0f12", ""),
     "btn-repos.svg":    ("Repositories",    "repos",    "#d8dade", "#0e0f12", ""),
-    "btn-sponsor.svg":  ("Buy me a coffee", "coffee",   "#f0b429", "#14110a", CUP_DEFS),
+    "btn-sponsor.svg":  ("Buy me a coffee", "coffee",   "#ffffff", "#141518", CUP_DEFS),
 }
 
 

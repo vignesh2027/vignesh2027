@@ -40,13 +40,13 @@ BORDER = "#26282d"
 TEXT   = "#ffffff"
 DIM    = "#9aa0a6"
 FAINT  = "#55595f"
-ACCENT = "#f0b429"      # amber, matches the coffee button
-ACC_D  = "#c98f18"
+ACCENT = "#ffffff"      # no accent hue: the page is pure black and white
+ACC_D  = "#b9bec4"
 # aliases so existing call sites keep working
 BLUE   = TEXT
 BLUE_D = ACCENT
 CYAN   = ACCENT
-VIOLET = "#d8dade"
+VIOLET = "#c9ced4"
 LIT    = "#ffffff"
 MONO   = "ui-monospace, SFMono-Regular, Menlo, Consolas, 'DejaVu Sans Mono', monospace"
 
@@ -54,7 +54,7 @@ HEAT = ["#141518", "#2a2c31", "#4a4d54", "#8b9096", "#ffffff"]
 
 # Windows in the skyline towers: lit ones cycle through the accent range so the
 # panel has colour without leaving the dark-blue scheme.
-WINDOW = ["#5c6067", "#8b9096", "#b9bec4", "#ffffff", "#f0b429"]
+WINDOW = ["#4a4d54", "#6e737a", "#9aa0a6", "#c9ced4", "#ffffff"]
 
 
 def esc(s):
@@ -102,7 +102,7 @@ def particles(uid, w, h, n=150):
         op = 0.05 + (seed % 100) / 100 * 0.22
         seed = (1103515245 * seed + 12345) % (1 << 31)
         dur = 9 + (seed % 100) / 100 * 14
-        col = ACCENT if i % 23 == 0 else "#ffffff"
+        col = "#ffffff"
         out.append(f'<circle cx="{x}" cy="{y}" r="{r:.2f}" fill="{col}" opacity="{op:.3f}">'
                    f'<animate attributeName="opacity" values="{op:.3f};{op*2.4:.3f};{op:.3f}" '
                    f'dur="{dur:.1f}s" repeatCount="indefinite"/>'
@@ -120,7 +120,7 @@ def head(uid, w, h, label):
             f'<stop offset="100%" stop-color="#ffffff" stop-opacity="0"/></radialGradient>'
             f'<linearGradient id="r{uid}" x1="0" y1="0" x2="1" y2="0">'
             f'<stop offset="0%" stop-color="{ACCENT}"/>'
-            f'<stop offset="100%" stop-color="#3a2f14"/></linearGradient>'
+            f'<stop offset="100%" stop-color="#2a2c31"/></linearGradient>'
             f'<clipPath id="c{uid}"><rect width="{w}" height="{h}" rx="12"/></clipPath>'
             f'</defs>')
 
@@ -186,108 +186,121 @@ def fetch():
     }
 
 
-# ----------------------------------------------------------------- terminal --
+# ------------------------------------------------------------------- header --
 
-def panel_terminal(d):
-    """One full-width terminal: identity on the left, a live readout on the right.
+# The page is pure black and white; the editor pane is the single place colour
+# appears, and it is there because syntax highlighting is what code actually
+# looks like. It reads as a working engineer rather than a stock graphic.
+SYN = {
+    "kw":   "#c586c0",   # keyword
+    "ty":   "#4ec9b0",   # type
+    "fn":   "#dcdcaa",   # function
+    "str":  "#ce9178",   # string
+    "num":  "#b5cea8",   # number
+    "com":  "#6a9955",   # comment
+    "op":   "#d4d4d4",   # punctuation / plain
+    "var":  "#9cdcfe",   # binding
+}
 
-    Previously this was two boxes side by side, each with dead space below its
-    content. One wide terminal with two columns fills the width and leaves no
-    half-empty panel.
-    """
-    w, h = 1240, 624
-    lx, rx = 34, 660
+CODE = [
+    [("impl", "kw"), (" ", "op"), ("Engine", "ty"), (" {", "op")],
+    [("    fn ", "kw"), ("flush", "fn"), ("(&", "op"), ("mut ", "kw"), ("self", "var"),
+     (") -> ", "op"), ("Result", "ty"), ("<()> {", "op")],
+    [("        // fsync before the memtable rotates", "com")],
+    [("        self", "var"), (".wal.", "op"), ("sync", "fn"), ("()?;", "op")],
+    [("", "op")],
+    [("        let ", "kw"), ("seg", "var"), (" = ", "op"), ("self", "var"),
+     (".memtable.", "op"), ("freeze", "fn"), ("();", "op")],
+    [("        self", "var"), (".levels[", "op"), ("0", "num"), ("].", "op"),
+     ("push", "fn"), ("(", "op"), ("seg", "var"), (");", "op")],
+    [("        self", "var"), (".metrics.", "op"), ("record", "fn"), ("(", "op"),
+     ('"flush"', "str"), (");", "op")],
+    [("", "op")],
+    [("        Ok", "ty"), ("(())", "op")],
+    [("    }", "op")],
+    [("}", "op")],
+]
 
-    rows = [
-        ("NAME",  "Vigneshwar L", TEXT),
-        ("ROLE",  "Backend  ·  Systems  ·  AI / ML", TEXT),
-        ("STACK", "Python  ·  Go  ·  Rust", CYAN),
-        ("OPEN",  "OpenTelemetry · CNCF · Helm · oxc", DIM),
-        ("WORK",  "clients, startups & founders", DIM),
-        ("",      "Shipd (Datacurve) · Handshake AI", DIM),
-        ("BUILD", "models, RL environments, agents,", DIM),
-        ("",      "RAG systems and storage engines", DIM),
-        ("BASE",  "Tamil Nadu, India", DIM),
+
+def panel_header(d):
+    """Name and title on the left, code typing itself out on the right."""
+    w, h = 1240, 448
+    lx = 40
+    ex, ey, ew, eh = 636, 66, 566, 330      # editor pane
+    fs, lh = 13, 22
+    ch = fs * 0.605
+
+    p = [head("hd", w, h, "Vigneshwar L")]
+    p.append(f'<rect width="{w}" height="{h}" fill="{BG}" rx="12"/>'
+             f'<rect x="0.5" y="0.5" width="{w-1}" height="{h-1}" rx="12" fill="{PANEL}" stroke="{BORDER}"/>'
+             f'<rect x="1" y="1" width="{w-2}" height="{h-2}" rx="11" fill="url(#ghd)"/>'
+             + particles("hd", w, h))
+
+    # ---- left: identity ----
+    p.append(f'<g opacity="1">{fade(0.4)}'
+             f'<rect x="{lx}" y="72" width="52" height="3" rx="1.5" fill="url(#rhd)"/>'
+             f'<text x="{lx}" y="132" font-family="{MONO}" font-size="38" fill="{TEXT}" '
+             f'font-weight="700">Vigneshwar L</text></g>')
+    lines = [
+        ("Backend  ·  Systems  ·  AI / ML", TEXT, 15.5, 1.0),
+        ("Python  ·  Go  ·  Rust", DIM, 14.5, 1.6),
+        ("OpenTelemetry · CNCF · Helm · oxc · ripgrep", DIM, 13.5, 2.2),
+        ("clients, startups & founders · Shipd · Handshake AI", DIM, 13.5, 2.8),
+        ("models, RL environments, agents, RAG and storage engines", DIM, 13.5, 3.4),
+        ("Tamil Nadu, India", FAINT, 13, 4.0),
     ]
-
-    monthly = {}
-    for wk in d["weeks"]:
-        for day in wk["contributionDays"]:
-            k = day["date"][:7]
-            monthly[k] = monthly.get(k, 0) + day["contributionCount"]
-    spark = [monthly[k] for k in sorted(monthly)][-14:]
-    top = max(spark) or 1
-
-    stat = [
-        ("stars, all projects", AGG_STARS),
-        ("focus",              "storage engines"),
-        ("also",               "agents · RAG · RL"),
-        ("open source",        "OpenTelemetry · CNCF"),
-        ("since",              "2023"),
-    ]
-
-    p = [shell("id", w, h, "vigneshwar@github ~ profile", "Vigneshwar L")]
-    c1, t = typed("cid", lx, 92, "cat /etc/profile", 0.5, size=15)
-    c2, _ = typed("cid2", rx, 92, "systemctl status vigneshwar", 0.5, size=15)
-    p += [c1, c2]
-
-    y, t = 144, t + 0.7
-    for k, v, col in rows:
-        p.append(f'<g opacity="1">{fade(t)}')
-        if k:
-            p.append(f'<text x="{lx}" y="{y}" font-family="{MONO}" font-size="14" '
-                     f'fill="{BLUE_D}" font-weight="700">{esc(k)}</text>')
-        p.append(f'<text x="{lx+96}" y="{y}" font-family="{MONO}" font-size="14.5" '
-                 f'fill="{col}">{esc(v)}</text></g>')
-        y += 40 if k else 30
-        t += 0.8
-
-    # right column: status light + figures
-    ry, rt = 144, 1.4
-    p.append(f'<g opacity="1">{fade(rt)}'
-             f'<circle cx="{rx+6}" cy="{ry-5}" r="5.5" fill="{CYAN}">'
-             f'<animate attributeName="opacity" values="1;.25;1" dur="2.2s" repeatCount="indefinite"/>'
+    y = 170
+    for txt, col, size, t in lines:
+        p.append(f'<text x="{lx}" y="{y}" font-family="{MONO}" font-size="{size}" '
+                 f'fill="{col}" opacity="1">{esc(txt)}{fade(t)}</text>')
+        y += 30
+    p.append(f'<g opacity="1">{fade(4.6)}'
+             f'<rect x="{lx}" y="{y+6}" width="540" height="1" fill="{BORDER}"/>'
+             f'<circle cx="{lx+6}" cy="{y+44}" r="5.5" fill="{TEXT}">'
+             f'<animate attributeName="opacity" values="1;.25;1" dur="2.4s" repeatCount="indefinite"/>'
              f'</circle>'
-             f'<text x="{rx+22}" y="{ry}" font-family="{MONO}" font-size="14.5" fill="{CYAN}" '
-             f'font-weight="700">active (running)</text></g>')
-    ry += 40
-    for k, v in stat:
-        dots = "." * max(2, 22 - len(k))
-        p.append(f'<g opacity="1">{fade(rt)}'
-                 f'<text x="{rx}" y="{ry}" font-family="{MONO}" font-size="14" fill="{DIM}">'
-                 f'{esc(k)} <tspan fill="#2f3237">{dots}</tspan> '
-                 f'<tspan fill="{TEXT}" font-weight="700">{esc(v)}</tspan></text></g>')
-        ry += 34
-        rt += 0.8
-
-    # activity sparkline
-    p.append(f'<g opacity="1">{fade(rt)}'
-             f'<text x="{rx}" y="{ry+14}" font-family="{MONO}" font-size="13" fill="{DIM}">activity</text></g>')
-    sw, sg = 26, 8
-    for i, v in enumerate(spark):
-        bh = max(4, round(v / top * 74))
-        bx = rx + 130 + i * (sw + sg)
-        p.append(f'<rect x="{bx}" y="{ry+30-bh}" width="{sw}" height="{bh}" rx="4" '
-                 f'fill="{CYAN if v == top else BLUE_D}" opacity="1">'
-                 + fade(rt + 0.2 + i * 0.12, 0.4) + '</rect>')
-    ry += 76
-
-    # footer strip: status + sponsor call, so no dead space at the bottom
-    fy = h - 108
-    p.append(f'<g opacity="1">{fade(rt + 1.4)}'
-             f'<rect x="{lx}" y="{fy-34}" width="{w-2*lx}" height="1" fill="{BORDER}"/>'
-             f'<circle cx="{lx+7}" cy="{fy+2}" r="6" fill="{CYAN}">'
-             f'<animate attributeName="opacity" values="1;.3;1" dur="2.4s" repeatCount="indefinite"/>'
-             f'</circle>'
-             f'<text x="{lx+24}" y="{fy+8}" font-family="{MONO}" font-size="17" fill="{CYAN}" '
+             f'<text x="{lx+22}" y="{y+49}" font-family="{MONO}" font-size="15" fill="{TEXT}" '
              f'font-weight="700">looking for open source contributions</text>'
-             f'<text x="{lx}" y="{fy+40}" font-family="{MONO}" font-size="13" fill="{DIM}">'
-             f'OpenTelemetry &#183; CNCF &#183; Helm &#183; oxc &#183; ripgrep &#183; '
-             f'open to new projects and mentorship programmes</text>'
-             f'<text x="{w-lx}" y="{fy+8}" font-family="{MONO}" font-size="13.5" fill="{VIOLET}" '
-             f'text-anchor="end">linkedin.com/in/vigneshwar-l-td729994</text>'
-             f'<text x="{w-lx}" y="{fy+40}" font-family="{MONO}" font-size="13.5" fill="{DIM}" '
-             f'text-anchor="end">lkvarnesh@gmail.com</text></g>')
+             f'<text x="{lx}" y="{y+78}" font-family="{MONO}" font-size="12.5" fill="{FAINT}">'
+             f'open to new projects, mentorships and international contract work</text></g>')
+
+    # ---- right: editor pane ----
+    p.append(f'<rect x="{ex}" y="{ey}" width="{ew}" height="{eh}" rx="10" fill="#0b0c0f" '
+             f'stroke="{BORDER}"/>'
+             f'<path d="M{ex}.5 {ey+10}a10 10 0 0 1 10-10h{ew-21}a10 10 0 0 1 10 10v22H{ex}.5z" '
+             f'fill="#121317" stroke="{BORDER}"/>'
+             f'<circle cx="{ex+18}" cy="{ey+17}" r="4" fill="#3a3d42"/>'
+             f'<circle cx="{ex+33}" cy="{ey+17}" r="4" fill="#55595f"/>'
+             f'<circle cx="{ex+48}" cy="{ey+17}" r="4" fill="#787d84"/>'
+             f'<text x="{ex+ew/2}" y="{ey+21}" font-family="{MONO}" font-size="12" fill="{FAINT}" '
+             f'text-anchor="middle">engine.rs</text>'
+             f'<rect x="{ex+1}" y="{ey+33}" width="34" height="{eh-34}" fill="#0e0f13"/>')
+
+    cy = ey + 62
+    t = 1.0
+    for i, spans in enumerate(CODE):
+        plain = "".join(tx for tx, _ in spans)
+        p.append(f'<text x="{ex+22}" y="{cy}" font-family="{MONO}" font-size="11.5" '
+                 f'fill="#3a3d42" text-anchor="end" opacity="1">{i+1}{fade(t)}</text>')
+        if plain.strip():
+            cw = len(plain) * ch + 10
+            uid = f"cl{i}"
+            p.append(f'<defs><clipPath id="{uid}"><rect x="{ex+44}" y="{cy-fs}" '
+                     f'height="{fs+7}" width="{cw:.1f}">'
+                     + anim("width", f"{cw:.1f}", t, max(0.5, len(plain) / 22)) +
+                     '</rect></clipPath></defs>')
+            p.append(f'<g clip-path="url(#{uid})"><text x="{ex+44}" y="{cy}" '
+                     f'font-family="{MONO}" font-size="{fs}" xml:space="preserve">')
+            for tx, kind in spans:
+                p.append(f'<tspan fill="{SYN[kind]}">{esc(tx)}</tspan>')
+            p.append('</text></g>')
+        cy += lh
+        t += 0.62
+
+    # caret parked at the end
+    p.append(f'<rect x="{ex+44}" y="{cy-fs-2}" width="7.5" height="15" fill="#d4d4d4" opacity="1">'
+             f'<animate attributeName="opacity" values="1;0;1" dur="1.1s" repeatCount="indefinite"/>'
+             f'{fade(t)}</rect>')
     p.append("</svg>")
     return "".join(p)
 
@@ -391,13 +404,12 @@ def panel_skyline(d):
                  f"{d['contribs']:,} contributions in the last year")]
 
     # --- stat tiles fill what used to be empty sky ---
+    # Only the star figure remains: the communities / projects / years tiles
+    # were noise beside a chart that already says how much work happens.
     tiles = [
-        (AGG_STARS, "stars",        "all projects & accounts",         CYAN),
-        ("5",       "communities",  "OpenTelemetry, CNCF, Helm, oxc",  BLUE),
-        ("9",       "projects",     "databases, agents, frameworks",   TEXT),
-        ("3 yrs",   "building",     "since 2023",                      TEXT),
+        (AGG_STARS, "stars", "all projects & accounts", TEXT),
     ]
-    tw = (w - 60 - 3 * 18) // 4
+    tw = 300
     for i, (big, lab, note, col) in enumerate(tiles):
         x = 30 + i * (tw + 18)
         p.append(f'<g opacity="1">{fade(0.6 + i * 0.5)}'
@@ -605,7 +617,7 @@ if __name__ == "__main__":
     d = fetch()
     os.makedirs("assets", exist_ok=True)
     panels = (
-        ("panel-terminal.svg",   panel_terminal(d)),
+        ("panel-header.svg",     panel_header(d)),
         ("panel-experience.svg", panel_experience()),
         ("panel-langs.svg",      panel_langs()),
         ("panel-skyline.svg",    panel_skyline(d)),
