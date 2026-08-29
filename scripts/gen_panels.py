@@ -481,7 +481,7 @@ def panel_skyline(d):
     And every day of a month is drawn as a window -- unlit when there was no
     activity -- so a quiet month reads as a dark tower rather than an empty box.
     """
-    w, h = 1240, 520
+    w, h = 1240, 480
     ground = h - 78
 
     monthly, days = {}, {}
@@ -506,8 +506,7 @@ def panel_skyline(d):
     for i, (big, lab, note, col) in enumerate(tiles):
         x = 30 + i * (tw + 18)
         p.append(f'<g opacity="1">{fade(0.6 + i * 0.5)}'
-                 f'<rect x="{x}" y="96" width="{tw}" height="90" fill="{CARD}"/>'
-                 f'<rect x="{x}" y="96" width="{tw}" height="2.5" rx="1.25" fill="url(#rct)"/>'
+                                  f'<rect x="{x}" y="96" width="{tw}" height="2.5" rx="1.25" fill="url(#rct)"/>'
                  f'<text x="{x+18}" y="140" font-family="{MONO}" font-size="28" fill="{col}" '
                  f'font-weight="700">{esc(big)}</text>'
                  f'<text x="{x+18}" y="162" font-family="{MONO}" font-size="12.5" fill="{DIM}">{esc(lab)}</text>'
@@ -515,21 +514,19 @@ def panel_skyline(d):
                  f'</g>')
 
     # --- skyline ---
-    max_h = ground - 246
+    max_h = ground - 206
 
     def height_of(total):
         # sqrt, not linear: one 385-commit month against a 12-commit one flattens
         # every quiet month to an invisible stub on a linear scale.
-        # floor of 88 so a quiet month is still a building with lit floors
-        # rather than a stub; the exact figure is printed above each tower.
-        return max(88, round((total / top) ** 0.5 * max_h))
+        # High floor so a quiet month is still a lit building rather than a
+        # stub leaving a hole in the skyline; the exact figure is printed
+        # above every tower, so the compression misleads nobody.
+        return max(128, round((total / top) ** 0.5 * max_h))
 
-    p.append(f'<defs><linearGradient id="sky" x1="0" y1="0" x2="0" y2="1">'
-             f'<stop offset="0%" stop-color="#4d8dff" stop-opacity=".12"/>'
-             f'<stop offset="100%" stop-color="#4d8dff" stop-opacity="0"/></linearGradient></defs>'
-             f'<rect x="30" y="{ground-max_h-30}" width="{w-60}" height="{max_h+30}" '
-             f'fill="url(#sky)" opacity=".55"/>'
-             f'<rect x="30" y="{ground}" width="{w-60}" height="2" rx="1" fill="{BORDER}"/>')
+    # No sky rectangle: a filled band behind the towers drew a visible box edge,
+    # which is exactly the look being removed everywhere else. Just the ground.
+    p.append(f'<rect x="30" y="{ground}" width="{w-60}" height="2" rx="1" fill="{BORDER}"/>')
 
     slot = (w - 60) / 12
     tower_w = slot - 26
@@ -550,20 +547,25 @@ def panel_skyline(d):
                  f'fill="{CYAN if total else BORDER}">'
                  + anim("y", f"{ty:.0f}", t, 1.2, start=str(ground)) + '</rect>')
 
-        # EVERY day is a window; unlit ones keep the tower from looking hollow
-        counts = days[k]
+        # Windows light at random in EVERY tower, with the lit fraction scaled by
+        # how busy the month was and floored so a quiet month still reads as an
+        # occupied building rather than a dark slab. Deterministic LCG, so a
+        # rebuild is byte-identical.
         cols = max(1, int((tower_w - 14) // 13))
         rows_fit = max(0, int((th - 22) // 15))
-        slots = cols * rows_fit
-        show = counts[:slots] if len(counts) > slots else counts
-        for n, c in enumerate(show):
+        lit_ratio = max(0.42, min(0.88, total / top))
+        seed = (i + 1) * 7919 + 104729
+        for n in range(cols * rows_fit):
             wx = x + 8 + (n % cols) * 13
             wy = ty + 14 + (n // cols) * 15
-            if c > 0:
-                shade = WINDOW[(n + i) % len(WINDOW)]
-                op = 0.35 + min(0.6, c / 12)
+            seed = (1103515245 * seed + 12345) % (1 << 31)
+            roll = (seed % 1000) / 1000
+            seed = (1103515245 * seed + 12345) % (1 << 31)
+            if roll < lit_ratio:
+                shade = WINDOW[seed % len(WINDOW)]
+                op = 0.55 + (seed % 45) / 100
             else:
-                shade, op = "#191b1f", 0.9
+                shade, op = "#1b2740", 0.85
             p.append(f'<rect x="{wx:.0f}" y="{wy:.0f}" width="7" height="8" rx="1.5" '
                      f'fill="{shade}" opacity="{op:.2f}">'
                      + anim("opacity", f"{op:.2f}", t + 0.5 + n * 0.01, 0.5) + '</rect>')
@@ -576,8 +578,9 @@ def panel_skyline(d):
         p.append('</g>')
 
     p.append(f'<text x="30" y="{h-20}" font-family="{MONO}" font-size="11.5" fill="{FAINT}" '
-             f'opacity="1">{fade(11.5)}tower height = commits that month  &#183;  each window = '
-             f'a day, lit when there was activity</text>')
+             # Windows are lit at random now, so the old "each window = a day"
+             # caption would be untrue. Height is the only claim being made.
+             f'opacity="1">{fade(11.5)}tower height = commits that month</text>')
     p.append("</svg>")
     return "".join(p)
 
