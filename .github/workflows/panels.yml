@@ -22,13 +22,13 @@ jobs:
       - name: Render panels
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        run: python3 scripts/gen_panels.py
+        run: python3 scripts/gen_mono.py
 
       - name: Commit if changed
         run: |
           git config user.name "vignesh2027"
           git config user.email "applemacbook6sep2004@gmail.com"
-          git add assets/panel-*.svg
+          git add assets/mono/*.svg
           if git diff --cached --quiet; then
             echo "panels unchanged"
             exit 0
