@@ -21,7 +21,7 @@ jobs:
           outputs: |
             dist/snake-navy.svg?color_snake=%234d8dff&color_dots=%2306080f,%231b2740,%232f4a7d,%234d8dff,%239dc0ff
             dist/snake-terminal.svg?color_snake=%239dc0ff&color_dots=%2306080f,%23142038,%23264069,%233f79e0,%23b3ceff
-            dist/snake-mono-dark.svg?color_snake=%23f2f2f2&color_dots=%23161b22,%233a3a3a,%236b6b6b,%23a3a3a,%23e6e6e6
+            dist/snake-mono-dark.svg?color_snake=%23ffffff&color_dots=%23161b22,%23707070,%23a8a8a8,%23d6d6d6,%23ffffff
             dist/snake-mono-light.svg?color_snake=%23111111&color_dots=%23ebedf0,%23c6c6c6,%238c8c8c,%23555555,%23111111
 
       - name: Push to snake-output branch

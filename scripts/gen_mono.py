@@ -28,10 +28,10 @@ SANS = ("-apple-system, BlinkMacSystemFont, 'Segoe UI', 'Helvetica Neue', "
 MONO = "ui-monospace, SFMono-Regular, Menlo, Consolas, 'DejaVu Sans Mono', monospace"
 
 THEMES = {
-    "dark": {"fg": "#f2f2f2", "dim": "#a3a3a3", "faint": "#6b6b6b",
-             "line": "#2b2b2b", "card": "#161616"},
-    "light": {"fg": "#111111", "dim": "#555555", "faint": "#8c8c8c",
-              "line": "#dcdcdc", "card": "#f4f4f4"},
+    "dark": {"fg": "#ffffff", "dim": "#e0e0e0", "faint": "#b8b8b8",
+             "line": "#3a3a3a", "card": "#1f1f1f", "btn": "#9a9a9a"},
+    "light": {"fg": "#111111", "dim": "#333333", "faint": "#666666",
+              "line": "#dcdcdc", "card": "#f4f4f4", "btn": "#bdbdbd"},
 }
 
 
@@ -114,7 +114,7 @@ def button(t, key, label):
     w = round(tx + text_width(label, fs) + 16)
     return (f'{svg_open(w, h, label)}'
             f'<rect x="0.5" y="0.5" width="{w-1}" height="{h-1}" rx="6" fill="none" '
-            f'stroke="{t["line"] if key != "coffee" else t["fg"]}"/>'
+            f'stroke="{t["btn"] if key != "coffee" else t["fg"]}"/>'
             f'<g transform="translate(12,{(h-box)/2:.1f}) scale({scale:.4f})">'
             f'{markup.replace("{a}", t["fg"])}</g>'
             f'<text x="{tx}" y="{h/2+4.6}" font-family="{SANS}" font-size="{fs}" '
@@ -135,7 +135,7 @@ def langs(t):
                  f'fill="{t["fg"]}">{esc(name)}</text>')
         p.append(f'<rect x="{bx}" y="{y}" width="{bw}" height="12" fill="{t["card"]}"/>')
         p.append(f'<rect x="{bx}" y="{y}" width="{fill}" height="12" fill="{t["fg"]}" '
-                 f'opacity="{1 - i * 0.18:.2f}"/>')
+                 f'opacity="{1 - i * 0.08:.2f}"/>')
         p.append(f'<text x="{w}" y="{y+11}" font-family="{MONO}" font-size="14" '
                  f'fill="{t["dim"]}" text-anchor="end">{lvl}</text>')
         y += 40
@@ -173,7 +173,7 @@ def skyline(t, d):
         x = i * slot + 15
         y = ground - th
         p.append(f'<rect x="{x:.0f}" y="{y}" width="{tw:.0f}" height="{th}" fill="{t["fg"]}" '
-                 f'opacity="{0.25 + 0.75 * (total / top) ** 0.5:.2f}"/>')
+                 f'opacity="{0.7 + 0.3 * (total / top) ** 0.5:.2f}"/>')
         p.append(f'<text x="{x + tw/2:.0f}" y="{y-10}" font-family="{MONO}" font-size="13" '
                  f'fill="{t["dim"]}" text-anchor="middle">{total}</text>')
         p.append(f'<text x="{x + tw/2:.0f}" y="{ground+28}" font-family="{SANS}" font-size="13" '
