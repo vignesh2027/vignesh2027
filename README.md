@@ -1,18 +1,40 @@
-<img src="assets/card/header.svg" width="100%" alt="Vigneshwar L. Backend, systems and AI/ML engineer. Python, Go, Rust.">
+<picture>
+  <source media="(prefers-color-scheme: dark)" srcset="assets/mono/header-dark.svg">
+  <img src="assets/mono/header-light.svg" width="100%" alt="Vigneshwar L. Backend, systems and AI/ML engineer. Python, Go, Rust.">
+</picture>
 
-<a href="https://www.linkedin.com/in/vigneshwar-l-td729994"><img src="assets/card/btn-linkedin.svg" alt="LinkedIn"></a>&nbsp;
-<a href="mailto:lkvarnesh@gmail.com"><img src="assets/card/btn-email.svg" alt="Email"></a>&nbsp;
-<a href="https://github.com/vignesh2027?tab=repositories"><img src="assets/card/btn-repos.svg" alt="Repositories"></a>&nbsp;
-<a href="https://github.com/sponsors/vignesh2027"><img src="assets/card/btn-coffee.svg" alt="Buy me a coffee"></a>&nbsp;
-<img src="https://komarev.com/ghpvc/?username=vignesh2027&style=flat-square&color=2563eb&label=profile+views&base=10216" alt="Profile views" height="36">
+<a href="https://www.linkedin.com/in/vigneshwar-l-td729994"><picture><source media="(prefers-color-scheme: dark)" srcset="assets/mono/btn-linkedin-dark.svg"><img src="assets/mono/btn-linkedin-light.svg" alt="LinkedIn"></picture></a>&nbsp;
+<a href="mailto:lkvarnesh@gmail.com"><picture><source media="(prefers-color-scheme: dark)" srcset="assets/mono/btn-email-dark.svg"><img src="assets/mono/btn-email-light.svg" alt="Email"></picture></a>&nbsp;
+<a href="https://github.com/vignesh2027?tab=repositories"><picture><source media="(prefers-color-scheme: dark)" srcset="assets/mono/btn-repos-dark.svg"><img src="assets/mono/btn-repos-light.svg" alt="Repositories"></picture></a>&nbsp;
+<a href="https://github.com/sponsors/vignesh2027"><picture><source media="(prefers-color-scheme: dark)" srcset="assets/mono/btn-coffee-dark.svg"><img src="assets/mono/btn-coffee-light.svg" alt="Buy me a coffee"></picture></a>&nbsp;
+<img src="https://komarev.com/ghpvc/?username=vignesh2027&style=flat-square&color=2563eb&label=profile+views&base=10216" alt="Profile views" height="34">
 
 <br>
 
 I build backend and systems software, and I help train the models that are starting to write it too. Most of my work has been for clients, early-stage startups and founders at the point where nothing exists yet and the first version has to actually work.
 
-<img src="assets/card/work.svg" width="49.4%" alt="Work: clients and startups since 2023, Shipd and Datacurve AI trainer, Handshake AI model evaluator, open source contributor">&nbsp;<img src="assets/card/langs.svg" width="49.4%" alt="Languages: Python 72, Rust 68, Go 65, TypeScript 42, self-assessed out of 100">
+### Work
 
-<img src="assets/card/skyline.svg" width="100%" alt="Contributions per month over the last year">
+| | | |
+|:--|:--|:--|
+| **Clients and startups** | since 2023 | Early-stage builds, usually as the only engineer. |
+| **Shipd · Datacurve** | AI trainer | Training data authored and graded against rubrics. |
+| **Handshake AI** | model evaluator | Prompt authoring and preference ranking. |
+| **Open source** | contributor | OpenTelemetry, CNCF, Helm, oxc, ripgrep. |
+
+### Languages
+
+<picture>
+  <source media="(prefers-color-scheme: dark)" srcset="assets/mono/langs-dark.svg">
+  <img src="assets/mono/langs-light.svg" width="100%" alt="Python 72, Rust 68, Go 65, TypeScript 42. Self-assessed proficiency out of 100.">
+</picture>
+
+### Contributions
+
+<picture>
+  <source media="(prefers-color-scheme: dark)" srcset="assets/mono/skyline-dark.svg">
+  <img src="assets/mono/skyline-light.svg" width="100%" alt="Contributions per month over the last year">
+</picture>
 
 <details>
 <summary><b>The long version</b></summary>

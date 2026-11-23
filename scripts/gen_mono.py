@@ -29,9 +29,11 @@ MONO = "ui-monospace, SFMono-Regular, Menlo, Consolas, 'DejaVu Sans Mono', monos
 
 THEMES = {
     "dark": {"fg": "#ffffff", "dim": "#e0e0e0", "faint": "#b8b8b8",
-             "line": "#3a3a3a", "card": "#1f1f1f", "btn": "#9a9a9a"},
+             "line": "#3a3a3a", "card": "#1f1f1f", "btn": "#9a9a9a",
+             "coffee": "#c8925d"},
     "light": {"fg": "#111111", "dim": "#333333", "faint": "#666666",
-              "line": "#dcdcdc", "card": "#f4f4f4", "btn": "#bdbdbd"},
+              "line": "#dcdcdc", "card": "#f4f4f4", "btn": "#bdbdbd",
+              "coffee": "#8b5a2b"},
 }
 
 
@@ -114,9 +116,9 @@ def button(t, key, label):
     w = round(tx + text_width(label, fs) + 16)
     return (f'{svg_open(w, h, label)}'
             f'<rect x="0.5" y="0.5" width="{w-1}" height="{h-1}" rx="6" fill="none" '
-            f'stroke="{t["btn"] if key != "coffee" else t["fg"]}"/>'
+            f'stroke="{t["coffee"] if key == "coffee" else t["btn"]}"/>'
             f'<g transform="translate(12,{(h-box)/2:.1f}) scale({scale:.4f})">'
-            f'{markup.replace("{a}", t["fg"])}</g>'
+            f'{markup.replace("{a}", t["coffee"] if key == "coffee" else t["fg"])}</g>'
             f'<text x="{tx}" y="{h/2+4.6}" font-family="{SANS}" font-size="{fs}" '
             f'fill="{t["fg"]}" font-weight="600">{esc(label)}</text></svg>')
 
